@@ -13,10 +13,10 @@ class User
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $lastname = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 180, unique: true)]
