@@ -39,9 +39,17 @@ class User
     #[ORM\ManyToMany(targetEntity: Store::class, mappedBy: 'users')]
     private Collection $stores;
 
+    #[ORM\ManyToMany(targetEntity: Product::class)]
+    private Collection $products;
+
+    #[ORM\ManyToMany(targetEntity: Address::class, inversedBy: 'users')]
+    private Collection $Addresses;
+
     public function __construct()
     {
         $this->stores = new ArrayCollection();
+        $this->products = new ArrayCollection();
+        $this->Addresses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -156,6 +164,54 @@ class User
         if ($this->stores->removeElement($store)) {
             $store->removeUser($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self
+    {
+        $this->products->removeElement($product);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Address>
+     */
+    public function getAddresses(): Collection
+    {
+        return $this->Addresses;
+    }
+
+    public function addAddress(Address $address): self
+    {
+        if (!$this->Addresses->contains($address)) {
+            $this->Addresses->add($address);
+        }
+
+        return $this;
+    }
+
+    public function removeAddress(Address $address): self
+    {
+        $this->Addresses->removeElement($address);
 
         return $this;
     }

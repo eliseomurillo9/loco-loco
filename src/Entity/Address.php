@@ -27,9 +27,13 @@ class Address
     #[ORM\OneToMany(mappedBy: 'addresses', targetEntity: Store::class)]
     private Collection $stores;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Addresses')]
+    private Collection $users;
+
     public function __construct()
     {
         $this->stores = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -98,6 +102,33 @@ class Address
             if ($store->getAddresses() === $this) {
                 $store->setAddresses(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addAddress($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeAddress($this);
         }
 
         return $this;
