@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StoreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -37,6 +39,26 @@ class Store
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $road_specificity = null;
+
+    #[ORM\OneToMany(mappedBy: 'store', targetEntity: storeHours::class)]
+    private Collection $storeHours;
+
+    #[ORM\ManyToMany(targetEntity: product::class, inversedBy: 'stores')]
+    private Collection $products;
+
+    #[ORM\ManyToOne(inversedBy: 'stores')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?address $addresses = null;
+
+    #[ORM\ManyToMany(targetEntity: user::class, inversedBy: 'stores')]
+    private Collection $users;
+
+    public function __construct()
+    {
+        $this->storeHours = new ArrayCollection();
+        $this->products = new ArrayCollection();
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -135,6 +157,96 @@ class Store
     public function setRoadSpecificity(?string $road_specificity): self
     {
         $this->road_specificity = $road_specificity;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, storeHours>
+     */
+    public function getStoreHours(): Collection
+    {
+        return $this->storeHours;
+    }
+
+    public function addStoreHour(storeHours $storeHour): self
+    {
+        if (!$this->storeHours->contains($storeHour)) {
+            $this->storeHours->add($storeHour);
+            $storeHour->setStore($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStoreHour(storeHours $storeHour): self
+    {
+        if ($this->storeHours->removeElement($storeHour)) {
+            // set the owning side to null (unless already changed)
+            if ($storeHour->getStore() === $this) {
+                $storeHour->setStore(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, product>
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(product $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(product $product): self
+    {
+        $this->products->removeElement($product);
+
+        return $this;
+    }
+
+    public function getAddresses(): ?address
+    {
+        return $this->addresses;
+    }
+
+    public function setAddresses(?address $addresses): self
+    {
+        $this->addresses = $addresses;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, user>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(user $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(user $user): self
+    {
+        $this->users->removeElement($user);
 
         return $this;
     }

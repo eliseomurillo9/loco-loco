@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -33,6 +35,14 @@ class User
 
     #[ORM\Column]
     private ?bool $is_enabled = null;
+
+    #[ORM\ManyToMany(targetEntity: Store::class, mappedBy: 'users')]
+    private Collection $stores;
+
+    public function __construct()
+    {
+        $this->stores = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +129,33 @@ class User
     public function setIsEnabled(bool $is_enabled): self
     {
         $this->is_enabled = $is_enabled;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Store>
+     */
+    public function getStores(): Collection
+    {
+        return $this->stores;
+    }
+
+    public function addStore(Store $store): self
+    {
+        if (!$this->stores->contains($store)) {
+            $this->stores->add($store);
+            $store->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStore(Store $store): self
+    {
+        if ($this->stores->removeElement($store)) {
+            $store->removeUser($this);
+        }
 
         return $this;
     }
