@@ -17,7 +17,7 @@ Récupére les vendors.
 
 ### Récupérer les variables d'environements
 
-Récupérer le .env.local (à mettre dans la racine du projet).
+Récupérer le .env.local (à mettre à la racine du projet).
 
 ### Lancer la base de donnée
 
