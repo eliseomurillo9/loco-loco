@@ -1,18 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}hey!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>
+            {% block title %}
+                Loco Loco
+            {% endblock %}
+        </title>
+
+        {# Font Awesome Icons #}
+        <script src="https://kit.fontawesome.com/41d6b020fe.js" crossorigin="anonymous"></script>
+
+        {# Font family #}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+        {# Styles #}
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
+        {# Javascript #}
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
+
     <body>
-        {% block body %}{% endblock %}
+
+        <header>
+            Navbar
+        </header>
+
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+        
+
+        <footer>
+            <ul class="flex">
+                <li>
+                    <a href="#">Mentions légales</a>
+                </li>
+                <li>
+                    <p>Loco Loco - Tous droits réservés - {{ date()|date("Y") }}</p>
+                </li>
+                <li>
+                    <a href="#">Support technique</a>
+                </li>
+            </ul>
+        </footer>
+
     </body>
+
 </html>
