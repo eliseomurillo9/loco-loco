@@ -1,0 +1,19 @@
+    <a href="{{ path('main_index') }}" class="identity">
+        <img src="{{ asset('image/logo.png') }}" alt="Logo de Loco Loco : #">
+        Loco Loco
+    </a>
+    <nav>
+        <ul>
+            {% if is_granted('ROLE_USER') %}
+                <li>
+                    <a href="#">Ajouter un établissement</a>
+                </li>
+            {% endif %}
+                <li class="separator">
+                    <a href="#">S'inscrire</a>
+                </li>
+                <li>
+                    <a href="#">Se connecter</a>
+                </li>
+        </ul>
+    </nav>
