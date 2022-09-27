@@ -40,17 +40,17 @@ class Store
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $road_specificity = null;
 
-    #[ORM\OneToMany(mappedBy: 'store', targetEntity: storeHours::class)]
+    #[ORM\OneToMany(mappedBy: 'store', targetEntity: StoreHours::class)]
     private Collection $storeHours;
 
-    #[ORM\ManyToMany(targetEntity: product::class, inversedBy: 'stores')]
+    #[ORM\ManyToMany(targetEntity: Product::class, inversedBy: 'stores')]
     private Collection $products;
 
     #[ORM\ManyToOne(inversedBy: 'stores')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?address $addresses = null;
+    private ?Address $addresses = null;
 
-    #[ORM\ManyToMany(targetEntity: user::class, inversedBy: 'stores')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'stores')]
     private Collection $users;
 
     public function __construct()
