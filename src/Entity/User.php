@@ -50,7 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Product::class)]
     private Collection $products;
 
-    #[ORM\ManyToMany(targetEntity: Address::class, inversedBy: 'users')]
+    #[ORM\ManyToMany(targetEntity: Address::class, inversedBy: 'users', cascade:["persist"])]
     private Collection $Addresses;
 
     public function __construct()
