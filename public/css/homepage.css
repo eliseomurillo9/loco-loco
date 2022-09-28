@@ -1,3 +1,4 @@
+/* === HERO === */
 .hero{
     height: 70vh;
     width: 100%;
@@ -35,4 +36,27 @@
 
 .hero_text{
     margin-bottom: 1rem;
+}
+
+
+/* === ABOUT US === */
+
+.about{
+    background-color: var(--main);
+    color: var(--light-bis);
+    padding: 2rem;
+    text-align: center;
+}
+
+.about_content{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about_content h2,p,div{
+    margin-bottom: 1rem;
+}
+
+.fa-apple-alt, .fa-carrot{
+    margin: 1rem;
 }
