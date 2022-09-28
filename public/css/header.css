@@ -65,6 +65,10 @@ nav ul li{
         padding-left: 50px;
     }
 
+    nav ul {
+        flex-direction: column;
+    }
+
     nav ul li a{
         font-size: 16px;
     }
@@ -85,8 +89,7 @@ nav ul li{
     }
     nav ul li{
         display: block;
-        margin: 50px 0;
-        line-height: 30px;
+        margin: 20px 0;
     }
     nav ul li a{
         font-size: 20px;
