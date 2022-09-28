@@ -5,7 +5,7 @@
                     Loco Loco
                 </a>
             </li>
-            {# Si je ne ne suis pas connecté, j'affiche la navbar publique #}
+            
             {# <div class="nav__right-part flex">
                 <li>
                     <a class="btn btn-main-outline" href="#">S'inscrire</a>
@@ -14,7 +14,7 @@
                     <a class="btn btn-main" href="#">Se connecter</a>
                 </li>
             </div> #}
-            {# Sinon, je suis connecté en tant que client #}
+            
             {# Sinon si, je suis connecté en tant que commerçant #}
             {# {% if is_granted('ROLE_USER') %}
                 <li>
@@ -24,14 +24,23 @@
         {# </ul>
     </nav> #}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+{% endblock %}
+
 <nav class="box-shadow">
     <input type="checkbox" id="check">
     <label for="check" class="checkbtn">
         <i class="fas fa-bars"></i>
     </label>
     <label class="logo bold subtitle">Loco Loco</label>
-    <ul>
+    <ul class="flex">
+        {# Si je ne ne suis pas connecté, j'affiche la navbar publique #}
         <li><a class="btn btn-main-outline" href="#">S'inscrire</a></li>
         <li><a class="btn btn-main" href="#">Se connecter</a></li>
+        {# Sinon, je suis connecté en tant que client #}
+        <li><a class="nav-icon" href="#"><i class="fas fa-fw fa-heart"></i></a></li>
+        <li><a class="nav-icon" href="#"><i class="fas fa-fw fa-shopping-basket"></i></a></li>
+        <li><a href="#"><img class="avatar" src="{{ asset('images/carrot.png')}}" alt="avatar client"></a></li>
     </ul>
 </nav>
