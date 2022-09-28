@@ -53,10 +53,31 @@
     margin: 0 auto;
 }
 
-.about_content h2,p,div{
+.about_content-marginbt{
     margin-bottom: 1rem;
 }
 
 .fa-apple-alt, .fa-carrot{
     margin: 1rem;
+}
+
+/* ===  SHOW PRODUCTS === */
+.show-products{
+    height: 50vh;
+    width: 100%;
+    background: url(../images/products-teasing.png) no-repeat;
+    background-size: cover;
+    background-position-y: center;
+    background-color: grey;
+
+    color: var(--main);
+    text-align: center;
+
+    position: relative;
+}
+
+.show-products a{
+    position: absolute;
+    top: 4rem;
+    left: 2rem;
 }
