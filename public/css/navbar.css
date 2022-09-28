@@ -1,9 +1,9 @@
-/* === HEADER === */
+/* === NAVBAR === */
+
 nav{
     background-color: var(--light);
     height: 80px;
     width: 100%;
-
 }
 
 .logo{
@@ -20,7 +20,7 @@ nav{
 
 nav ul{
     float: right;
-    margin-top: 1rem;
+    margin-top: 1.7rem; /* Si problème d'affichage avec la navbar, voir ce margin-top*/
     margin-right: 20px;
     align-items: center;
 }
@@ -28,6 +28,7 @@ nav ul{
 nav ul li{
     margin: 0 5px;
 }
+
 
 .nav-icon{
     color: var(--light-bis);
