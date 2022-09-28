@@ -7,10 +7,10 @@
     <label for="check" class="checkbtn">
         <i class="fas fa-bars"></i>
     </label>
-    <label class="logo bold subtitle">Loco Loco</label>
+    <label class="logo bold subtitle"><a href="{{ path('main_index')}}">Loco Loco</a></label>
     <ul class="flex">
         {# Si je ne ne suis pas connecté, j'affiche la navbar publique #}
-        <li><a class="btn btn-main-outline" href="#">S'inscrire</a></li>
+        <li><a class="btn btn-main-outline" href="{{ path('user_register')}}">S'inscrire</a></li>
         <li><a class="btn btn-main" href="#">Se connecter</a></li>
         {# Sinon, je suis connecté en tant que client #}
         <li><a class="nav-icon" href="#"><i class="fas fa-fw fa-heart"></i></a></li>
