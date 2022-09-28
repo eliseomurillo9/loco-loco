@@ -1,19 +1,33 @@
-    <a href="{{ path('main_index') }}" class="identity">
-        <img src="{{ asset('image/logo.png') }}" alt="Logo de Loco Loco : #">
-        Loco Loco
-    </a>
-    <nav>
-        <ul>
-            {% if is_granted('ROLE_USER') %}
+    {# <nav class="box-shadow flex">
+        <ul class="flex">
+            <li>
+                <a class="logo bold subtitle" href="{{ path('main_index') }}">
+                    Loco Loco
+                </a>
+            </li>
+            {# Si je ne ne suis pas connecté, j'affiche la navbar publique #}
+            {# <div class="nav__right-part flex">
+                <li>
+                    <a class="btn btn-main-outline" href="#">S'inscrire</a>
+                </li>
+                <li>
+                    <a class="btn btn-main" href="#">Se connecter</a>
+                </li>
+            </div> #}
+            {# Sinon, je suis connecté en tant que client #}
+            {# Sinon si, je suis connecté en tant que commerçant #}
+            {# {% if is_granted('ROLE_USER') %}
                 <li>
                     <a href="#">Ajouter un établissement</a>
                 </li>
-            {% endif %}
-                <li class="separator">
-                    <a href="#">S'inscrire</a>
-                </li>
-                <li>
-                    <a href="#">Se connecter</a>
-                </li>
-        </ul>
-    </nav>
+            {% endif %} #}
+        {# </ul>
+    </nav> #}
+
+<nav class="box-shadow">
+    <label class="logo bold subtitle">Loco Loco</label>
+    <ul>
+        <li ><a class="btn btn-main-outline log" href="#">S'inscrire</a></li>
+        <li><a class="btn btn-main" href="#">Se connecter</a></li>
+    </ul>
+</nav>
