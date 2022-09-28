@@ -1,29 +1,3 @@
-    {# <nav class="box-shadow flex">
-        <ul class="flex">
-            <li>
-                <a class="logo bold subtitle" href="{{ path('main_index') }}">
-                    Loco Loco
-                </a>
-            </li>
-            
-            {# <div class="nav__right-part flex">
-                <li>
-                    <a class="btn btn-main-outline" href="#">S'inscrire</a>
-                </li>
-                <li>
-                    <a class="btn btn-main" href="#">Se connecter</a>
-                </li>
-            </div> #}
-            
-            {# Sinon si, je suis connecté en tant que commerçant #}
-            {# {% if is_granted('ROLE_USER') %}
-                <li>
-                    <a href="#">Ajouter un établissement</a>
-                </li>
-            {% endif %} #}
-        {# </ul>
-    </nav> #}
-
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 {% endblock %}
@@ -42,5 +16,8 @@
         <li><a class="nav-icon" href="#"><i class="fas fa-fw fa-heart"></i></a></li>
         <li><a class="nav-icon" href="#"><i class="fas fa-fw fa-shopping-basket"></i></a></li>
         <li><a href="#"><img class="avatar" src="{{ asset('images/carrot.png')}}" alt="avatar client"></a></li>
+        {# Sinon si, je suis connecté en tant que commerçant #}
+        <li><a class="btn btn-main-outline" href="#">Ajoutez votre établissement</a></li>
+        <li><a href="#"><img class="avatar" src="{{ asset('images/poivron.png')}}" alt="avatar pro"></a></li>
     </ul>
 </nav>
