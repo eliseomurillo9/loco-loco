@@ -1,0 +1,77 @@
+.profil{
+    max-width: 1000px;
+    margin: 3rem auto;
+}
+
+.content{
+    justify-content: space-between;
+}
+
+.title-custom{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--main);
+    margin-left: 2rem;
+}
+
+.margin{
+    margin: 2rem;
+}
+
+.start{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+img{
+    width: 96*2px;
+    height: 89*2px;
+}
+
+.text-icon{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+}
+
+.logout{
+    width: 12rem;
+    margin-top: 1rem;
+}
+
+.infos{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.fa-edit{
+    padding: .5rem;
+    color: var(--dark-bis);
+}
+
+.fa-toggle-off{
+    color: var(--dark-bis);
+}
+
+.infos h4{
+    color: var(--main-bis);
+    margin-bottom: .5rem;
+}
+
+.end{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+}
