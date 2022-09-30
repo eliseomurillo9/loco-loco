@@ -115,3 +115,43 @@ input[type=email]{
     width: 3rem;
     height: 3rem;
 }
+
+/* !! === MEDIA QUERIES === !! */
+
+@media all and (max-device-width: 480px)
+{
+    .content{
+        padding: 2rem;
+    }
+
+    .n__content{
+        flex-direction: column;
+    }
+
+    input[type=email]{
+        width: 15rem;
+    }
+
+    .hero{
+        height: 30vh;
+    }
+    
+    .hero__text-content{
+        top: 40%;
+        left: 5%;
+
+        max-width: 200px;
+    }
+    
+    .hero__toptitle{
+        display: none;
+    }
+    
+    .hero h1{
+        font-size: 36px;
+    }
+
+    .hero p{
+        display: none;
+    }
+}
