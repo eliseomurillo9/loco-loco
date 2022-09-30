@@ -1,0 +1,36 @@
+.signup_back {
+    /* display: none; */
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.829);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.signup_window {
+    color: #fff;
+    background-color: var(--main);
+    text-align: center;
+    border-radius: 6px;
+    position: fixed;
+    z-index: 3;
+    top: 50px;
+    bottom: 40px;
+    left: 90px;
+    right: 90px;
+    overflow: hidden;
+    display: flex;
+}
+
+.register_img{
+    height: 100%;
+    width: 50%;
+    background-image: url(../images/farm_portrait.jpg);
+    background-size: cover;
+    background-position: right;
+}
+/* .on {
+    display: inline-block;
+} */
