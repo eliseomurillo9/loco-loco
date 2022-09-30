@@ -20,7 +20,7 @@ class StoreController extends AbstractController
     #[Route('/store/locator', name: 'store_locator')]
     public function storeLocator(): Response
     {
-        return $this->render('store/store-locator.html.twig', [
+        return $this->render('store/farms-locator.html.twig', [
             'controller_name' => 'StoreController',
         ]);
     }
