@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StoreController!
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/storespage.css') }}">
+{% endblock %}
+
+
+{% block body %}
+	<section>
+		<div class="container">
+			<div class="bar-search">
+				<div class="head-bar">
+					<p>Autour de
+						<span>Ville</span>
+					</p>
+					<span id="location-point">
+						<i class="fa-solid fa-location-crosshairs"></i>
+					</span>
+					<div class="filter">
+						<span>Filter par distance</span>
+						<select name="range-filter" id="range-filter">
+
+							<option value="1 km">
+								5 KM
+							</option>
+							<option value="2 km">
+								10 KM
+							</option>
+							<option value="3 km">
+								15 KM
+							</option>
+						</select>
+					</div>
+				</div>
+				<div class="products">
+					<div class="product_card">
+						<div class="img_div">
+							<img src="{{ asset('images/tomatoes-photo.jpg') }}" alt="" srcset="">
+						</div>
+						<div class="product_info">
+							<h2>Domaine de la Sainte Vachette</h2>
+							<p>Nous vendons des varietés bien de chez nous</p>
+							<div class="buttons">
+								<div class="watch-button">
+									<a href="#">Voir</a>
+								</div>
+								<div class="route-button">
+									<a href="#">Itinéraire</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="map"></div>
+		</div>
+	</section>
+	{% block javascript %}
+		<script src="{{ asset('js/locator.js')}}"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&map_ids=981b93be4c70d164&callback=initMap" defer></script>
+	{% endblock %}
+{% endblock %}

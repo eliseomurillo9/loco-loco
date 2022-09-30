@@ -16,4 +16,12 @@ class StoreController extends AbstractController
             'controller_name' => 'StoreController',
         ]);
     }
+
+    #[Route('/store/locator', name: 'store_locator')]
+    public function storeLocator(): Response
+    {
+        return $this->render('store/farms-locator.html.twig', [
+            'controller_name' => 'StoreController',
+        ]);
+    }
 }
