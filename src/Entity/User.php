@@ -44,7 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $avatar = null;
 
     #[ORM\Column]
-    private ?bool $is_enabled = null;
+    private ?bool $is_enabled = true;
 
     #[ORM\ManyToMany(targetEntity: Store::class, mappedBy: 'users')]
     private Collection $stores;
@@ -57,6 +57,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+    /**
+     * @var null
+     */
+
 
     public function __construct()
     {
@@ -132,7 +136,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+         //$this->plainPassword = null;
     }
 
     public function getUsername(): ?string
