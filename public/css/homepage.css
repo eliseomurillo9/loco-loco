@@ -88,10 +88,6 @@ input[type=email]{
     transition: .3s;
 }
 
-/* input[type=email]:focus{
-    border: 2px solid var(--second-bis);
-} */
-
 .n__input-icon input[type=email]{
     padding-left: 2rem;
 }
