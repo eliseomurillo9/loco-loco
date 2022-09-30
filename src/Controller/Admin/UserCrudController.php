@@ -26,11 +26,10 @@ class UserCrudController extends AbstractCrudController
             TextField::new('lastname'),
             TextField::new('firstname'),
             TextField::new('email'),
-            TextField::new('password'),
+            TextField::new('plainPassword'),
             TextField::new('avatar'),
             ArrayField::new('roles'),
             BooleanField::new('is_enabled'),
-
             CollectionField::new('Addresses')->setEntryType(AddressType::class)
         ];
     }
