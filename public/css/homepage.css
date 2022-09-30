@@ -12,7 +12,7 @@
     position: relative;
 }
 
-.hero_text-content{
+.hero__text-content{
     position: absolute;
     top: 30%;
     left: 0;
@@ -24,7 +24,7 @@
     /* border: 1px solid red; */
 }
 
-.hero_toptitle{
+.hero__toptitle{
     text-align: left;
     margin-left: 5.4rem;
     margin-bottom: -2rem;
@@ -34,7 +34,7 @@
     font-size: 96px;
 }
 
-.hero_text{
+.hero__text{
     margin-bottom: 1rem;
 }
 
@@ -48,36 +48,24 @@
     text-align: center;
 }
 
-.about_content{
+.about__content{
     max-width: 800px;
     margin: 0 auto;
-}
-
-.about_content-marginbt{
-    margin-bottom: 1rem;
 }
 
 .fa-apple-alt, .fa-carrot{
     margin: 1rem;
 }
 
-/* ===  SHOW PRODUCTS === */
-.show-products{
-    height: 50vh;
-    width: 100%;
-    background: url(../images/products-teasing.png) no-repeat;
-    background-size: cover;
-    background-position-y: center;
-    background-color: grey;
+/* === RATING === */
 
-    color: var(--main);
+.rating{
     text-align: center;
-
-    position: relative;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    color: var(--dark);
 }
 
-.show-products a{
-    position: absolute;
-    top: 4rem;
-    left: 2rem;
+.rating__stars{
+    color: var(--second);
 }

@@ -13,11 +13,11 @@
 
 {# === HERO START === #}
 <section class="hero">
-    <div class="hero_text-content">
-        <p class="hero_toptitle">Bienvenue sur</p>
+    <div class="hero__text-content">
+        <p class="hero__toptitle">Bienvenue sur</p>
         <h1>Loco Loco</h1>
-        <p class="hero_text">Retrouvez tous les produits locaux & frais proche de chez vous !</p>
-        <p class="hero_text"><i class="fas fa-arrow-circle-down"></i></p> 
+        <p class="hero__text">Retrouvez tous les produits locaux & frais proche de chez vous !</p>
+        <p class="hero__text"><i class="fas fa-arrow-circle-down"></i></p> 
     </div>
 </section>
 {# === HERO END === #}
@@ -28,9 +28,9 @@
 
 {# === ABOUT US START === #}
 <section class="about">
-    <div class="about_content">
-        <h2 class="about_content-marginbt subtitle">Que faisons nous ?</h2>
-        <p class="about_content-marginbt">
+    <div class="about__content">
+        <h2 class="marginbt-3 subtitle">Que faisons nous ?</h2>
+        <p class="marginbt-1">
             Lorem ipsum dolor sit amet, 
             consectetur adipisicing elit. Laborum nostrum dolorem aut vitae 
             tempora commodi assumenda ad minus, id facere excepturi sapiente,
@@ -38,7 +38,7 @@
             fugit necessitatibus laboriosam ea aperiam itaque ipsum fuga explicabo.
             Vero dolores ab laudantium ex saepe beatae fuga culpa tempore nobis est 
         </p>
-        <div class="deco-icons about_content-marginbt">
+        <div class="deco-icons marginbt-1">
             <i class="fas fa-apple-alt"></i>
             <i class="fas fa-carrot"></i>
         </div>
@@ -46,13 +46,20 @@
 </section>
 {# === ABOUT US END === #}
 
-{# === SHOW PRODUCTS START === #}
-<section class="show-products">
-    <a class="subtitle bold" href="{{ path('product_index')}}">Voir nos produits <i class="fas fa-arrow-circle-right"></i></a>
-</section>
-{# === SHOW PRODUCTS END === #}
-
 {# === RATING START === #}
+<section class="rating">
+    <div class="rating__content">
+        <h2 class="subtitle marginbt-3">Qu'en pensent nos utilisateurs ?</h2>
+        <div class="rating__stars marginbt-1">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+        </div>
+        <p>"Service de qualité exceptionnel, Loco Loco est une plateforme proche de ses clients"</p>
+    </div>
+</section>
 {# === RATING END === #}
 
 {# === NEWSLETTER START === #}
