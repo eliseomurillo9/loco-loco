@@ -1,0 +1,335 @@
+.container {
+    display: flex;
+    padding: 15px;
+}
+
+
+/* filter area */
+.container .bar-search {
+    width: 35vw;
+    margin: 0 20px;
+}
+
+.container .bar-search .head-bar {
+    width: 100%;
+    height: 90px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    border-bottom: 4px solid var(--main);
+}
+
+.container .bar-search .head-bar p span {
+    font-weight: 600;
+}
+
+.container .bar-search .head-bar .filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container .bar-search .head-bar .filter select {
+    background-color: var(--light-bis);
+    border: none;
+
+    width: 115px;
+    padding: 10px 0;
+    border-radius: 6px;
+}
+
+.products {
+    max-width: 100%;
+    margin: 15px 0;
+}
+
+.products .product_card {
+    max-width: 100%;
+    height: 238px;
+    display: flex;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom: 8px solid var(--second);
+}
+
+/* Container pour que tous les images aient la même taille */
+.products .product_card .img_div {
+    max-height: 100%;
+    max-width: 185px;
+    border-right: 7px solid var(--main);
+}
+
+.products .product_card .img_div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-bottom-left-radius: 15px;
+
+}
+
+.products .product_card .product_info {
+    margin: auto;
+    padding: 0 5px;
+    text-align: center;
+}
+
+.products .product_card .product_info p {
+    margin: 15px 0;
+    font-size: 1.1rem;
+}
+
+.products .product_card .product_info .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.products .product_card .product_info .buttons div {
+    font-size: 1.4rem;
+
+    width: 100px;
+    height: 40px;
+    border-radius: 6px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.products .product_card .product_info .buttons .watch-button {
+    background-color: var(--second);
+    border-bottom: 4px solid var(--second-bis);
+
+    color: var(--light-bis);
+
+    transition: 0.4s;
+}
+
+.products .product_card .product_info .buttons .watch-button:hover {
+    background-color: var(--second);
+    border-bottom: 4px solid var(--second);
+
+    color: var(--light-bis);
+}
+
+.products .product_card .product_info .buttons .route-button {
+    background-color: var(--light-bis);
+    border: 2px solid var(--second);
+    color: var(--second);
+
+    transition: 0.4s;
+}
+
+.products .product_card .product_info .buttons .route-button:hover {
+    border-bottom: 4px solid var(--second);
+
+}
+
+.container #map {
+    height: 84vh;
+    width: 65vw;
+}
+
+@media (max-width: 1270px) {
+
+
+    .products .product_card {
+        height: 200px;
+    }
+}
+
+@media (max-width: 1190px) {
+    .products .product_card .product_info h2 {
+        font-size: 1.3rem;
+    }
+
+    .products .product_card .product_info p {
+        font-size: 0.9rem;
+    }
+
+    .products .product_card .product_info .buttons div {
+        font-size: 1rem;
+
+        width: 80px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 1050px) {
+    .products .product_card {
+        height: 170px;
+    }
+}
+
+@media (max-width: 924px) {
+    .products .product_card {
+        height: 130px;
+    }
+
+    .products .product_card .product_info h2 {
+        font-size: 0.9rem;
+    }
+
+    .products .product_card .product_info p {
+        font-size: 0.6rem;
+
+        margin: 7px;
+    }
+
+    .products .product_card .product_info .buttons div {
+        font-size: .8rem;
+
+        width: 60px;
+        height: 20px;
+    }
+
+
+}
+
+@media (max-width: 841px) {
+
+    .products .product_card .img_div {
+        border-right: 5px solid var(--main);
+    }
+
+    .container .bar-search .head-bar {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    .container .bar-search .head-bar .filter select {
+        width: 50px;
+        height: 28px;
+
+        font-size: 0.5rem;
+    }
+}
+
+@media (max-width: 753px) {
+
+
+    .products .product_card .img_div {
+        width: 120px;
+    }
+
+    .products .product_card .product_info h2 {
+        font-size: 0.7rem;
+    }
+
+    .products .product_card .product_info p {
+        font-size: 0.4rem;
+
+        margin: 7px;
+    }
+
+    .products .product_card .product_info .buttons div {
+        font-size: .5rem;
+
+        width: 40px;
+        height: 15px;
+    }
+
+    .products .product_card {
+        height: 100px;
+    }
+}
+
+@media (max-width: 564px) {
+    .container .bar-search .head-bar {
+        font-size: .6rem;
+        text-align: center;
+    }
+
+    .products .product_card .product_info h2 {
+        font-size: 0.4rem;
+    }
+
+    .products .product_card .product_info p {
+        font-size: 0.3rem;
+
+        margin: 4px;
+    }
+
+    .products .product_card {
+        height: 70px;
+    }
+
+    .products .product_card .product_info .buttons div {
+        font-size: .4rem;
+
+        width: 30px;
+        height: 10px;
+    }
+
+    .products .product_card .product_info .buttons .watch-button {
+        border-bottom: 1px solid var(--second-bis);
+    }
+
+    .products .product_card .product_info .buttons .route-button {
+        border: 1px solid var(--second);
+    }
+
+
+}
+
+@media (max-width: 472px) {
+
+    .products .product_card {
+        height: 60px;
+    }
+
+
+    .products .product_card {
+        border-bottom: 3px solid var(--second);
+    }
+
+    .products .product_card .img_div {
+        border-right: 2px solid var(--main);
+
+        width: 50px;
+    }
+
+    .products .product_card .product_info {
+        width: 80px;
+    }
+
+    .products .product_card .product_info h2 {
+        font-size: 0.3rem;
+    }
+
+    .products .product_card .product_info p {
+        font-size: 0.3rem;
+
+        margin: 4px;
+    }
+
+    .products .product_card {
+        border-bottom: 3px solid var(--second);
+    }
+
+    .products .product_card .product_info .buttons div {
+        font-size: .3rem;
+
+        width: 30px;
+        height: 10px;
+    }
+
+
+}
+
+@media (max-width: 390px) {
+
+
+    .container .bar-search .head-bar .filter select {
+        width: 30px;
+        height: 25px;
+
+        font-size: 0.3rem;
+    }
+
+}
