@@ -16,8 +16,8 @@
     <div class="hero__text-content">
         <p class="hero__toptitle">Bienvenue sur</p>
         <h1>Loco Loco</h1>
-        <p class="hero__text">Retrouvez tous les produits locaux & frais proche de chez vous !</p>
-        <p class="hero__text"><i class="fas fa-arrow-circle-down"></i></p> 
+        <p class="marginbt-1">Retrouvez tous les produits locaux & frais proche de chez vous !</p>
+        <p class="marginbt-1"><i class="fas fa-arrow-circle-down"></i></p> 
     </div>
 </section>
 {# === HERO END === #}
@@ -28,7 +28,7 @@
 
 {# === ABOUT US START === #}
 <section class="about">
-    <div class="about__content">
+    <div class="content">
         <h2 class="marginbt-3 subtitle">Que faisons nous ?</h2>
         <p class="marginbt-1">
             Lorem ipsum dolor sit amet, 
@@ -48,7 +48,7 @@
 
 {# === RATING START === #}
 <section class="rating">
-    <div class="rating__content">
+    <div class="content">
         <h2 class="subtitle marginbt-3">Qu'en pensent nos utilisateurs ?</h2>
         <div class="rating__stars marginbt-1">
             <i class="fas fa-star"></i>
@@ -63,6 +63,16 @@
 {# === RATING END === #}
 
 {# === NEWSLETTER START === #}
+<section class="newsletter marginbt-1">
+    <div class="flex n__content">
+        <h3 class="subtitle">Newsletter</h3>
+        <div class="n__input-icon">
+            <input type="email" id="email" name="email" placeholder="Veuillez saisir votre email ici">
+            <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+        </div>
+        <button class="submit btn btn-second" type="submit" form="form" value="Submit">Ok</button>
+    </div>
+</section>
 {# === NEWSLETTER END === #}
 
 {% endblock %} 

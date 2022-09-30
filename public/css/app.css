@@ -43,13 +43,7 @@ button{
     border: none;
 }
 
-.marginbt-1{
-    margin-bottom: 1rem;
-}
 
-.marginbt-3{
-    margin-bottom: 3rem;
-}
 
 
 
@@ -87,6 +81,16 @@ button{
 
 .subtitle{
     font-size: 24px;
+}
+
+/* === MARGIN === */
+
+.marginbt-1{
+    margin-bottom: 1rem;
+}
+
+.marginbt-3{
+    margin-bottom: 3rem;
 }
 
 /* === BUTTONS === */
