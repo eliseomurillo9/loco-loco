@@ -1,68 +1,80 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Loco Loco{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+{% endblock %}
 
+{% block title %}
+    Acceuil - {{ parent() }}
+{% endblock %}
 
 {% block body %}
 
 
-{# Présentation d'exemple à commenter si besoin #}
-<div class="main-container">
-
-    <p class="bold home-title">Loco Loco</p>
-
-    <div>
-        <i class="fa-solid fa-user"></i>
-        <i class="fas fa-map-marked-alt"></i>
-        <i class="fas fa-map-marker-alt"></i>
-        <i class="fas fa-people-arrows"></i>
-        <i class="fas fa-apple-alt"></i>
-        <i class="fas fa-carrot"></i>
-        <i class="far fa-envelope"></i>
-        <i class="fas fa-at"></i>
-        <i class="fas fa-lock"></i>
-        <i class="fas fa-home"></i>
-        <i class="fas fa-heart"></i>
-        <i class="far fa-heart"></i>
-        <i class="fas fa-shopping-basket"></i>
-        <i class="fas fa-sign-out-alt"></i>
-        <i class="fas fa-edit"></i>
-        <i class="far fa-edit"></i>
-        <i class="fas fa-trash-alt"></i>
-        <i class="fas fa-reply"></i>
-        <i class="fas fa-paperclip"></i>
-        <i class="fas fa-times"></i>
-        <i class="fas fa-toggle-on"></i>
-        <i class="fas fa-toggle-off"></i>
-        <i class="fas fa-star"></i>
-        <i class="far fa-star"></i>
-        <i class="fas fa-check"></i>
-        <i class="fas fa-phone-alt"></i>
-        <i class="fas fa-calendar"></i>
-        <i class="fas fa-clock"></i>
-        <i class="fas fa-money-bill-wave"></i>
-
+{# === HERO START === #}
+<section class="hero">
+    <div class="hero__text-content">
+        <p class="hero__toptitle">Bienvenue sur</p>
+        <h1 class="bold home-title">Loco Loco</h1>
+        <p class="marginbt-1">Retrouvez tous les produits locaux & frais proche de chez vous !</p>
+        <p class="marginbt-1"><i class="fas fa-arrow-circle-down"></i></p> 
     </div>
+</section>
+{# === HERO END === #}
 
-    <div class="flex align-center">
-        <p class="bold title m-r-1">Title</p>
-        <p class="bold subtitle">Subtitle</p>
+{# === SEARCHBAR START === #}
+    {# Créer un composant SEARCHBAR #}
+{# === SEARCHBAR END === #}
+
+{# === ABOUT US START === #}
+<section class="about">
+    <div class="content">
+        <h2 class="marginbt-3 subtitle">Amateur de produits frais et locaux ?</h2>
+        <p class="marginbt-1">
+            <i class=" m-r-1 fas fa-arrow-circle-right"></i>  <span class="subtitle bold">Loco Loco</span>
+            veille à ce que vous puissiez trouver 
+            chaussure à votre pied.
+            <br>
+            Que vous soyez chez vous, au travail ou en voyage,
+            ce site <span class="bold">référence</span> 
+            et <span class="bold">géo-localise</span> pour vous les <span class="bold">producteurs</span> et les points de vente proposant les produits au
+            plus proche de chez vous.
+        </p>
+        <div class="deco-icons marginbt-1">
+            <i class="fas fa-apple-alt"></i>
+            <i class="fas fa-carrot"></i>
+        </div>
     </div>
+</section>
+{# === ABOUT US END === #}
 
-    <div class="flex">
-        <button type="button" class="btn btn-main m-r-1">Se connecter</button>
-        <button type="button" class="btn btn-main-outline m-r-1">S'inscrire</button>
-        <button type="button" class="btn btn-second m-r-1">Se déconnecter</button>
-        <button type="button" class="btn btn-second-outline">S'inscrire</button>
+{# === RATING START === #}
+<section class="rating">
+    <div class="content">
+        <h2 class="subtitle marginbt-3">Qu'en pensent nos utilisateurs ?</h2>
+        <div class="rating__stars marginbt-1">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+        </div>
+        <p>"Service de qualité exceptionnel, Loco Loco est une plateforme proche de ses clients"</p>
     </div>
+</section>
+{# === RATING END === #}
 
-    <div>
-        <p class="btn box-shadow">Modal box shadow</p>
+{# === NEWSLETTER START === #}
+<section class="newsletter marginbt-1">
+    <div class="flex n__content content">
+        <h3 class="subtitle marginbt-1">Newsletter</h3>
+        <div class="n__input-icon marginbt-1">
+            <input type="email" id="email" name="email" placeholder="Veuillez saisir votre email ici">
+            <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+        </div>
+        <button class="submit btn btn-second marginbt-1" type="submit" form="form" value="Submit">Ok</button>
     </div>
+</section>
+{# === NEWSLETTER END === #}
 
-    <div class="overlay"></div>
-
-</div>
-
-
-{% endblock %}
+{% endblock %} 

@@ -1,0 +1,157 @@
+.content{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* === HERO === */
+.hero{
+    height: 70vh;
+    width: 100%;
+    background: url(../images/background.png) no-repeat;
+    background-size: cover;
+    background-position-y: center;
+    background-color: grey;
+    color: white;
+    text-align: center;
+
+    position: relative;
+}
+
+.hero__text-content{
+    position: absolute;
+    top: 30%;
+    left: 0;
+    right: 0;
+
+    margin: 0 auto;
+    max-width: 500px;
+
+    /* border: 1px solid red; */
+}
+
+.hero__toptitle{
+    text-align: left;
+    margin-left: 5.4rem;
+    margin-bottom: -2rem;
+}
+
+.hero h1{
+    font-size: 96px;
+}
+
+
+/* === ABOUT US === */
+
+.about{
+    background-color: var(--main);
+    color: var(--light-bis);
+    padding: 2rem;
+    text-align: center;
+}
+
+.fa-apple-alt, .fa-carrot{
+    margin: 1rem;
+}
+
+/* === RATING === */
+
+.rating{
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    color: var(--dark);
+}
+
+.rating__stars{
+    color: var(--second);
+}
+
+/* === NEWSLETTER === */
+
+.newsletter{
+    background-color: var(--main);
+    color: var(--dark);
+    padding: 2rem;
+}
+
+.n__content{
+    align-items: center;
+    justify-content: space-around;
+}
+
+input[type=email]{
+    border: none;
+    width: 30rem;
+    border-radius: 5px;
+    outline: none;
+    padding: 1rem 2rem;
+    transition: .3s;
+}
+
+.n__input-icon input[type=email]{
+    padding-left: 2rem;
+}
+
+.n__input-icon{
+    position: relative;
+}
+
+.n__input-icon i{
+    position: absolute;
+    left: 0;
+    top: .9rem;
+    padding: .4em .5rem;
+    color: var(--dark-bis);
+    transition: .3s;
+}
+
+.n__input-icon input[type="email"]:focus + i{
+    color: var(--second);
+}
+
+.submit{
+    background-color: var(--second);
+    color: var(--light-bis);
+    width: 3rem;
+    height: 3rem;
+}
+
+/* !! === MEDIA QUERIES === !! */
+
+@media all and (max-device-width: 480px)
+{
+    .content{
+        padding: 2rem;
+    }
+
+    .n__content{
+        flex-direction: column;
+    }
+
+    input[type=email]{
+        width: 15rem;
+    }
+
+    .hero{
+        height: 30vh;
+    }
+    
+    .hero__text-content{
+        top: 40%;
+        left: 5%;
+
+        max-width: 200px;
+    }
+    
+    .hero__toptitle{
+        display: none;
+    }
+    
+    .hero h1{
+        font-size: 36px;
+    }
+
+    .hero p{
+        display: none;
+    }
+}
