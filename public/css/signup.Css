@@ -1,5 +1,5 @@
 .signup_back {
-    /* display: none; */
+    display: none;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.829);
     top: 0;
@@ -10,27 +10,109 @@
 }
 
 .signup_window {
-    color: #fff;
+    color: var(--light);
     background-color: var(--main);
     text-align: center;
     border-radius: 6px;
-    position: fixed;
+    position: absolute;
     z-index: 3;
-    top: 50px;
-    bottom: 40px;
-    left: 90px;
-    right: 90px;
+    top: 150px;
+    bottom: 150px;
+    left: 240px;
+    right: 240px;
     overflow: hidden;
     display: flex;
 }
 
-.register_img{
+
+.signup_window .register_img {
     height: 100%;
     width: 50%;
     background-image: url(../images/farm_portrait.jpg);
     background-size: cover;
     background-position: right;
 }
-/* .on {
+
+.on {
     display: inline-block;
-} */
+}
+
+.signup_window .form_container i {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease-in-out;
+}
+
+.signup_window .form_container i:hover{
+    font-size: 1.1rem;
+    color: var(--dark);
+}
+
+.signup_window .form_container .user_selector {
+    text-align: left;
+    align-self: flex-start;
+}
+
+.signup_window .form_container div:not(.user-password) {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup_window .form_container .user-password {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.signup_window .form_container .form_fields {
+    width: 380px;
+    margin: auto;
+}
+
+.signup_window .form_container .form_fields .options{
+    margin-top: 10px;
+    height: 30px;
+}
+
+.signup_window .form_container .form_fields .options button {
+    background-color: transparent;
+    color: var(--light);
+
+    font-family: Roboto, sans-serif;
+    font-size: 1rem;
+    margin: auto;
+
+    cursor: pointer;
+
+    transition: 0.4s;
+}
+
+
+.signup_window .form_container .form_fields .options button:first-of-type {
+    padding-right: 6px;
+    border-right: 1px solid var(--light);
+}
+
+.signup_window .form_container .form_fields .options button:last-of-type {
+    padding-left: 5px;
+}
+
+.signup_window .form_container .form_fields .options button:hover {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.signup_window .form_container .form_fields .options button:active{
+    font-weight: bold;
+}
+
+form label {
+    text-align: left;
+    font-weight: 600;
+}
+
+

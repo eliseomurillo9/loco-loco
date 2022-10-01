@@ -2,27 +2,44 @@
 {% endblock %}
 
 {% block body %}
+
 	{% for flash_error in app.flashes('verify_email_error') %}
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 	{% endfor %}
 
 	{% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('css/signup.css') }}">
-{% endblock %}
+		<link rel="stylesheet" href="{{ asset('css/signup.css') }}">
+	{% endblock %}
 
-<section class="signup_window">
-<div class="register_img">
-</div>
-
-{{ form_start(registrationForm) }}
-<h1>Register</h1>
-{{ form_row(registrationForm.username) }}
-{{ form_row(registrationForm.email) }}
-{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+	{% block javascript %}
+		<script src="{{ asset('js/toggle-buttons.js' )}}" defer></script>
+	{% endblock %}
+	<section class="signup_window">
+		<div class="register_img"></div>
+		<div class="form_container">
+		<i class="fa-solid fa-xmark" id="close-popup"></i>
+			<div class="form_fields">
+				{{ form_start(registrationForm, {'action':'register'}) }}
+				<h1 class="title">Créer un compte</h1>
+				<div class="user_selector">
+					<span>Je suis:</span>
+					<user class="options">
+						<button name="role" type="button" value="client">Un client</button>
+						<button name="role" type="button" value="seller">Un commerçant</button>
+					</user>
+				</div>
+				{{ form_row(registrationForm.email) }}
+				<div class="user-password">
+					{{ form_row(registrationForm.username) }}
+					{{ form_row(registrationForm.plainPassword, {
+            
         }) }}
+				</div>
 
 
-<button type="submit" class="btn">Register</button>
-{{ form_end(registrationForm) }}{% endblock %}
+				<button type="submit" class="btn btn-second">Register</button>
+				{{ form_end(registrationForm) }}
+			{% endblock %}
+		</div>
+	</div>
 </section>
