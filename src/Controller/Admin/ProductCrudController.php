@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -27,7 +28,7 @@ class ProductCrudController extends AbstractCrudController
 
             TextField::new('name'),
             BooleanField::new('is_available'),
-            NumberField::new('price'),
+            MoneyField::new('price')->setCurrency('EUR'),
             TextField::new('picture'),
             TextEditorField::new('description'),
             AssociationField::new('category')
