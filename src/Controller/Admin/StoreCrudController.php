@@ -3,12 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Store;
-use App\Entity\StoreHours;
 use App\Form\AddressType;
+use App\Form\ProductType;
 use App\Form\StoreHoursType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -33,9 +31,9 @@ class StoreCrudController extends AbstractCrudController
             TextField::new('picture'),
             TextEditorField::new('description'),
             TextEditorField::new('road_specificity'),
-            AssociationField::new('addresses'),
-            CollectionField::new('storeHours')->setEntryType(StoreHoursType::class)
-
+            CollectionField::new('addresses')->setEntryType(AddressType::class),
+            CollectionField::new('storeHours')->setEntryType(StoreHoursType::class),
+            CollectionField::new('products')->setEntryType(ProductType::class)
         ];
     }
 }

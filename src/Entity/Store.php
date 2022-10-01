@@ -40,21 +40,22 @@ class Store
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $road_specificity = null;
 
-    #[ORM\OneToMany(mappedBy: 'store', targetEntity: StoreHours::class)]
+    #[ORM\OneToMany(mappedBy: 'store', targetEntity: StoreHours::class, cascade: ["persist"])]
     private Collection $storeHours;
 
-    #[ORM\ManyToMany(targetEntity: Product::class, inversedBy: 'stores')]
+    #[ORM\ManyToMany(targetEntity: Product::class, inversedBy: 'stores', cascade: ["persist"])]
     private Collection $products;
 
-    #[ORM\ManyToOne(inversedBy: 'stores')]
+    #[ORM\OneToMany(mappedBy: 'stores', targetEntity: Address::class, cascade: ["persist"])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Address $addresses = null;
+    private Collection $addresses;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'stores')]
     private Collection $users;
 
     public function __construct()
     {
+        $this->addresses = new ArrayCollection();
         $this->storeHours = new ArrayCollection();
         $this->products = new ArrayCollection();
         $this->users = new ArrayCollection();
@@ -215,14 +216,39 @@ class Store
         return $this;
     }
 
-    public function getAddresses(): ?address
+    public function getAddresses(): Collection
     {
         return $this->addresses;
     }
 
-    public function setAddresses(?address $addresses): self
+    function setAddresses($addresses): static
     {
+
         $this->addresses = $addresses;
+
+        return $this;
+
+    }
+
+
+    public function addAddresses(address $addresses): self
+    {
+        if (!$this->addresses->contains($addresses)) {
+            $this->$addresses->add($addresses);
+            $addresses->setStores($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAddresses(address $addresses): self
+    {
+        if ($this->addresses->removeElement($addresses)) {
+            // set the owning side to null (unless already changed)
+            if ($addresses->getStores() === $this) {
+                $addresses->setStores(null);
+            }
+        }
 
         return $this;
     }
@@ -250,4 +276,10 @@ class Store
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 }
