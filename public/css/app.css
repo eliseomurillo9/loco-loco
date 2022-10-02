@@ -213,6 +213,7 @@ main {
     width: 70vw;
     text-align: center;
     border-radius: 6px;
+    margin: auto;
 }
 
 .form_container {
