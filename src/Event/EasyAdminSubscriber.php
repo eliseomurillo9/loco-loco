@@ -8,8 +8,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-use App\Form\RegistrationFormType;
-
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
     public function __construct (private UserPasswordHasherInterface $hasher)
@@ -25,6 +23,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $hashed = $this->hasher->hashPassword($user, $user->getPlainPassword());
         $user->setPassword($hashed);
     }
+
  // Prévoir fonction pour modifications
     public static function getSubscribedEvents()
     {

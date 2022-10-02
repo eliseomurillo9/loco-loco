@@ -5,8 +5,12 @@ namespace App\Entity;
 use App\Repository\AddressRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @method setAddresses(Store $param)
+ */
 #[ORM\Entity(repositoryClass: AddressRepository::class)]
 class Address
 {
@@ -24,15 +28,20 @@ class Address
     #[ORM\Column(length: 50)]
     private ?string $city = null;
 
-    #[ORM\OneToMany(mappedBy: 'addresses', targetEntity: Store::class)]
-    private Collection $stores;
+    #[ORM\ManyToOne(inversedBy: 'addresses')]
+    private ?Store $stores = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Addresses')]
     private Collection $users;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 18, scale: 8, nullable: true)]
+    private ?string $latitude = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 19, scale: 8, nullable: true)]
+    private ?string $longitude = null;
+
     public function __construct()
     {
-        $this->stores = new ArrayCollection();
         $this->users = new ArrayCollection();
     }
 
@@ -78,31 +87,17 @@ class Address
     }
 
     /**
-     * @return Collection<int, Store>
+     * @return Store
      */
-    public function getStores(): Collection
+    public function getStores(): Store
     {
         return $this->stores;
     }
 
-    public function addStore(Store $store): self
-    {
-        if (!$this->stores->contains($store)) {
-            $this->stores->add($store);
-            $store->setAddresses($this);
-        }
 
-        return $this;
-    }
-
-    public function removeStore(Store $store): self
+    public function setStores(?Store $stores): self
     {
-        if ($this->stores->removeElement($store)) {
-            // set the owning side to null (unless already changed)
-            if ($store->getAddresses() === $this) {
-                $store->setAddresses(null);
-            }
-        }
+        $this->stores = $stores;
 
         return $this;
     }
@@ -133,4 +128,29 @@ class Address
 
         return $this;
     }
+
+    public function getLatitude(): ?string
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(?string $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?string
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?string $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
 }

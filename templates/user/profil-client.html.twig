@@ -1,14 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {# Catalogue - {{ parent() }} #}
+    Profil utilisateur - {{ parent() }}
 {% endblock %}
 
 {% block stylesheets %}
-    {# <link rel="stylesheet" href="{{ asset('css/game-list.css') }}"> #}
+    <link rel="stylesheet" href="{{ asset('css/user-profil.css') }}">
 {% endblock %}
 
 {% block body %}
-    <h1>Mon profil utilisateur - client</h1>
+<section class="profil">
+    <h1 class="title-custom marginbt-1">Mon profil utilisateur</h1>
+
+    <div class="content flex">
+        <div class="start margin ">
+            <img class="marginbt-1" src="{{ asset('images/avatar-profil-client.png')}}"  alt="avatar">
+            {# <p>Modifiez votre avatar ?</p> #}
+            <button class="btn btn-second logout" type="submit" form="form" value="Submit">Se déconnecter</button>
+        </div>
+
+        <div class="infos margin">
+
+            <h4>Nom d'utilisateur :</h4>
+            <div class="text-icon">
+                <p>Eliseo Murillo</p>
+                <i class="fas fa-edit"></i>
+            </div>
+
+            <h4>Email :</h4>
+            <div class="text-icon">
+                <p>mail@random.com</p>
+                <i class="fas fa-edit"></i>
+            </div>
+
+            <h4>Adresse :</h4>
+            <div class="text-icon">
+                <p>5 rue de la Mafia, Lille, 59800</p>
+                <i class="fas fa-edit"></i>
+            </div>
+
+            <div class="newsletter-option">
+                <h4>Souhaitez-vous être abonné à notre newsletter ?</h4>
+                <i class="fas fa-toggle-off"></i>
+            </div>
+
+        </div>
+        <div class="end margin">
+            <button class="marginbt-1 btn btn-second">
+                <a href="{{ path('user_grocery-list')}}"><i class="fas fa-shopping-basket m-r-1"></i>Voir ma liste de course</a>
+            </button>
+            <button class="marginbt-1 btn btn-second">
+                <a href="{{ path('user_favorite')}}"><i class="fas fa-heart m-r-1"></i>Voir mes favoris</a>
+            </button>
+            <button class="marginbt-1 btn btn-main-outline">
+                <a href="#" >Une question ? <br> Contactez le support technique</a>
+            </button>
+            <button class="btn btn-second">
+                <a href="#" >Devenir commerçant</a>
+            </button>  
+        </div>
+    </div>
+</section>
 
 {% endblock %}

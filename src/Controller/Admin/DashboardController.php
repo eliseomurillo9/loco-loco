@@ -2,8 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Address;
+use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\Store;
+use App\Entity\StoreHours;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -30,42 +33,7 @@ class DashboardController extends AbstractDashboardController
         // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
 
     }
-    #[Route('/admin/product', name: 'admin_product')]
-    public function crudProduct(): Response
-    {
 
-        $url = $this->adminUrlGenerator
-            ->setController(ProductCrudController::class)
-            ->generateUrl();
-
-            return $this->redirect($url);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
-
-    }
-    #[Route('/admin/user', name: 'admin_user')]
-    public function crudUser(): Response
-    {
-
-        $url = $this->adminUrlGenerator
-            ->setController(UserCrudController::class)
-            ->generateUrl();
-
-        return $this->redirect($url);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
-
-    }
-    #[Route('/admin/store', name: 'admin_store')]
-    public function crudStore(): Response
-    {
-
-        $url = $this->adminUrlGenerator
-            ->setController(StoreCrudController::class)
-            ->generateUrl();
-
-        return $this->redirect($url);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
-
-    }
 
     public function configureDashboard(): Dashboard
     {
@@ -80,6 +48,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Product', 'fa-sharp fa-solid fa-basket-shopping', Product::class);
         yield MenuItem::linkToCrud('Store', 'fa-solid fa-shop', Store::class);
         yield MenuItem::linkToCrud('User', 'fa-solid fa-user', User::class);
+        yield MenuItem::linkToCrud('Address', 'fa-solid fa-location-dot', Address::class);
+        yield MenuItem::linkToCrud('StoreHours', 'fa-solid fa-clock', StoreHours::class);
+        yield MenuItem::linkToCrud('Category', 'fa-solid fa-layer-group', Category::class);
     }
 }
 // Option 1. You can make your dashboard redirect to some common page of your backend
