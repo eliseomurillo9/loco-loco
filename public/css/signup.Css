@@ -2,20 +2,7 @@ section {
     margin: auto;
 }
 
-.signup_container {
-    color: var(--light);
-    background-color: var(--main);
-
-    display: flex;
-    height: 75vh;
-    width: 70vw;
-    text-align: center;
-    border-radius: 6px;
-}
-
-
-
-.signup_container .register_img {
+.popup_container .register_img {
     height: 100%;
     width: 50%;
     background-image: url(../images/farm_portrait.jpg);
@@ -24,33 +11,32 @@ section {
     border-radius: 6px;
 }
 
-
-.signup_container .form_container h1 {
+.popup_container .form_container h1 {
     margin-bottom: 20px;
 }
 
-.signup_container .form_container div:not(.user-password) {
+.popup_container .form_container div:not(.user-password) {
     display: flex;
     flex-direction: column;
 }
 
-.signup_container .form_container .user-password {
+.popup_container .form_container .user-password {
     display: flex;
     justify-content: center;
     gap: 30px;
 }
 
-.signup_container .form_container .user_selector {
+.popup_container .form_container .user_selector {
     text-align: left;
     align-self: flex-start;
 }
 
-.signup_container .form_container .options {
+.popup_container .form_container .options {
     margin-top: 10px;
     height: 30px;
 }
 
-.signup_container .form_container .options button {
+.popup_container .form_container .options button {
     background-color: transparent;
     color: var(--light);
 
@@ -63,22 +49,21 @@ section {
     transition: 0.4s;
 }
 
-
-.signup_container .form_container .options button:first-of-type {
+.popup_container .form_container .options button:first-of-type {
     padding-right: 6px;
     border-right: 1px solid var(--light);
 }
 
-.signup_container .form_container .options button:last-of-type {
+.popup_container .form_container .options button:last-of-type {
     padding-left: 5px;
 }
 
-.signup_container .form_container .options button:hover {
+.popup_container .form_container .options button:hover {
     font-size: 1.1rem;
     font-weight: bold;
 }
 
-.signup_container .form_container input[type=email] {
+.popup_container .form_container input[type=email] {
     width: 372px;
 }
 
@@ -88,11 +73,11 @@ form label {
 }
 
 @media (max-width: 1248px) {
-    .signup_container {
+    .popup_container {
         height: 60vh;
     }
 
-    .signup_container .form_container input[type=email] {
+    .popup_container .form_container input[type=email] {
         width: 342px;
     }
 
@@ -101,12 +86,12 @@ form label {
 
 @media (max-width: 1128px) {
 
-    .signup_container .form_container h1 {
+    .popup_container .form_container h1 {
         margin-bottom: 10px;
         font-size: 1.7rem;
     }
 
-    .signup_container .form_container input[type=email] {
+    .popup_container .form_container input[type=email] {
         width: 300px;
     }
 
@@ -116,16 +101,16 @@ form label {
 }
 
 @media (max-width: 1000px) {
-    .signup_container {
+    .popup_container {
         height: 88vh;
         width: 100vw;
     }
 
-    .signup_container .register_img {
+    .popup_container .register_img {
         border-radius: 0px;
     }
 
-    .signup_container .form_container input[type=email] {
+    .popup_container .form_container input[type=email] {
         width: 342px;
     }
 
@@ -137,27 +122,27 @@ form label {
 
 @media (max-width: 759px) {
 
-    .signup_container .form_container input[type=email] {
+    .popup_container .form_container input[type=email] {
         width: 310px;
     }
 
-    .signup_container .register_img {
+    .popup_container .register_img {
         width: 45%;
     }
 }
 
 @media (max-width: 642px) {
-    .signup_container .register_img {
+    .popup_container .register_img {
         display: none;
     }
 }
 
 @media (max-width: 300px) {
-    .signup_container .form_container input[type=email] {
+    .popup_container .form_container input[type=email] {
         width: 260px;
     }
 
-    .signup_container .form_container h1 {
+    .popup_container .form_container h1 {
         margin-bottom: 10px;
     }
 }

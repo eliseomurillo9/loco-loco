@@ -204,9 +204,21 @@ main {
 
 
 /* === FORMS STYLE === */
+.popup_container {
+    color: var(--light);
+    background-color: var(--main);
+
+    display: flex;
+    height: 75vh;
+    width: 70vw;
+    text-align: center;
+    border-radius: 6px;
+}
+
 .form_container {
     width: 375px;
     margin: auto;
+    
 }
 
 .form_container form {
