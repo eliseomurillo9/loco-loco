@@ -48,9 +48,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Product', 'fa-sharp fa-solid fa-basket-shopping', Product::class);
         yield MenuItem::linkToCrud('Store', 'fa-solid fa-shop', Store::class);
         yield MenuItem::linkToCrud('User', 'fa-solid fa-user', User::class);
-        yield MenuItem::linkToCrud('Address', 'fa-solid fa-user', Address::class);
-        yield MenuItem::linkToCrud('StoreHours', 'fa-solid fa-user', StoreHours::class);
-        yield MenuItem::linkToCrud('Category', 'fa-solid fa-user', Category::class);
+        yield MenuItem::linkToCrud('Address', 'fa-solid fa-location-dot', Address::class);
+        yield MenuItem::linkToCrud('StoreHours', 'fa-solid fa-clock', StoreHours::class);
+        yield MenuItem::linkToCrud('Category', 'fa-solid fa-layer-group', Category::class);
     }
 }
 // Option 1. You can make your dashboard redirect to some common page of your backend
