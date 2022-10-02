@@ -1,84 +1,56 @@
-.signup_back {
-    display: none;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.829);
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
+section {
+    margin: auto;
 }
 
-.signup_window {
+.signup_container {
     color: var(--light);
     background-color: var(--main);
+
+    display: flex;
+    height: 75vh;
+    width: 70vw;
     text-align: center;
     border-radius: 6px;
-    position: absolute;
-    z-index: 3;
-    top: 150px;
-    bottom: 150px;
-    left: 240px;
-    right: 240px;
-    overflow: hidden;
-    display: flex;
 }
 
 
-.signup_window .register_img {
+
+.signup_container .register_img {
     height: 100%;
     width: 50%;
     background-image: url(../images/farm_portrait.jpg);
     background-size: cover;
     background-position: right;
+    border-radius: 6px;
 }
 
-.on {
-    display: inline-block;
+
+.signup_container .form_container h1 {
+    margin-bottom: 20px;
 }
 
-.signup_window .form_container i {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-
-    cursor: pointer;
-
-    transition: 0.2s ease-in-out;
-}
-
-.signup_window .form_container i:hover{
-    font-size: 1.1rem;
-    color: var(--dark);
-}
-
-.signup_window .form_container .user_selector {
-    text-align: left;
-    align-self: flex-start;
-}
-
-.signup_window .form_container div:not(.user-password) {
+.signup_container .form_container div:not(.user-password) {
     display: flex;
     flex-direction: column;
 }
 
-.signup_window .form_container .user-password {
+.signup_container .form_container .user-password {
     display: flex;
     justify-content: center;
     gap: 30px;
 }
 
-.signup_window .form_container .form_fields {
-    width: 380px;
-    margin: auto;
+.signup_container .form_container .user_selector {
+    text-align: left;
+    align-self: flex-start;
 }
 
-.signup_window .form_container .form_fields .options{
+.signup_container .form_container .options {
     margin-top: 10px;
     height: 30px;
 }
 
-.signup_window .form_container .form_fields .options button {
+.signup_container .form_container .options button {
     background-color: transparent;
     color: var(--light);
 
@@ -92,27 +64,101 @@
 }
 
 
-.signup_window .form_container .form_fields .options button:first-of-type {
+.signup_container .form_container .options button:first-of-type {
     padding-right: 6px;
     border-right: 1px solid var(--light);
 }
 
-.signup_window .form_container .form_fields .options button:last-of-type {
+.signup_container .form_container .options button:last-of-type {
     padding-left: 5px;
 }
 
-.signup_window .form_container .form_fields .options button:hover {
+.signup_container .form_container .options button:hover {
     font-size: 1.1rem;
     font-weight: bold;
 }
 
-.signup_window .form_container .form_fields .options button:active{
-    font-weight: bold;
+.signup_container .form_container input[type=email] {
+    width: 372px;
 }
 
 form label {
     text-align: left;
-    font-weight: 600;
+    font-weight: bold;
 }
 
+@media (max-width: 1248px) {
+    .signup_container {
+        height: 60vh;
+    }
+
+    .signup_container .form_container input[type=email] {
+        width: 342px;
+    }
+
+}
+
+
+@media (max-width: 1128px) {
+
+    .signup_container .form_container h1 {
+        margin-bottom: 10px;
+        font-size: 1.7rem;
+    }
+
+    .signup_container .form_container input[type=email] {
+        width: 300px;
+    }
+
+    form label {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .signup_container {
+        height: 88vh;
+        width: 100vw;
+    }
+
+    .signup_container .register_img {
+        border-radius: 0px;
+    }
+
+    .signup_container .form_container input[type=email] {
+        width: 342px;
+    }
+
+    .box-shadow {
+        box-shadow: none;
+    }
+}
+
+
+@media (max-width: 759px) {
+
+    .signup_container .form_container input[type=email] {
+        width: 310px;
+    }
+
+    .signup_container .register_img {
+        width: 45%;
+    }
+}
+
+@media (max-width: 642px) {
+    .signup_container .register_img {
+        display: none;
+    }
+}
+
+@media (max-width: 300px) {
+    .signup_container .form_container input[type=email] {
+        width: 260px;
+    }
+
+    .signup_container .form_container h1 {
+        margin-bottom: 10px;
+    }
+}
 

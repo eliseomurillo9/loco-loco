@@ -26,7 +26,6 @@
 
 		{# Javascript #}
 		{% block javascript %}
-			<script src="{{ asset('js/toggle-buttons.js' )}}" defer></script>
 		{% endblock %}
 	</head>
 
@@ -35,10 +34,6 @@
 		<header>
 			{% include "components/navbar.html.twig" %}
 		</header>
-
-			<div class="signup_back">
-				{{ render(path("app_register")) }}
-			</div>
 			{% block body %}{% endblock %}
 
 

@@ -1,3 +1,5 @@
+{% extends 'base.html.twig' %}
+
 {% block title %}Register
 {% endblock %}
 
@@ -11,14 +13,12 @@
 		<link rel="stylesheet" href="{{ asset('css/signup.css') }}">
 	{% endblock %}
 
-	{% block javascript %}
-		<script src="{{ asset('js/toggle-buttons.js' )}}" defer></script>
-	{% endblock %}
-	<section class="signup_window">
-		<div class="register_img"></div>
-		<div class="form_container">
-		<i class="fa-solid fa-xmark" id="close-popup"></i>
-			<div class="form_fields">
+	{% block javascript %}{% endblock %}
+
+	<section>
+		<div class="signup_container box-shadow">
+			<div class="register_img"></div>
+			<div class="form_container">
 				{{ form_start(registrationForm, {'action':'register'}) }}
 				<h1 class="title">Créer un compte</h1>
 				<div class="user_selector">
@@ -31,15 +31,13 @@
 				{{ form_row(registrationForm.email) }}
 				<div class="user-password">
 					{{ form_row(registrationForm.username) }}
-					{{ form_row(registrationForm.plainPassword, {
-            
-        }) }}
+					{{ form_row(registrationForm.plainPassword) }}
 				</div>
 
 
 				<button type="submit" class="btn btn-second">Register</button>
 				{{ form_end(registrationForm) }}
-			{% endblock %}
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{% endblock %}

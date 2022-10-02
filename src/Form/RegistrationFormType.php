@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class RegistrationFormType extends AbstractType
@@ -27,11 +28,10 @@ class RegistrationFormType extends AbstractType
                     'class' => "input-style",
                 ],
             ])
-            ->add('email', null, [
+            ->add('email', EmailType::class, [
                 'label' => 'Email*',
                 'attr' => [
                     'class' => "input-style",
-                    'style' => 'width: 372px'
                 ],
             ])
 
