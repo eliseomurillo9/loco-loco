@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route('', name: 'user_')]
 class UserController extends AbstractController
@@ -16,9 +17,21 @@ class UserController extends AbstractController
     }
 
     #[Route('/login', name: 'login')]
-    public function login(): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('user/login.html.twig');
+        // if user is already connected :
+    /*    if ($this->getUser()) {
+            return $this->redirectToRoute('main_index');
+        }*/
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('user/login.html.twig',[
+            'lastUsername'=> $lastUsername,
+            'error'=> $error,
+        ]);
     }
 
     #[Route('/favorite', name: 'favorite')]
@@ -50,4 +63,10 @@ class UserController extends AbstractController
     {
         return $this->render('user/add-place.html.twig');
     }
+
+    #[Route(path: '/logout', name: 'logout')]
+    public function logout(): void
+    {
+    }
+
 }

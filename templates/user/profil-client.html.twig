@@ -16,7 +16,9 @@
         <div class="start margin ">
             <img class="marginbt-1" src="{{ asset('images/avatar-profil-client.png')}}"  alt="avatar">
             {# <p>Modifiez votre avatar ?</p> #}
-            <button class="btn btn-second logout" type="submit" form="form" value="Submit">Se déconnecter</button>
+            <button class="btn btn-second logout" type="submit" form="form" value="Submit">
+                <a href="{{ path('user_logout') }}">Se déconnecter</a>
+            </button>
         </div>
 
         <div class="infos margin">
