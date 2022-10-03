@@ -19,19 +19,31 @@ class StoreController extends AbstractController
     {
 
     }
-    #[Route('/store', name: 'index')]
+    #[Route('', name: 'index')]
     public function storeIndex(): Response
     {
         return $this->render('store/index.html.twig');
     }
 
-    #[Route('/store/locator', name: 'locator')]
+    #[Route('/locator', name: 'locator')]
     public function storeLocator(): Response
     {
-        return $this->render('store/farms-locator.html.twig', [
-            'controller_name' => 'StoreController',
-        ]);
+        return $this->render('store/farms-locator.html.twig');
     }
+
+    #[Route('/single', name: 'single')]
+    public function storeSingle(): Response
+    {
+        return $this->render('store/single.html.twig');
+    }
+
+
+    #[Route('/edit', name: 'edit')]
+    public function storeEdit(): Response
+    {
+        return $this->render('store/edit.html.twig');
+    }
+
 /*
     #[Route('/{name}', name: 'single', requirements:["id" => "\d+"])]
     public function storeSingle($id): Response
@@ -89,3 +101,4 @@ class StoreController extends AbstractController
         ]);
     }
 }
+
