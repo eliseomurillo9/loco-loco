@@ -113,3 +113,24 @@ button {
 .gallery i{
     cursor: pointer;
 }
+/* !! === MEDIA QUERIES === !! */
+
+@media all and (max-device-width: 480px)
+{
+    .content{
+        flex-direction: column;
+    }
+
+    .title-custom,
+    .gallery h4{
+        text-align: center;
+    }
+
+    .gallery i{
+        display: none;
+    }
+
+    .gallery .container-pictures{
+        flex-direction: column;
+    }
+}
