@@ -1,0 +1,12 @@
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+{% endblock %}
+
+{% block javascript %}{% endblock %}
+
+{% block body %}
+	<h1>hello</h1>
+	{{ form_start(searchForm) }}
+	<button type="submit" class="btn btn-second">Register</button>
+	{{ form_end(searchForm) }}
+{% endblock %}

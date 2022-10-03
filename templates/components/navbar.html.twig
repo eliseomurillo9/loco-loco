@@ -1,36 +1,56 @@
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 {% endblock %}
 
-{% block javascript %}
-{% endblock %}
+{% block javascript %}{% endblock %}
 
 <nav class="box-shadow">
-    <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
-        <i class="fas fa-bars"></i>
-    </label>
-    <label class="logo bold subtitle"><a href="{{ path('main_index')}}">Loco Loco</a></label>
-    <ul class="flex">
+	<input type="checkbox" id="check">
+	<label for="check" class="checkbtn">
+		<i class="fas fa-bars"></i>
+	</label>
+	<label class="logo bold subtitle">
+		<a href="{{ path('main_index')}}">Loco Loco</a>
+	</label>
+	<ul
+		class="flex">
 
-        {# Si, je suis connecté en tant que commerçant #}
-        {% if is_granted('ROLE_PRO') %}
-            <li><a class="btn btn-main-outline" href="{{ path('user_add-place')}}">Ajoutez votre établissement</a></li>
-            <li><a href="{{ path('user_profil-pro')}}"><img class="avatar" src="{{ asset('images/poivron.png')}}" alt="avatar pro"></a></li>
+		{# Si, je suis connecté en tant que commerçant #}
+		{% if is_granted('ROLE_PRO') %}
+			<li>
+				<a class="btn btn-main-outline" href="{{ path('user_add-place')}}">Ajoutez votre établissement</a>
+			</li>
+			<li>
+				<a href="{{ path('user_profil-pro')}}"><img class="avatar" src="{{ asset('images/poivron.png')}}" alt="avatar pro"></a>
+			</li>
 
 
-        {# Sinon si, je suis connecté en tant que client #}
-        {% elseif is_granted('ROLE_USER') %}
-            <li><a class="nav-icon" href="{{ path('user_favorite')}}"><i class="fas fa-fw fa-heart"></i></a></li>
-            <li><a class="nav-icon" href="{{ path('user_grocery-list')}}"><i class="fas fa-fw fa-shopping-basket"></i></a></li>
-            <li><a href="{{ path('user_profil-client')}}"><img class="avatar" src="{{ asset('images/carrot.png')}}" alt="avatar client"></a></li>
+			{# Sinon si, je suis connecté en tant que client #}
+		{% elseif is_granted('ROLE_USER') %}
+			<li>
+				<a class="nav-icon" href="{{ path('user_favorite')}}">
+					<i class="fas fa-fw fa-heart"></i>
+				</a>
+			</li>
+			<li>
+				<a class="nav-icon" href="{{ path('user_grocery-list')}}">
+					<i class="fas fa-fw fa-shopping-basket"></i>
+				</a>
+			</li>
+			<li>
+				<a href="{{ path('user_profil-client')}}"><img class="avatar" src="{{ asset('images/carrot.png')}}" alt="avatar client"></a>
+			</li>
 
-        
-        {# Sinon, j'affiche la navbar en mode non connecté #}
-        {% else %} 
-            <li><a id="signup_button"class="btn btn-main-outline">{% set submit_url = path('app_register') %}S'inscrire</a></li>
-            <li><a class="btn btn-main" href="{{ path('user_login')}}">Se connecter</a></li>
-        {% endif %}
 
-    </ul>
+			{# Sinon, j'affiche la navbar en mode non connecté #}
+		{% else %}
+			<li>
+				<a id="signup_button" class="btn btn-main-outline">{% set submit_url = path('app_register') %}S'inscrire</a>
+			</li>
+			<li>
+				<a class="btn btn-main" href="{{ path('user_login')}}">Se connecter</a>
+			</li>
+		{% endif %}
+
+	</ul>
 </nav>

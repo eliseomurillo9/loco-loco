@@ -110,6 +110,7 @@ class Product
 
     public function getCategory(): ?Category
     {
+        $categories = $this->category;
         return $this->category;
     }
 
