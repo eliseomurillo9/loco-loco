@@ -11,7 +11,7 @@
     <ul class="flex">
 
         {# Si, je suis connecté en tant que commerçant #}
-        {% if is_granted('ROLE_PRO') %}
+        {% if is_granted('ROLE_PRODUCER') %}
             <li><a class="btn btn-main-outline" href="{{ path('user_add-place')}}">Ajoutez votre établissement</a></li>
             <li><a href="{{ path('user_profil-pro')}}"><img class="avatar" src="{{ asset('images/poivron.png')}}" alt="avatar pro"></a></li>
 
