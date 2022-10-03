@@ -26,4 +26,10 @@ class StoreController extends AbstractController
     {
         return $this->render('store/index.html.twig');
     }
+
+    #[Route('/store/edit', name: 'store_edit')]
+    public function storeEdit(): Response
+    {
+        return $this->render('store/edit.html.twig');
+    }
 }

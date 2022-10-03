@@ -119,6 +119,7 @@ button {
     .title-custom,
     .gallery h4{
         text-align: center;
+        margin: 0;
     }
 
     .gallery i{
