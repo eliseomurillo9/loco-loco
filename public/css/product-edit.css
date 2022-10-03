@@ -1,0 +1,15 @@
+.edit{
+    max-width: 1000px;
+    margin: 3rem auto;
+}
+
+.content{
+    justify-content: space-between;
+}
+
+.title-custom{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--main);
+    margin-left: 2rem;
+}

@@ -7,7 +7,7 @@
 .hero{
     height: 70vh;
     width: 100%;
-    background: url(../images/background.png) no-repeat;
+    background: url(../images/home/background.png) no-repeat;
     background-size: cover;
     background-position-y: center;
     background-color: grey;

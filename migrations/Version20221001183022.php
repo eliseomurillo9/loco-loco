@@ -7,19 +7,17 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
+
 final class Version20221001183022 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Add latitude and longitude and update store entity';
     }
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
+
         $this->addSql('ALTER TABLE address ADD stores_id INT DEFAULT NULL, ADD latitude NUMERIC(18, 8) DEFAULT NULL, ADD longitude NUMERIC(19, 8) DEFAULT NULL');
         $this->addSql('ALTER TABLE address ADD CONSTRAINT FK_D4E6F818D710F7F FOREIGN KEY (stores_id) REFERENCES store (id)');
         $this->addSql('CREATE INDEX IDX_D4E6F818D710F7F ON address (stores_id)');
@@ -30,7 +28,7 @@ final class Version20221001183022 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
+
         $this->addSql('ALTER TABLE address DROP FOREIGN KEY FK_D4E6F818D710F7F');
         $this->addSql('DROP INDEX IDX_D4E6F818D710F7F ON address');
         $this->addSql('ALTER TABLE address DROP stores_id, DROP latitude, DROP longitude');
