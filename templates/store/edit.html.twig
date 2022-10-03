@@ -6,9 +6,87 @@
 {% endblock %}
 
 {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/store/store-edit.css') }}">
 {% endblock %}
 
 {% block body %}
-    <h1>Modifier ma boutique</h1>
+    <section class="store-edit">
+        <h1 class="title-custom marginbt-1">Modifier ma boutique</h1>
+
+        <div class="content">
+            <h4>Nom du commerce :</h4>
+            <div class="text-icon">
+                <p>Le domaine de la Sainte Vachette</p>
+                <i class="fas fa-edit"></i>
+            </div>
+    
+            <h4>Description :</h4>
+            <div class="text-icon">
+                <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sapiente recusandae qui in suscipit excepturi? Pariatur iure asperiores,
+                        enim iusto excepturi alias veritatis quia omnis architecto magnam,
+                        eum vel exercitationem voluptas quos dolores aut facere molestiae illum,
+                        ipsum maxime? Quisquam, animi?
+                </p>
+                <i class="fas fa-edit"></i>
+            </div>
+    
+            <h4>Email publique :</h4>
+            <div class="text-icon">
+                <p>mailrandom@gmail.com</p>
+                <i class="fas fa-edit"></i>
+            </div>
+    
+            <h4>Adresse :</h4>
+            <div class="text-icon">
+                <p>5 rue de la Mafia, Lille, 59800</p>
+                <i class="fas fa-edit"></i>
+            </div>
+    
+            <h4>Téléphone :</h4>
+            <div class="text-icon">
+                <p>5 rue de la Mafia, Lille, 59800</p>
+                <i class="fas fa-edit"></i>
+            </div>
+    
+            <h4>Moyen de paiement :</h4>
+            <div class="text-icon">
+                <p>Carte bleue, espèces</p>
+                <i class="fas fa-edit"></i>
+            </div>
+    
+            <h4>Horaires :</h4>
+            <div class="text-icon">
+                <p>10h - 15h tous les jours.</p>
+                <i class="fas fa-edit"></i>
+            </div>
+    
+            </div>
+
+            <button class="marginbt-1 btn btn-second">
+                <a href="{{ path('product_index')}}"><i class="fa-solid fa-carrot m-r-1"></i>Gérer mes produits</a>
+            </button>
+
+            
+            <div class="gallery">
+                <h4>Photos</h4>
+                <div class="iconsWithPictures flex">
+                    <i class="fas fa-chevron-left"></i>
+                        <div class="container-pictures flex">
+                            <div class="container__picture">
+                                <img src="{{ asset('images/store/cow.jpg')}}" alt="vachette">
+                            </div>
+                            <div class="container__picture">
+                                <img src="{{ asset('images/store/cow2.jpg')}}" alt="vachette">
+                            </div>
+                            <div class="container__picture">
+                                <img src="{{ asset('images/store/field-grass.jpg')}}" alt="vachette">
+                            </div>
+                        </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+        </div>
+    </section>
 
 {% endblock %}
