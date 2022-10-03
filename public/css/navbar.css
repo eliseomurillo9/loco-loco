@@ -76,6 +76,9 @@ nav ul li{
     }
 }
 @media (max-width: 858px) {
+    .label.logo{
+        font-size: 24px;
+    }
     .checkbtn{
         display: block;
     }
