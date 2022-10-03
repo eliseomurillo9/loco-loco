@@ -13,23 +13,38 @@
     <h1 class="title-custom marginbt-1">Mon profil utilisateur</h1>
 
     <div class="content flex">
-        <div class="start margin ">
+        <div class="start-pro margin ">
             <img class="marginbt-1" src="{{ asset('images/avatar-profil-pro.png')}}"  alt="avatar">
             {# <p>Modifiez votre avatar ?</p> #}
-            <button class="btn btn-second logout" type="submit" form="form" value="Submit">Se déconnecter</button>
+            <button class="btn btn-second logout" type="submit" form="form" value="Submit">
+                Se déconnecter
+                {# <a href="{{ path('user_logout') }}">Se déconnecter</a> #}
+            </button>
         </div>
 
         <div class="infos margin">
 
-            <h4>Nom d'utilisateur :</h4>
+            <h4>Nom du commerce :</h4>
             <div class="text-icon">
-                <p>Eliseo Murillo</p>
+                <p>Le domaine de la Sainte Vachette</p>
                 <i class="fas fa-edit"></i>
             </div>
 
-            <h4>Email :</h4>
+            <h4>Description :</h4>
             <div class="text-icon">
-                <p>mail@random.com</p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Sapiente recusandae qui in suscipit excepturi? Pariatur iure asperiores,
+                    enim iusto excepturi alias veritatis quia omnis architecto magnam,
+                    eum vel exercitationem voluptas quos dolores aut facere molestiae illum,
+                    ipsum maxime? Quisquam, animi?
+                </p>
+                <i class="fas fa-edit"></i>
+            </div>
+
+            <h4>Email publique :</h4>
+            <div class="text-icon">
+                <p>mailrandom@gmail.com</p>
                 <i class="fas fa-edit"></i>
             </div>
 
@@ -39,26 +54,63 @@
                 <i class="fas fa-edit"></i>
             </div>
 
-            <div class="newsletter-option">
-                <h4>Souhaitez-vous être abonné à notre newsletter ?</h4>
-                <i class="fas fa-toggle-off"></i>
+            <h4>Téléphone :</h4>
+            <div class="text-icon">
+                <p>5 rue de la Mafia, Lille, 59800</p>
+                <i class="fas fa-edit"></i>
+            </div>
+
+            
+            <h4>Moyen de paiement :</h4>
+            <div class="text-icon">
+                <p>Carte bleue, espèces</p>
+                <i class="fas fa-edit"></i>
+            </div>
+
+            <h4>Horaires :</h4>
+            <div class="text-icon">
+                <p>10h - 15h tous les jours.</p>
+                <i class="fas fa-edit"></i>
             </div>
 
         </div>
-        <div class="end margin">
+        <div class="end-pro margin">
             <button class="marginbt-1 btn btn-second">
-                <a href="{{ path('user_grocery-list')}}"><i class="fas fa-shopping-basket m-r-1"></i>Voir ma liste de course</a>
+                <a href="{{ path('store_single')}}"><i class="fas fa-globe-europe m-r-1"></i>Consulter ma page publique</a>
             </button>
             <button class="marginbt-1 btn btn-second">
-                <a href="{{ path('user_favorite')}}"><i class="fas fa-heart m-r-1"></i>Voir mes favoris</a>
+                <a href="{{ path('store_index')}}"><i class="fas fa-store m-r-1"></i>Gérer mes boutiques</a>
+            </button>
+            <button class="marginbt-1 btn btn-second">
+                <a href="{{ path('product_index')}}"><i class="fa-solid fa-carrot m-r-1"></i>Gérer mes produits</a>
             </button>
             <button class="marginbt-1 btn btn-main-outline">
                 <a href="#" >Une question ? <br> Contactez le support technique</a>
             </button>
-            <button class="btn btn-second">
-                <a href="#" >Devenir commerçant</a>
-            </button>  
+
+
+
+            </div>  
         </div>
+
+                    <div class="gallery">
+                <h4>Photos</h4>
+                <div class="iconsWithPictures flex">
+                    <i class="fas fa-chevron-left"></i>
+                        <div class="container-pictures flex">
+                            <div class="container__picture">
+                                <img src="{{ asset('images/pro/store/pictures/factory.jpg')}}" alt="vachette">
+                            </div>
+                            <div class="container__picture">
+                                <img src="{{ asset('images/pro/store/pictures/middle-size.jpg')}}" alt="vachette">
+                            </div>
+                            <div class="container__picture">
+                                <img src="{{ asset('images/pro/store/pictures/field-grass.jpg')}}" alt="vachette">
+                            </div>
+                        </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+
     </div>
 </section>
 
