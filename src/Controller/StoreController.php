@@ -2,37 +2,32 @@
 
 namespace App\Controller;
 
+use App\entity\Store;
+use App\Form\StoreType;
+use App\Repository\StoreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
-
+#[Route('/store', name: 'store_')]
 class StoreController extends AbstractController
 {
-    #[Route('/store', name: 'app_store')]
-    public function index(): Response
+    public function __construct(private StoreRepository $storeRepository)
     {
-        return $this->render('store/index.html.twig', [
-            'controller_name' => 'StoreController',
-        ]);
+
+    }
+    #[Route('', name: '_index')]
+    public function storeIndex(): Response
+    {
+        return $this->render('store/index.html.twig');
     }
 
-    #[Route('/store/locator', name: 'store_locator')]
-    public function storeLocator($searchBarInfo): Response
+    #[Route('/locator', name: '_locator')]
+    public function storeLocator(): Response
     {
-
-        $response = $this->client->request(
-            'GET',
-            'https://api.github.com/repos/symfony/symfony-docs'
-        );
-
-        $statusCode = $response->getStatusCode();
-        // $statusCode = 200
-        $contentType = $response->getHeaders()['content-type'][0];
-        // $contentType = 'application/json'
-        $content = $response->getContent();
-        // $content = '{"id":521583, "name":"symfony-docs", ...}'
-        $content = $response->toArray();
         return $this->render('store/farms-locator.html.twig', [
             'controller_name' => 'StoreController',
         ]);
