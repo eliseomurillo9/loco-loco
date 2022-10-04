@@ -33,5 +33,6 @@ class StoreType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Store::class,
         ]);
+
     }
 }

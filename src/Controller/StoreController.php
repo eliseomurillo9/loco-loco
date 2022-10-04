@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\entity\Store;
+use App\entity\User;
 use App\Form\StoreType;
 use App\Repository\StoreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -56,45 +57,42 @@ class StoreController extends AbstractController
 
     #[Route('/create', name: 'create')]
     //Une method de controller doit obligatoirement retourner un type ("response")
-    public function form(Request $request, SluggerInterface $slugger): Response
+    public function form(Request $request, SluggerInterface $slugger, $id = null): Response
     {
+        $user = $this->getUser()->getId();
         $newStore = new Store();
-        $form = $this->createForm(StoreType::class, $newStore);
+        $form = $this->createForm(StoreType::class, $newStore, ['by_reference'=>$user]);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
 
-
             $imageFile = $form->get('picture')->getData();
-
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
+            // upload images
             if ($imageFile) {
                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename.'.'.$imageFile->guessExtension();
 
-                // Move the file to the directory where brochures are stored
                 try {
                     $imageFile->move(
                         $this->getParameter('images_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
+
                 }
 
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
                 $newStore->setPicture($newFilename);
             }
             $this->storeRepository->add($newStore,true);
             $this->addFlash('success', 'Votre boutique a été créée');
             return $this->redirectToRoute('main_index',[
-               // 'id'=> $newStore->getId()
+                'id'=> $newStore->getId()
             ]);
         }
+
+        //$user = $this->manager->getRepository('App\Entity\User')->find('id');
         $this->addFlash('error', 'erreur lors de la création de votre boutique');
         return $this->render('store/test_store_form.html.twig',[
             'form' => $form->createView()
