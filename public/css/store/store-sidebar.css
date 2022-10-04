@@ -1,0 +1,66 @@
+.sidebar{
+    margin: 3rem auto;
+    max-width: 310px;
+    border-radius: .5rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.sidebar__presentation{
+    flex-direction: column;
+    justify-content: center;
+
+    border-bottom: var(--second) solid 3px;
+    border-radius: .5rem;
+}
+
+/* --- AVATAR --- */
+/* ------------------------------------------------------------- */
+.container-avatar{
+    height: 122px;
+    width: 122px;
+
+    margin: 1rem auto;
+}
+
+.container-avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+/* --- RATING & FAVORITE --- */
+/* ------------------------------------------------------------- */
+.ratingAndFavorite{
+    justify-content: center;
+}
+
+.rating{
+    color: var(--second);
+}
+
+.favorite{
+    color: var(--main-bis);
+}
+
+/* --- INFOS --- */
+/* ------------------------------------------------------------- */
+.item{
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.item i{
+    color: var(--dark-bis);
+}
+
+
+.text-content{
+    text-align: start;
+}
+
+.text-content i{
+    font-size: 14px;
+}

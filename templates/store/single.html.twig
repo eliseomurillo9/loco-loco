@@ -6,9 +6,23 @@
 {% endblock %}
 
 {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/store/store-single.css') }}">
 {% endblock %}
 
 {% block body %}
-    <h1>Boutique - Vue publique</h1>
+    <section class="single">
+
+        {# <div class="single__banniere">
+            <img src="{{ asset('images/store/banniere.png')}}" alt="banniere de la boutique">
+        </div> #}
+
+        <div class="content">
+
+            <div class="single__sidebar">
+                {% include "components/store-sidebar.html.twig" %}
+            </div>
+
+        </div>
+    </section>
 
 {% endblock %}

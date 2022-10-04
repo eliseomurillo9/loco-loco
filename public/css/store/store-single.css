@@ -1,0 +1,36 @@
+/* .single{
+    max-width: 1000px;
+    margin: 3rem auto;
+} */
+
+.title-custom{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--main);
+}
+
+.margin{
+    margin: 2rem;
+}
+
+.content{
+    justify-content: space-between;
+}
+
+.text-icon{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+}
+
+/* --- BANNIERE --- */
+/* ------------------------------------------------------------- */
+.single__banniere{
+    height: 415px;
+}
+
+.single__banniere img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
