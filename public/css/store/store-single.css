@@ -12,9 +12,9 @@
     margin: 2rem;
 }
 
-.content{
+/* .content{
     justify-content: space-between;
-}
+} */
 
 .text-icon{
     display: flex;
@@ -48,4 +48,31 @@
     top: 0;
     right: 0;
     left: 0;
+}
+
+/* --- TAB --- */
+/* ------------------------------------------------------------- */
+.single__tab{
+    margin: 8rem auto;
+
+    background-color: var(--light);
+    border-radius: .5rem;
+
+    height: 80px;
+
+    text-align: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.tab{
+    padding: 2rem;
+    width: 428px;
+}
+
+.active-tab{
+    font-weight: bold;
+    color: var(--light-bis);
+    background-color: var(--main-bis);
 }

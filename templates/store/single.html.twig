@@ -16,13 +16,18 @@
             <img src="{{ asset('images/store/banniere.png')}}" alt="banniere de la boutique">
         </div>
 
-        <div class="content top-layout">
+        <div class="content flex top-layout">
 
             <div class="single__sidebar">
                 {% include "components/store-sidebar.html.twig" %}
             </div>
 
+            <div class="single__tab box-shadow flex">
+                <a class="tab subtitle inactive-tab" href="{{ path('store_single')}}">A propos</a>
+                <a class="tab subtitle active-tab" href="{{ path('store_single')}}">Boutique</a>
+            </div>
+
         </div>
-    </section>
+    </section> 
 
 {% endblock %}
