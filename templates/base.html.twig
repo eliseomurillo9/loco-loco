@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>
-            {% block title %}
-                Loco Loco
-            {% endblock %}
-        </title>
+		<title>
+			{% block title %}
+				Loco Loco
+			{% endblock %}
+		</title>
 
-        {# Font Awesome Icons #}
-        <script src="https://kit.fontawesome.com/41d6b020fe.js" crossorigin="anonymous"></script>
+		{# Font Awesome Icons #}
+		<script src="https://kit.fontawesome.com/41d6b020fe.js" crossorigin="anonymous"></script>
 
-        {# Font family #}
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+		{# Font family #}
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link
+		href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
-        {# Styles #}
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        {% block stylesheets %}
-        {% endblock %}
+		{# Styles #}
+		<link rel="stylesheet" href="{{ asset('css/app.css') }}"> {% block stylesheets %}{% endblock %}
+		<link
+		rel="stylesheet" href="{{ asset('css/signup.css') }}">
 
-        {# Javascript #}
-        {% block javascripts %}
-        {% endblock %}
-    </head>
+		{# Javascript #}
+		{% block javascript %}
+		{% endblock %}
+	</head>
 
-    <body>
+	<body>
 
-        <header>
-            {% include "components/navbar.html.twig" %}
-        </header>
+		<header>
+			{% include "components/navbar.html.twig" %}
+		</header>
+			{% block body %}{% endblock %}
 
-        <main>
-            {% block body %}{% endblock %}
-        </main>
-        
 
-        <footer>
-            <ul class="flex">
-                <li>
-                    <a href="#">Mentions légales</a>
-                </li>
-                <li>
-                    <p>Loco Loco - Tous droits réservés - {{ date()|date("Y") }}</p>
-                </li>
-                <li>
-                    <a href="#">Support technique</a>
-                </li>
-            </ul>
-        </footer>
+		<footer>
+			<ul class="flex">
+				<li>
+					<a href="#">Mentions légales</a>
+				</li>
+				<li>
+					<p>Loco Loco - Tous droits réservés -
+						{{ date()|date("Y") }}</p>
+				</li>
+				<li>
+					<a href="#">Support technique</a>
+				</li>
+			</ul>
+		</footer>
 
-    </body>
+	</body>
 
 </html>

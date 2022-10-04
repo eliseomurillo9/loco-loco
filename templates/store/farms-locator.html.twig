@@ -5,6 +5,10 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/storespage.css') }}">
 {% endblock %}
+	{% block javascript %}
+		<script src="{{ asset('js/locator.js')}}" defer></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&map_ids=981b93be4c70d164&callback=initMap" defer></script>
+	{% endblock %}
 
 
 {% block body %}
@@ -57,8 +61,4 @@
 			<div id="map"></div>
 		</div>
 	</section>
-	{% block javascript %}
-		<script src="{{ asset('js/locator.js')}}"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&map_ids=981b93be4c70d164&callback=initMap" defer></script>
-	{% endblock %}
 {% endblock %}
