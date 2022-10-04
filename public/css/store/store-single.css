@@ -2,26 +2,6 @@
     position: relative;
 }
 
-.title-custom{
-    text-transform: uppercase;
-    font-weight: bold;
-    color: var(--main);
-}
-
-.margin{
-    margin: 2rem;
-}
-
-/* .content{
-    justify-content: space-between;
-} */
-
-.text-icon{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: .5rem;
-}
-
 /* --- BANNIERE --- */
 /* ------------------------------------------------------------- */
 .single__banniere{
@@ -75,4 +55,28 @@
     font-weight: bold;
     color: var(--light-bis);
     background-color: var(--main-bis);
+}
+
+/* --- CONTENT LAYOUT --- */
+/* ------------------------------------------------------------- */
+.content-layout{
+    border: 1px solid blue;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    margin: 15rem auto;
+    margin-left: 380px;
+
+    justify-content: start;
+
+}
+
+/* --- PRODUCTS LIST --- */
+/* ------------------------------------------------------------- */
+.item{
+    border-radius: .5rem;
+    margin: .5rem;
 }

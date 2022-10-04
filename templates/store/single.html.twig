@@ -16,7 +16,7 @@
             <img src="{{ asset('images/store/banniere.png')}}" alt="banniere de la boutique">
         </div>
 
-        <div class="content flex top-layout">
+        <div class="flex top-layout">
 
             <div class="single__sidebar">
                 {% include "components/store-sidebar.html.twig" %}
@@ -27,7 +27,39 @@
                 <a class="tab subtitle active-tab" href="{{ path('store_single')}}">Boutique</a>
             </div>
 
+            <div class="content-layout flex">
+                <div class="single__store-content">
+                    <p class="marginbt-1">Hauts-de-France(59) / Ville</p>
+
+                    <div class="products-list__container">
+                        <h2 class="subtitle marginbt-1">Catégorie</h2>
+
+                        <div class="products-list">
+
+                            <div class="item box-shadow">
+                                <div class="img__container">
+                                    <img src="{{ asset('images/products/milk.png')}}" alt="product">
+                                </div>
+                                <div class="text-content">
+                                    <h4>Titre</h4>
+                                    <span>1€</span>
+                                    <button class="btn btn-second ">
+                                        <a class="flex" href="{{ path('product_index')}}">
+                                            Ajouter à mon panier
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+
+
     </section> 
 
 {% endblock %}
