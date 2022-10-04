@@ -21,11 +21,11 @@ class MainController extends AbstractController
         $formData = $searchForm->getData();
         if ($searchForm->isSubmitted()) {
             // dd($formData);
-            // $info = $this->forward('App\Controller\StoreController::storeLocator', [
-            //     'searchBarInfo' => $formData,
-            // ]);
-
-            return $this->redirectToRoute('store_locator');
+            $searchBarInfo = $this->forward('App\Controller\StoreController::storeLocator', [
+                'searchBarInfo' => $formData,
+            ]);
+            return $searchBarInfo;
+            // return $this->redirectToRoute('store_locator');
         }
 
 
