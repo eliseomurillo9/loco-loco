@@ -1,7 +1,6 @@
-/* .single{
-    max-width: 1000px;
-    margin: 3rem auto;
-} */
+.single{
+    position: relative;
+}
 
 .title-custom{
     text-transform: uppercase;
@@ -27,10 +26,26 @@
 /* ------------------------------------------------------------- */
 .single__banniere{
     height: 415px;
+    z-index: 1;
 }
 
 .single__banniere img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* --- TOP LAYOUT --- */
+/* ------------------------------------------------------------- */
+.top-layout{
+    border: 1px solid red;
+    z-index: 5;
+
+    margin: 15rem 2rem;
+    padding-bottom: 3rem;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
 }

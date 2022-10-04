@@ -1,9 +1,10 @@
 .sidebar{
-    margin: 3rem auto;
     max-width: 310px;
     border-radius: .5rem;
     padding: 1rem;
     text-align: center;
+
+    background-color: var(--light);
 }
 
 .sidebar__presentation{
