@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Store;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,7 +18,9 @@ class StoreType extends AbstractType
             ->add('email')
             ->add('website')
             ->add('siret_number')
-            ->add('picture')
+            ->add('picture', FileType::class,[
+
+            ])
             ->add('description')
             ->add('road_specificity')
             ->add('products')

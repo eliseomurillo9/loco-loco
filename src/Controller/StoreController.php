@@ -23,13 +23,19 @@ class StoreController extends AbstractController
 
     }
     #[Route('', name: 'index')]
-    public function storeIndex(Request $request, $id=null): Response
+    // show all producer stores
+    public function storeIndex(): Response
     {
-         $user = $this->getUser()->getId();
+        /** @var User $user */
+        $user = $this->getUser();
 
-        $stores = $this->storeRepository->findBy([$user], ['name' => 'ASC']);
+        $storeId = $store->getId();
+        //$address = $this->getAddresses();
 
-        return $this->render('store/test_store_list.html.twig', ['stores' => $stores]);
+        return $this->render('store/index.html.twig', [
+            'stores' => $user->getOwnedStores(),
+            //'address'
+        ]);
     }
 
     #[Route('/locator', name: 'locator')]
@@ -41,6 +47,7 @@ class StoreController extends AbstractController
     #[Route('/single', name: 'single')]
     public function storeSingle(): Response
     {
+
         return $this->render('store/single.html.twig');
     }
 
@@ -62,16 +69,17 @@ class StoreController extends AbstractController
 */
 
     #[Route('/create', name: 'create')]
-    //Une method de controller doit obligatoirement retourner un type ("response")
-    public function form(Request $request, SluggerInterface $slugger, $id = null): Response
+    //Add new store by producer
+    public function form(Request $request, SluggerInterface $slugger): Response
     {
-        $user = $this->getUser()->getId();
+        $user = $this->getUser();
         $newStore = new Store();
-        $form = $this->createForm(StoreType::class, $newStore, ['by_reference'=>$user]);
+
+
+        $form = $this->createForm(StoreType::class, $newStore);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-
             $imageFile = $form->get('picture')->getData();
             // upload images
             if ($imageFile) {
@@ -91,6 +99,7 @@ class StoreController extends AbstractController
 
                 $newStore->setPicture($newFilename);
             }
+            $newStore->setOwner($user);
             $this->storeRepository->add($newStore,true);
             $this->addFlash('success', 'Votre boutique a été créée');
             return $this->redirectToRoute('main_index',[
@@ -104,4 +113,5 @@ class StoreController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
 }

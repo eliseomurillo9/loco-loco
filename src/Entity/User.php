@@ -273,11 +273,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->getUsername();
-    }
-
     /**
      * @return Collection<int, Store>
      */
@@ -330,5 +325,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->favourites->removeElement($favourite);
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getUsername();
     }
 }
