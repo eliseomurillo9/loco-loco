@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {# "Boutique" à remplacer par le nom en dynamique de la vrai boutique #}
+    Boutique - {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/store/store-single.css') }}">
+{% endblock %}
+
+{% block body %}
+    <section class="single">
+
+        <div class="single__banniere">
+            <img src="{{ asset('images/store/banniere.png')}}" alt="banniere de la boutique">
+        </div>
+
+        <div class="flex top-layout">
+
+            <div class="single__sidebar">
+                {% include "components/store-sidebar.html.twig" %}
+            </div>
+
+            <div class="single__tab box-shadow flex">
+                <a class="tab subtitle active-tab" href="{{ path('store_single-about')}}">A propos</a>
+                <a class="tab subtitle inactive-tab" href="{{ path('store_single')}}">Boutique</a>
+            </div>
+
+            <div class="content-layout flex">
+                <div class="single__store-content">
+                    <p class="marginbt-1">Hauts-de-France(59) / Ville</p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section> 
+{% endblock %}
