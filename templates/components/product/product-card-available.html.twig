@@ -1,0 +1,20 @@
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/product/product-card.css') }}">
+{% endblock %}
+
+{# --- PRODUCT CARD (AVAILABLE) START --- #}
+<div class="product-card box-shadow flex">
+    <div class="img__container flex">
+        <img src="{{ asset('images/products/milk.png')}}" alt="product">
+    </div>
+    <div class="text-content">
+        <h4 class="marginbt-1">Titre</h4>
+        <span>1€</span>
+    </div>
+    <button class="btn-second flex">
+        <a class="flex" href="#">
+            Ajouter à mon panier
+        </a>
+    </button>
+</div>
+{# --- PRODUCT CARD (AVAILABLE) END --- #}

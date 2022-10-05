@@ -1,0 +1,89 @@
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/store/store-sidebar.css') }}">
+{% endblock %}
+
+<div class="sidebar box-shadow">
+
+    <div class="sidebar__presentation flex">
+
+        <div class="container-avatar flex">
+            <img src="{{ asset('images/store/cow.jpg')}}" alt="avatar boutique">
+        </div>
+
+        <h1 class="subtitle marginbt-1">
+            Le domaine de la Sainte Vachette
+        </h1>
+
+        <p class="marginbt-1">
+            Ici, nous vendons des produits frais. Notre spécialité ?
+            Les produits laitiers.
+        </p>
+
+        <div class="ratingAndFavorite marginbt-1">
+            <div class="rating marginbt-1">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+            </div>
+            <div class="favorite">
+                <i class="far fa-heart"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="sidebar__infos">
+
+        <div class="item flex">
+            <i class="fas fa-store"></i>
+            <div class="text-content">
+                <p>3 rue de la Prairie</p>
+                <p>Ville, <span>Code postal</span></p>
+            </div>
+        </div>
+
+        <div class="item flex">
+            <i class="fas fa-phone"></i>
+            <div class="text-content">
+                <p>03 20 78 54 35</p>
+            </div>
+        </div>
+
+        <div class="item flex">
+            <i class="fas fa-envelope"></i>
+            <div class="text-content">
+                <p>mail@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="item flex">
+            <i class="fas fa-calendar"></i>
+            <div class="text-content">
+                <p>Jours d'ouverture :</p>
+                <p><i class="fas fa-angle-right"></i> Jeudi</p>
+                <p><i class="fas fa-angle-right"></i> Vendredi</p>
+            </div>
+        </div>
+
+        <div class="item flex">
+            <i class="fas fa-clock"></i>
+            <div class="text-content">
+                <p>Heures d'ouverture :</p>
+                <p><i class="fas fa-angle-right"></i> 9h - 15h</p>
+            </div>
+        </div>
+
+        <div class="item flex">
+            <i class="fas fa-money-bill-wave"></i>
+            <div class="text-content">
+                <p>Moyen de paiement :</p>
+                <p><i class="fas fa-angle-right"></i> En liquide</p>
+                <p><i class="fas fa-angle-right"></i> Par carte banquaire</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
