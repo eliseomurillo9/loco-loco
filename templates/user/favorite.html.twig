@@ -1,14 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {# Catalogue - {{ parent() }} #}
+    Mes favoris - {{ parent() }}
 {% endblock %}
 
 {% block stylesheets %}
-    {# <link rel="stylesheet" href="{{ asset('css/game-list.css') }}"> #}
+    <link rel="stylesheet" href="{{ asset('css/user/favorite.css') }}">
 {% endblock %}
 
 {% block body %}
-    <h1>Mes favoris</h1>
+    <section class="favorite">
+            <h1 class="title-custom marginbt-3">Mes favoris</h1>
+
+            <div class="favorite__container">
+
+                <div class="favorite-item flex marginbt-1">
+                    <div class="img-container">
+                        <img src="{{ asset('images/store/vegetable.png')}}" alt="farm">
+                    </div>
+                    <div class="details-container">
+                        <h4>Adresse de l'établissement :</h4>
+                        <p>Nom</p>
+                        <p>Adresse</p>
+                        <p>Code Postal</p>
+                    </div>
+                    <div class="delete flex">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+
+                                <div class="favorite-item flex marginbt-1">
+                    <div class="img-container">
+                        <img src="{{ asset('images/store/vegetable.png')}}" alt="farm">
+                    </div>
+                    <div class="details-container">
+                        <h4>Adresse de l'établissement :</h4>
+                        <p>Nom</p>
+                        <p>Adresse</p>
+                        <p>Code Postal</p>
+                    </div>
+                    <div class="delete flex">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+
+            </div>
+    </section>
 
 {% endblock %}
