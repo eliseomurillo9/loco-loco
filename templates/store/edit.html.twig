@@ -78,24 +78,11 @@
 
         </div>
 
-        <div class="gallery">
-            <h4>Photos</h4>
-            <div class="iconsWithPictures flex">
-                <i class="fas fa-chevron-left"></i>
-                    <div class="container-pictures flex">
-                        <div class="container__picture">
-                            <img src="{{ asset('images/store/cow.jpg')}}" alt="vachette">
-                        </div>
-                        <div class="container__picture">
-                            <img src="{{ asset('images/store/cow2.jpg')}}" alt="vachette">
-                        </div>
-                        <div class="container__picture">
-                            <img src="{{ asset('images/store/field-grass.jpg')}}" alt="vachette">
-                        </div>
-                    </div>
-                <i class="fas fa-chevron-right"></i>
-            </div>
+        {# --- GALLERY START --- #}
+        <div class="single__gallery marginbt-1">
+            {% include "components/store-gallery.html.twig" %}
         </div>
+        {# --- GALLERY END --- #}
 
     </section>
 {% endblock %}
