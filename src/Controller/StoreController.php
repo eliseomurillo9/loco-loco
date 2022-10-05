@@ -6,6 +6,8 @@ use App\entity\Store;
 use App\entity\User;
 use App\Form\StoreType;
 use App\Repository\StoreRepository;
+use App\Repository\UserRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,14 +18,18 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('/store', name: 'store_')]
 class StoreController extends AbstractController
 {
-    public function __construct(private StoreRepository $storeRepository)
+    public function __construct(private StoreRepository $storeRepository, PaginatorInterface $paginator)
     {
 
     }
     #[Route('', name: 'index')]
-    public function storeIndex(): Response
+    public function storeIndex(Request $request, $id=null): Response
     {
-        return $this->render('store/index.html.twig');
+         $user = $this->getUser()->getId();
+
+        $stores = $this->storeRepository->findBy([$user], ['name' => 'ASC']);
+
+        return $this->render('store/test_store_list.html.twig', ['stores' => $stores]);
     }
 
     #[Route('/locator', name: 'locator')]

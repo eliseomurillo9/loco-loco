@@ -1,0 +1,47 @@
+
+{% block body %}
+
+    <h1 >Catalogue</h1>
+    <div class="grid_container">
+        {% for game in games %}
+            <article class="card">
+                <img class="game-picture" src="{{ asset('images/games/' ~ game.picture) }}" alt=" jeu {{ game.name }}" >
+                <div class="game-detail">
+                    <h2><b> {{ game.name }}</b></h2>
+                    <span> Catégorie : {{game.category.name}}</span>
+                    <p> Description : {{game.description| slice(0, 240)}}</p>
+                    <a href="{{ path('game_single',{id: game.id}) }}" class="button">Découvrir</a>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+
+    <section class="store-list">
+        <h1 class="title-custom marginbt-1">Gérer mes boutiques</h1>
+
+            <div class="flex">
+
+                <div class="container__items flex">
+                    {% for store in games %}
+                    <div class="item margin box-shadow">
+                        <h4 class="subtitle-custom marginbt-1">store.name</h4>
+                        <p>3 rue de la Sieste, Lille, 59800</p>
+                        <div class="container__picture marginbt-1">
+                            <img src="{{ asset('images/store/cow.jpg')}}" alt="vachette">
+                        </div>
+                        <div class="btns flex">
+                            <button class="btn btn-second-outline marginbt-1" type="submit" form="form" value="Submit">
+                                <a href="{{ path('store_edit') }}">Modifier ma boutique</a>
+                            </button>
+                            <button class="btn btn-second marginbt-1" type="submit" form="form" value="Submit">
+                                <a href="{{ path('store_single') }}">Voir ma boutique</a>
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+    </section>
+
+{% endblock %}
