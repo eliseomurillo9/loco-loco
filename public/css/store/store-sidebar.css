@@ -65,3 +65,11 @@
 .text-content i{
     font-size: 14px;
 }
+
+@media all and (max-device-width: 480px)
+{
+    .sidebar{
+        border-bottom: .2rem solid var(--second-bis);
+        margin-bottom: 1rem;
+    }
+}

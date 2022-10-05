@@ -44,3 +44,10 @@
     justify-content: center;
 
 }
+
+@media all and (max-device-width: 480px)
+{
+    .product-card{
+        border: .2rem solid var(--main-bis);
+    }
+}
