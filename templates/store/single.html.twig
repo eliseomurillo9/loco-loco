@@ -44,73 +44,14 @@
 
                         <div class="products-list flex">
 
-                            {# --- PRODUCT ITEM (AVAILABLE) START --- #}
-                            <div class="product-item box-shadow flex">
-                                <div class="img__container flex">
-                                    <img src="{{ asset('images/products/milk.png')}}" alt="product">
-                                </div>
-                                <div class="text-content">
-                                    <h4 class="marginbt-1">Titre</h4>
-                                    <span>1€</span>
-                                </div>
-                                <button class="btn-second flex">
-                                    <a class="flex" href="#">
-                                        Ajouter à mon panier
-                                    </a>
-                                </button>
-                            </div>
-                            {# --- PRODUCT ITEM (AVAILABLE) END --- #}
-
-                            {# --- PRODUCT ITEM (SOLD-OUT) START --- #}
-                            <div class="product-item sold-out box-shadow flex">
-                                <div class="img__container flex">
-                                    <img src="{{ asset('images/tomatoes-photo.jpg')}}" alt="product">
-                                </div>
-                                <div class="text-content">
-                                    <h4 class="marginbt-1">Titre</h4>
-                                    <span>1€</span>
-                                </div>
-                                <button class="btn-second flex">
-                                    <a class="flex" href="#">
-                                        Rupture de stock
-                                    </a>
-                                </button>
-                            </div>
-                            {# --- PRODUCT ITEM (SOLD-OUT) END --- #}
-
-                            {# --- PRODUCT ITEM (AVAILABLE) START --- #}
-                            <div class="product-item box-shadow flex">
-                                <div class="img__container flex">
-                                    <img src="{{ asset('images/products/milk.png')}}" alt="product">
-                                </div>
-                                <div class="text-content">
-                                    <h4 class="marginbt-1">Titre</h4>
-                                    <span>1€</span>
-                                </div>
-                                <button class="btn-second flex">
-                                    <a class="flex" href="#">
-                                        Ajouter à mon panier
-                                    </a>
-                                </button>
-                            </div>
-                            {# --- PRODUCT ITEM (AVAILABLE) END --- #}
-
-                            {# --- PRODUCT ITEM (AVAILABLE) START --- #}
-                            <div class="product-item box-shadow flex">
-                                <div class="img__container flex">
-                                    <img src="{{ asset('images/products/milk.png')}}" alt="product">
-                                </div>
-                                <div class="text-content">
-                                    <h4 class="marginbt-1">Titre</h4>
-                                    <span>1€</span>
-                                </div>
-                                <button class="btn-second flex">
-                                    <a class="flex" href="#">
-                                        Ajouter à mon panier
-                                    </a>
-                                </button>
-                            </div>
-                            {# --- PRODUCT ITEM (AVAILABLE) END --- #}
+                            {% include "components/product/product-card-available.html.twig" %}
+                            {% include "components/product/product-card-available.html.twig" %}
+                            {% include "components/product/product-card-sold-out.html.twig" %}
+                            {% include "components/product/product-card-available.html.twig" %}
+                            {% include "components/product/product-card-available.html.twig" %}
+                            {% include "components/product/product-card-sold-out.html.twig" %}
+                            {% include "components/product/product-card-available.html.twig" %}
+                            {% include "components/product/product-card-available.html.twig" %}
 
                         </div>
                     </div>

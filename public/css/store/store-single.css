@@ -77,51 +77,6 @@
     flex-wrap: wrap;
 }
 
-.product-item{
-    border-radius: .5rem;
-    margin: .5rem;
-    padding: 1rem;
-    flex-direction: column;
-    width: 200px;
-
-    align-items: center;
-    justify-content: center;
-}
-
-.sold-out{
-    filter: grayscale(80%);
-
-    width: 200px;
-}
-
-.product-item .img__container{
-    justify-content: center;
-    width: 155px;
-    height: 155px;
-}
-
-.product-item .img__container img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 1rem;
-}
-
-.product-item .text-content{
-    margin: 1rem;
-    text-align: center;
-}
-
-.product-item button{
-    padding: .5rem 1rem;
-    border-radius: .5rem;
-    width: 100%;
-    
-    align-items: center;
-    justify-content: center;
-
-}
-
 /* --- CONTACT DETAILS --- */
 /* ------------------------------------------------------------- */
 .contact-details__container{
