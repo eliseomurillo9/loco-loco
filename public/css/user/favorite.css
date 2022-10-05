@@ -39,3 +39,28 @@
     cursor: pointer;
     margin: 2rem;
 }
+
+/* !! === MEDIA QUERIES === !! */
+
+@media all and (max-device-width: 480px)
+{
+    .title-custom{
+        text-align: center;
+    }
+
+    .favorite-item{
+        width: auto;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .details-container{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .delete i{
+        margin: 0;
+    }
+
+}
