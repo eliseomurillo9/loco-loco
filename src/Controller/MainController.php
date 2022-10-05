@@ -12,20 +12,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('', name: 'main_')]
 class MainController extends AbstractController
 {
+
     #[Route('/', name: 'index')]
     public function index(Request $request): Response
     {
+        $session = $request->getSession();
+
         $searchForm = $this->createForm(SearchbarType::class);
         $searchForm->handleRequest($request);
 
-        $formData = $searchForm->getData();
         if ($searchForm->isSubmitted()) {
-            // dd($formData);
-            $searchBarInfo = $this->forward('App\Controller\StoreController::storeLocator', [
-                'searchBarInfo' => $formData,
-            ]);
-            return $searchBarInfo;
-            // return $this->redirectToRoute('store_locator');
+
+            $session->set('formData', $searchForm->getData());
+
+            return $this->redirectToRoute('store_locator');
+
         }
 
 

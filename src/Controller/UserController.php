@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route('', name: 'user_')]
@@ -68,5 +72,40 @@ class UserController extends AbstractController
     public function logout(): void
     {
     }
+
+    #[Route('/location', name: 'location')]
+    public function storeLocation(Request $request)
+    {
+        $session = $request->getSession();
+
+        $searchBarInfo = $session->get('formData');
+        $userLocation = $searchBarInfo["location"];
+
+        if ($userLocation) {
+            $client = HttpClient::create();
+            $response = $client->request('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $userLocation . '&key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo');
+    
+            $content = json_decode($response->getContent(), true);
+            $propertyAccessor = PropertyAccess::createPropertyAccessor();
+    
+            $position = (object) array('lat' => $propertyAccessor->getValue($content, '[results][0][geometry][location][lat]'), 'lng' => $propertyAccessor->getValue($content, '[results][0][geometry][location][lng]'));
+    
+            $session->set('userPosition', $position);
+
+            $response = new JsonResponse();
+            $response->setContent(json_encode(
+                ["position" => $position]
+            ));
+            $response->headers->set('Content-Type', 'application/json');
+    
+            return $response;
+        }else{
+            $geolocation = $request->get('geolocation');
+            $session->set('geolocation', $geolocation);
+        
+            return $geolocation;
+        }
+    }
+
 
 }

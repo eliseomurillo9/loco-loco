@@ -23,6 +23,8 @@ class SearchbarType extends AbstractType
         ])
         ->add('location', TextareaType::class, [
             'label' => 'On tas?',
+            'required' => false,
+
         ])
         ->add('range', ChoiceType::class, [
             'label' => 'Cuanto remas?',

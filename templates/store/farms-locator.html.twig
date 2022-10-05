@@ -5,10 +5,12 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/storespage.css') }}">
 {% endblock %}
-	{% block javascript %}
-		<script src="{{ asset('js/locator.js')}}" defer></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&map_ids=981b93be4c70d164&callback=initMap" defer></script>
-	{% endblock %}
+{% block javascript %}
+	<script src="{{ asset('js/locator.js') }}" defer></script>
+	<script src="{{ asset('js/test.js') }}" defer></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&map_ids=981b93be4c70d164&callback=initMap" defer></script>
+{% endblock %}
 
 
 {% block body %}
@@ -19,9 +21,9 @@
 					<p>Autour de
 						<span>Ville</span>
 					</p>
-					<span id="location-point">
+					{# <span id="location-point">
 						<i class="fa-solid fa-location-crosshairs"></i>
-					</span>
+					</span> #}
 					<div class="filter">
 						<span>Filter par distance</span>
 						<select name="range-filter" id="range-filter">
