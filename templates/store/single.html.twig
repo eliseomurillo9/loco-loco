@@ -12,27 +12,35 @@
 {% block body %}
     <section class="single">
 
+        {# --- BANNIERE START --- #}
         <div class="single__banniere">
             <img src="{{ asset('images/store/banniere.png')}}" alt="banniere de la boutique">
         </div>
+        {# --- BANNIERE END --- #}
 
+        {# === TOP LAYOUT START === #}
         <div class="flex top-layout">
 
+            {# --- SIDEBAR START --- #}
             <div class="single__sidebar">
                 {% include "components/store-sidebar.html.twig" %}
             </div>
+            {# --- SIDEBAR END --- #}
 
+            {# --- TABS START --- #}
             <div class="single__tab box-shadow flex">
                 <a class="tab subtitle inactive-tab" href="{{ path('store_single-about')}}">A propos</a>
                 <a class="tab subtitle active-tab" href="{{ path('store_single')}}">Boutique</a>
             </div>
+            {# --- TABS END --- #}
 
+            {# === CONTENT LAYOUT START === #}
             <div class="content-layout flex">
                 <div class="single__store-content">
                     <p class="marginbt-1">Hauts-de-France(59) / Ville</p>
 
                     <div class="products-list__container">
-                        <h2 class="subtitle marginbt-1">Catégorie</h2>
+                        <h2 class="marginbt-1">Catégorie</h2>
 
                         <div class="products-list flex">
 
@@ -108,8 +116,10 @@
                     </div>
                 </div>
             </div>
+            {# === CONTENT LAYOUT END === #}
 
         </div>
+        {# === TOP LAYOUT END === #}
 
     </section> 
 {% endblock %}

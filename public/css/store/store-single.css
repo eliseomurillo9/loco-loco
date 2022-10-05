@@ -121,3 +121,27 @@
     justify-content: center;
 
 }
+
+/* --- CONTACT DETAILS --- */
+/* ------------------------------------------------------------- */
+.contact-details__container{
+    background-color: var(--main-bis);
+    border-radius: .5rem;
+    overflow: hidden;
+    color: var(--light-bis);
+    margin-bottom: 3rem;
+
+    justify-content: space-between;
+}
+
+.details{
+    /* border: 1px solid red; */
+    padding: 4rem 5rem;
+}
+
+.single__map{
+    /* border: 1px solid blue; */
+    background-color: var(--main);
+    width: 500px;
+    height: 400px;
+}
