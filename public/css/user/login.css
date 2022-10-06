@@ -93,10 +93,33 @@
     width: 100%;
 }
 
+.tiret{
+    margin: 0 .5rem;
+}
+
 
 /* --- MEDIA QUERIES --- */
 /* ------------------------------------------------------------------- */
 
 @media (max-width: 480px) {
-    
+    .popup_container-login{
+        flex-direction: column;
+        width: auto;
+    }
+
+    .form-img{
+        display: none;
+    }
+
+    .form-content__container{
+        width: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-content{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+    }
 }
