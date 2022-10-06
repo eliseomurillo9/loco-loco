@@ -4,18 +4,22 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\EditProfileType;
-use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UserRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route('', name: 'user_')]
 class UserController extends AbstractController
 {
+    public function __construct(private UserRepository $userRepository)
+    {
+
+    }
     #[Route('/register', name: 'register')]
     public function register(): Response
     {

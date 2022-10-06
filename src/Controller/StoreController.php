@@ -2,28 +2,45 @@
 
 namespace App\Controller;
 
+use App\Entity\Address;
 use App\entity\Store;
+use App\Entity\StoreHours;
 use App\entity\User;
+use App\Form\AddressType;
 use App\Form\StoreType;
 use App\Repository\StoreRepository;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Validator\Constraints\Collection;
 
 #[Route('/store', name: 'store_')]
 class StoreController extends AbstractController
 {
-    public function __construct(private StoreRepository $storeRepository)
+    public function __construct(private StoreRepository $storeRepository, PaginatorInterface $paginator)
     {
 
     }
     #[Route('', name: 'index')]
+    // show all producer stores
     public function storeIndex(): Response
     {
-        return $this->render('store/index.html.twig');
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $storeId = $store->getId();
+        //$address = $this->getAddresses();
+
+        return $this->render('store/index.html.twig', [
+            'stores' => $user->getOwnedStores(),
+            //'address'
+        ]);
     }
 
     #[Route('/locator', name: 'locator')]
@@ -35,6 +52,7 @@ class StoreController extends AbstractController
     #[Route('/single', name: 'single')]
     public function storeSingle(): Response
     {
+
         return $this->render('store/single.html.twig');
     }
 
@@ -61,16 +79,17 @@ class StoreController extends AbstractController
 */
 
     #[Route('/create', name: 'create')]
-    //Une method de controller doit obligatoirement retourner un type ("response")
-    public function form(Request $request, SluggerInterface $slugger, $id = null): Response
+    //Add new store by producer
+    public function form(Request $request, SluggerInterface $slugger): Response
     {
-        $user = $this->getUser()->getId();
+        $user = $this->getUser();
         $newStore = new Store();
-        $form = $this->createForm(StoreType::class, $newStore, ['by_reference'=>$user]);
+
+        $form = $this->createForm(StoreType::class, $newStore);
+      //  $newAddress = $this->createForm(AddressType::class, $address);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-
             $imageFile = $form->get('picture')->getData();
             // upload images
             if ($imageFile) {
@@ -90,7 +109,41 @@ class StoreController extends AbstractController
 
                 $newStore->setPicture($newFilename);
             }
+
+            $newStore->setOwner($user);
+            $newStore->getAddresses()->first()->setStores($newStore);
             $this->storeRepository->add($newStore,true);
+
+            $this->addFlash('success', 'Votre boutique a été créée');
+            return $this->redirectToRoute('main_index',[
+                'id'=> $newStore->getId()
+            ]);
+        }
+
+        //$user = $this->manager->getRepository('App\Entity\User')->find('id');
+        $this->addFlash('error', 'erreur lors de la création de votre boutique');
+        return $this->render('store/test_store_form.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+    #[Route('/addHours', name: 'hours')]
+    //Add opening hours by store
+    public function hoursform(Request $request): Response
+    {
+        $user = $this->getUser();
+        $store = $this->getId();
+        $addHours = new StoreHours();
+
+        $form = $this->createForm(StoreType::class, $newStore);
+        //  $newAddress = $this->createForm(AddressType::class, $address);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+
+            $newStore->setOwner($user);
+            $newStore->getAddresses()->first()->setStores($newStore);
+            $this->storeRepository->add($newStore,true);
+
             $this->addFlash('success', 'Votre boutique a été créée');
             return $this->redirectToRoute('main_index',[
                 'id'=> $newStore->getId()

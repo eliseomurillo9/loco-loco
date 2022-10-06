@@ -15,12 +15,12 @@
         <div class="flex">
 
             <div class="container__items flex">
-            
+            {%  for store in stores %}
                 <div class="item margin box-shadow">
-                    <h4 class="subtitle-custom marginbt-1">Nom de la boutique</h4>
-                    <p>3 rue de la Sieste, Lille, 59800</p>
+                    <h4 class="subtitle-custom marginbt-1">{{ store.name }}</h4>
+                    <!--<p></p>-->
                     <div class="container__picture marginbt-1">
-                        <img src="{{ asset('images/store/cow.jpg')}}" alt="vachette">
+                        <img src="{{ asset('images/uploads/stores/' ~ store.picture)}}" alt="vachette">
                     </div>
                     <div class="btns flex">
                         <button class="btn btn-second-outline marginbt-1" type="submit" form="form" value="Submit">
@@ -31,7 +31,7 @@
                         </button>
                     </div>
                 </div>
-
+                {%  endfor %}
                                 <div class="item margin box-shadow">
                     <h4 class="subtitle-custom marginbt-1">Nom de la boutique</h4>
                     <p>3 rue de la Sieste, Lille, 59800</p>
