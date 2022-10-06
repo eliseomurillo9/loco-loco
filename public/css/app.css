@@ -245,6 +245,11 @@ main {
 
 .input-style:focus {
     outline: none;
+    background-color: var(--main-bis);
+}
+
+.input:internal-autofill-selected{
+    background-color: var(--main-bis);
 }
 
 /* === FOOTER === */

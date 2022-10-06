@@ -27,10 +27,16 @@
 .form-img img{
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 .form-content__container{
     padding: 3rem;
+}
+
+.form-content{
+    width: 400px;
+    margin: 0 auto;
 }
 
 .title-content .sub{
@@ -58,7 +64,31 @@
 
 /* --- IF USER IS NOT CONNECTED YET --- */
 /* ------------------------------------------------------------------- */
+.inputWithLabel{
+    flex-direction: column;
+}
 
+.item{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.item label{
+    margin-bottom: .5rem;
+}
+
+.item a{
+    text-align: right;
+    text-decoration: underline;
+    
+}
+
+.submit{
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
 
 
 /* --- MEDIA QUERIES --- */
