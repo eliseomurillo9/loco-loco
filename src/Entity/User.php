@@ -48,9 +48,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $is_enabled = true;
 
-    #[ORM\ManyToMany(targetEntity: Store::class, mappedBy: 'users')]
-    private Collection $stores;
-
     #[ORM\ManyToMany(targetEntity: Product::class)]
     private Collection $products;
 
@@ -59,16 +56,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
-    /**
-     * @var null
-     */
 
+    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Store::class)]
+    private Collection $ownedStores;
+
+    #[ORM\ManyToMany(targetEntity: Store::class, inversedBy: 'favouritesUsers')]
+    private Collection $favourites;
 
     public function __construct()
     {
-        $this->Stores = new ArrayCollection();
-        $this->Products = new ArrayCollection();
+        $this->products = new ArrayCollection();
         $this->Addresses = new ArrayCollection();
+        $this->ownedStores = new ArrayCollection();
+        $this->favourites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -212,32 +212,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Store>
-     */
-    public function getStores(): Collection
-    {
-        return $this->stores;
-    }
-
-    public function addStore(Store $store): self
-    {
-        if (!$this->stores->contains($store)) {
-            $this->stores->add($store);
-            $store->addUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStore(Store $store): self
-    {
-        if ($this->stores->removeElement($store)) {
-            $store->removeUser($this);
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Product>
@@ -295,6 +269,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Store>
+     */
+    public function getOwnedStores(): Collection
+    {
+        return $this->ownedStores;
+    }
+
+    public function addOwnedStore(Store $ownedStore): self
+    {
+        if (!$this->ownedStores->contains($ownedStore)) {
+            $this->ownedStores->add($ownedStore);
+            $ownedStore->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOwnedStore(Store $ownedStore): self
+    {
+        if ($this->ownedStores->removeElement($ownedStore)) {
+            // set the owning side to null (unless already changed)
+            if ($ownedStore->getOwner() === $this) {
+                $ownedStore->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Store>
+     */
+    public function getFavourites(): Collection
+    {
+        return $this->favourites;
+    }
+
+    public function addFavourite(Store $favourite): self
+    {
+        if (!$this->favourites->contains($favourite)) {
+            $this->favourites->add($favourite);
+        }
+
+        return $this;
+    }
+
+    public function removeFavourite(Store $favourite): self
+    {
+        $this->favourites->removeElement($favourite);
 
         return $this;
     }

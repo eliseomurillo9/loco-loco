@@ -50,15 +50,20 @@ class Store
     #[ORM\JoinColumn(nullable: false)]
     private Collection $addresses;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'stores')]
-    private Collection $users;
+    #[ORM\ManyToOne(inversedBy: 'ownedStores')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $owner = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favourites')]
+    private Collection $favouritesUsers;
+
 
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
         $this->storeHours = new ArrayCollection();
         $this->products = new ArrayCollection();
-        $this->users = new ArrayCollection();
+        $this->favouritesUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -230,7 +235,6 @@ class Store
 
     }
 
-
     public function addAddresses(address $addresses): self
     {
         if (!$this->addresses->contains($addresses)) {
@@ -253,26 +257,41 @@ class Store
         return $this;
     }
 
-    /**
-     * @return Collection<int, user>
-     */
-    public function getUsers(): Collection
+    public function getOwner(): ?User
     {
-        return $this->users;
+        return $this->owner;
     }
 
-    public function addUser(user $user): self
+    public function setOwner(?User $owner): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getFavouritesUsers(): Collection
+    {
+        return $this->favouritesUsers;
+    }
+
+    public function addFavouritesUser(User $favouritesUser): self
+    {
+        if (!$this->favouritesUsers->contains($favouritesUser)) {
+            $this->favouritesUsers->add($favouritesUser);
+            $favouritesUser->addFavourite($this);
         }
 
         return $this;
     }
 
-    public function removeUser(user $user): self
+    public function removeFavouritesUser(User $favouritesUser): self
     {
-        $this->users->removeElement($user);
+        if ($this->favouritesUsers->removeElement($favouritesUser)) {
+            $favouritesUser->removeFavourite($this);
+        }
 
         return $this;
     }

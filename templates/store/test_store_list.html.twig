@@ -1,0 +1,19 @@
+
+{% block body %}
+
+    <h1 >Catalogue</h1>
+    <div class="grid_container">
+        {% for store in stores %}
+            <article class="card">
+                <img class="picture" src="{{ asset('images/uploads/stores' ~ store.picture) }}" alt=" jeu {{ store.name }}" >
+                <div class="detail">
+                    <h2><b> {{ store.name }}</b></h2>
+                    <p> Description : {{store.description| slice(0, 240)}}</p>
+
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

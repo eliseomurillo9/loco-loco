@@ -28,10 +28,10 @@ class ProductCrudController extends AbstractCrudController
 
             TextField::new('name'),
             BooleanField::new('is_available'),
-            MoneyField::new('price')->setCurrency('EUR'),
-            TextField::new('picture'),
-            TextEditorField::new('description'),
-            AssociationField::new('category')
+            MoneyField::new('price')->setCurrency('EUR')->hideOnIndex(),
+            TextField::new('picture')->hideOnIndex(),
+            TextEditorField::new('description')->hideOnIndex(),
+            AssociationField::new('category')->hideOnIndex()
         ];
     }
 
