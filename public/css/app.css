@@ -211,9 +211,10 @@ main {
     display: flex;
     height: 75vh;
     width: 70vw;
-    text-align: center;
-    border-radius: 6px;
+    text-align: left;
+    border-radius: .5rem;
     margin: auto;
+    overflow: hidden;
 }
 
 .form_container {

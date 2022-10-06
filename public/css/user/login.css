@@ -1,33 +1,16 @@
-/* .form__container .form-img {
-    height: 100%;
-    width: 50%;
-    background-image: url(../images/farm_portrait.jpg);
-    background-size: cover;
-    background-position: right;
-    border-radius: 6px;
-} */
-
 .login{
     max-width: 1000px;
     margin: 3rem auto;
 }
 
-.form__container{
-    border-radius: .5rem;
-    overflow: hidden;
-    background: var(--main);
-    color: var(--light);
-    justify-content: space-between;
-}
-
-.form-img{
-    width: 50%;
-}
-
-.form-img img{
-    width: 100%;
+.form-img {
     height: 100%;
-    object-fit: cover;
+    width: 50%;
+    /* background-image: url(../../images/farm_portrait.jpg); */
+    background-image: url("https://img.freepik.com/vecteurs-libre/vecteur-paysage-fond-colline_529539-315.jpg?w=996&t=st=1665063024~exp=1665063624~hmac=383ff0f1f33884fd4de9294bb77776faa6cde801319e6d0be371d28fba447c2b");
+    background-size: cover;
+    background-position: right;
+    background-color: aqua;
 }
 
 .form-content__container{
@@ -95,11 +78,11 @@
 /* ------------------------------------------------------------------- */
 
 @media (max-width: 480px) {
-    .form__container{
+    /* .form__container{
         flex-direction: column;
     }
 
     .form-img{
         display: none;
-    }
+    } */
 }
