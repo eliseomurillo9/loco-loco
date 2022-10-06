@@ -50,13 +50,17 @@
                         <div class="inputWithLabel flex">
 
                             <div class="item">
-                                <label for="inputEmail">Email *</label>
-                                <input class="input-style" type="email" value="{{ lastUsername }}" name="email" id="inputEmail" autocomplete="email" required autofocus>
+                                <label class="custom-field" for="inputEmail">
+                                    <input class="input-style" type="email" value="{{ lastUsername }}" name="email" id="inputEmail" autocomplete="email" required autofocus>
+                                    <span class="placeholder">Email *</span>
+                                </label>
                             </div>
 
                             <div class="item">
-                                <label for="inputPassword">Mot de passe *</label>
-                                <input class="input-style" type="password" name="password" id="inputPassword" required>
+                                <label class="custom-field" for="inputPassword">
+                                    <input class="input-style" type="password" name="password" id="inputPassword" required>
+                                    <span class="placeholder">Mot de passe *</span>
+                                </label>
                                 <a href="#">Mot de passe oublié ?</a>
                             </div>
 
