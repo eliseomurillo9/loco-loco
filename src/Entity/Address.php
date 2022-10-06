@@ -28,7 +28,7 @@ class Address
     #[ORM\Column(length: 50)]
     private ?string $city = null;
 
-    #[ORM\ManyToOne(inversedBy: 'addresses')]
+    #[ORM\ManyToOne(cascade: ["persist"], inversedBy: 'addresses')]
     private ?Store $stores = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Addresses')]

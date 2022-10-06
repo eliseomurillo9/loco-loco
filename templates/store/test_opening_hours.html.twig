@@ -1,14 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter un établissement{% endblock %}
+{% block title %}Ajouter des horaires{% endblock %}
 
 {% block body %}
     <div class="d-flex container flex-column">
         <h1 class="text-center">Ajout d'un établissement</h1>
         {{ form_start(form) }}
-              {{ form_row(form.name) }}
-
-       {{ form_row(form.addresses.vars.prototype)}}
 
 
 

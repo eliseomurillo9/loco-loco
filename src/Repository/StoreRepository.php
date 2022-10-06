@@ -42,17 +42,16 @@ class StoreRepository extends ServiceEntityRepository
 //    /**
 //     * @return Store[] Returns an array of Store objects
 //     */
-   public function findByStoreAddress($storeId): array
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $storeId)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+//   public function findByStoreAddress($storeId): array
+//    {
+//        return $this->createQueryBuilder('s')
+//          ->setParameter('val', $storeId)
+//            ->orderBy('s.id', 'ASC')
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
 
 //    public function findOneBySomeField($value): ?Store
 //    {
