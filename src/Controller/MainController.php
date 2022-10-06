@@ -18,18 +18,15 @@ class MainController extends AbstractController
         $searchForm = $this->createForm(SearchbarType::class);
         $searchForm->handleRequest($request);
 
-        $formData = $searchForm->getData();
-        if ($searchForm->isSubmitted()) {
-            // dd($formData);
-            $searchBarInfo = $this->forward('App\Controller\StoreController::storeLocator', [
-                'searchBarInfo' => $formData,
-            ]);
-            return $searchBarInfo;
-            // return $this->redirectToRoute('store_locator');
-        }
-
-
-
+        // $formData = $searchForm->getData();
+        // if ($searchForm->isSubmitted()) {
+        //     // dd($formData);
+        //     $searchBarInfo = $this->forward('App\Controller\StoreController::storeLocator', [
+        //         'searchBarInfo' => $formData,
+        //     ]);
+        //     return $searchBarInfo;
+        //     // return $this->redirectToRoute('store_locator');
+        // }
         return $this->render('main/index.html.twig', [
             'searchForm' => $searchForm->createView(),
         ]);

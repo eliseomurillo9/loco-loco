@@ -2,9 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\User;
+use App\Form\EditProfileType;
+use App\Form\RegistrationFormType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route('', name: 'user_')]
@@ -20,7 +26,7 @@ class UserController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // if user is already connected :
-    /*    if ($this->getUser()) {
+        /*    if ($this->getUser()) {
             return $this->redirectToRoute('main_index');
         }*/
         // get the login error if there is one
@@ -28,9 +34,9 @@ class UserController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('user/login.html.twig',[
-            'lastUsername'=> $lastUsername,
-            'error'=> $error,
+        return $this->render('user/login.html.twig', [
+            'lastUsername' => $lastUsername,
+            'error' => $error,
         ]);
     }
 
@@ -49,7 +55,37 @@ class UserController extends AbstractController
     #[Route('/profil-client', name: 'profil-client')]
     public function profilClient(): Response
     {
-        return $this->render('user/profil-client.html.twig');
+        $userInfo = $this->getUser();
+
+        return $this->render('user/profil-client.html.twig', [
+            'user' => $userInfo,
+        ]);
+    }
+
+    #[Route('/profile-edit', name: 'profile-edit')]
+    public function editProfile(
+        Request $request,
+        EntityManagerInterface $em
+    ): Response {
+
+        $userInfo = $this->getUser();
+
+
+        $form = $this->createForm(EditProfileType::class, $userInfo);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+        
+            $em->persist($userInfo);
+            $em->flush();
+
+            return $this->redirectToRoute('user_profil-client');
+        }
+
+        return $this->render('user/profil-client-edit.html.twig', [
+            'user' => $userInfo,
+            'formEdit' => $form->createView(),
+        ]);
     }
 
     #[Route('/profil-pro', name: 'profil-pro')]
@@ -68,5 +104,4 @@ class UserController extends AbstractController
     public function logout(): void
     {
     }
-
 }
