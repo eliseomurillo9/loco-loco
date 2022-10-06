@@ -17,6 +17,7 @@
     overflow: hidden;
     background: var(--main);
     color: var(--light);
+    justify-content: space-between;
 }
 
 .form-img{
@@ -37,8 +38,38 @@
     font-style: italic;
 }
 
+.btn-custom{
+    /* width: 100%; */
+    padding: .5rem 2rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: bold;
+}
+
 /* --- IF USER ALREADY CONNECTED --- */
 /* ------------------------------------------------------------------- */
 .user-already-connected{
     text-align: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 400px;
+}
+
+/* --- IF USER IS NOT CONNECTED YET --- */
+/* ------------------------------------------------------------------- */
+
+
+
+/* --- MEDIA QUERIES --- */
+/* ------------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+    .form__container{
+        flex-direction: column;
+    }
+
+    .form-img{
+        display: none;
+    }
 }

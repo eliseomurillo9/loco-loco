@@ -19,7 +19,7 @@
 
             <div class="form-content__container">
 
-                <div class="title-content marginbt-1">
+                <div class="title-content marginbt-3">
                     <h1>Bienvenue</h1>
                     <p class="sub">chez Loco Loco</p>
                 </div>
@@ -35,17 +35,19 @@
 
                         {# Si l'utilisateur est déjà connecté : #}
                         {% if app.user %}
-                            <div class="user-already-connected marginbt-1">
+                            <div class="user-already-connected flex marginbt-1">
                                 <p class="marginbt-1">
                                     Vous êtes déjà connecté en tant que <br> <span class="bold">{{ app.user.userIdentifier }}</span> 
                                 </p>
                                 <a href="{{ path('user_logout') }}">
-                                    <button class="btn btn-second">
+                                    <button class="btn-custom btn-second marginbt-1">
                                         Se déconnecter
                                     </button>    
                                 </a>
+                                <p class="marginbt-1">----- Ou -----</p>
+                                <a href="{{ path('main_index')}}">Retournez sur la page d'accueil</a>
                             </div>
-                        {% endif %}
+                        {% else %}
 
                         <label for="inputEmail">Email :</label>
                         <input type="email" value="{{ lastUsername }}" name="email" id="inputEmail" autocomplete="email" required autofocus>
@@ -68,9 +70,7 @@
                             </label>
                         </div>
                         #}
-
-         
-
+                        
 
                 
                     <a href="#">Mot de passe oublié ?</a>
@@ -79,7 +79,8 @@
                 <button type="submit" class="btn btn-second">
                     Se connecter
                 </button>
-                           </form>
+                {% endif %}
+            </form>
                 {# --- FORM END --- #}
             </div>
         </div>
