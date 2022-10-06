@@ -16,12 +16,23 @@ class EditProfileType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class,[
-                'label' => false 
+                'label' => false,
+                'attr' => [
+                    'style' => 'border-radius: 6px; border: 1px solid var(--main-bis); padding: 5px; '
+                ]
             ])
             ->add('username', TextType::class, [
-                'label' => false 
+                'label' => false,
+                'attr' => [
+                    'style' => 'border-radius: 6px; border: 1px solid var(--main-bis); padding: 5px; '
+                ] 
             ])
-            ->add('Valider', SubmitType::class)
+            ->add('Valider', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-main',
+                    'style' => 'width: 200px'
+                ]
+            ])
         ;
     }
 
