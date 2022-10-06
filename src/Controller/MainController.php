@@ -24,7 +24,6 @@ class MainController extends AbstractController
         if ($searchForm->isSubmitted()) {
 
             $session->set('formData', $searchForm->getData());
-
             return $this->redirectToRoute('store_locator');
 
         }

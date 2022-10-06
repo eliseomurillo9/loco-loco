@@ -24,7 +24,7 @@ class UserController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // if user is already connected :
-    /*    if ($this->getUser()) {
+        /*    if ($this->getUser()) {
             return $this->redirectToRoute('main_index');
         }*/
         // get the login error if there is one
@@ -32,9 +32,9 @@ class UserController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('user/login.html.twig',[
-            'lastUsername'=> $lastUsername,
-            'error'=> $error,
+        return $this->render('user/login.html.twig', [
+            'lastUsername' => $lastUsername,
+            'error' => $error,
         ]);
     }
 
@@ -78,34 +78,9 @@ class UserController extends AbstractController
     {
         $session = $request->getSession();
 
-        $searchBarInfo = $session->get('formData');
-        $userLocation = $searchBarInfo["location"];
+        $geolocation = $request->get('geolocation');
+        $session->set('geolocation', $geolocation);
 
-        if ($userLocation) {
-            $client = HttpClient::create();
-            $response = $client->request('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $userLocation . '&key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo');
-    
-            $content = json_decode($response->getContent(), true);
-            $propertyAccessor = PropertyAccess::createPropertyAccessor();
-    
-            $position = (object) array('lat' => $propertyAccessor->getValue($content, '[results][0][geometry][location][lat]'), 'lng' => $propertyAccessor->getValue($content, '[results][0][geometry][location][lng]'));
-    
-            $session->set('userPosition', $position);
-
-            $response = new JsonResponse();
-            $response->setContent(json_encode(
-                ["position" => $position]
-            ));
-            $response->headers->set('Content-Type', 'application/json');
-    
-            return $response;
-        }else{
-            $geolocation = $request->get('geolocation');
-            $session->set('geolocation', $geolocation);
-        
-            return $geolocation;
-        }
+        return $geolocation;
     }
-
-
 }

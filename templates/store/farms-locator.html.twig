@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="{{ asset('css/storespage.css') }}">
 {% endblock %}
 {% block javascript %}
-	<script src="{{ asset('js/locator.js') }}" defer></script>
+	{#<script src="{{ asset('js/locator.js') }}" defer></script>"#}
 	<script src="{{ asset('js/test.js') }}" defer></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&map_ids=981b93be4c70d164&callback=initMap" defer></script>
@@ -14,6 +14,13 @@
 
 
 {% block body %}
+
+	{% for store in stores %}
+
+		<h3>{{ store.name }} <small>{{ store.distance }}km</small></h3>
+
+	{% endfor %}
+
 	<section>
 		<div class="container">
 			<div class="bar-search">

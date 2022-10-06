@@ -16,6 +16,8 @@ class SearchbarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->setAction('/store/locator')
+        ->setMethod('GET')
         ->add('category', EntityType::class, [
             'label' => false,
             'required' => false,
