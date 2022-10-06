@@ -3,12 +3,24 @@
 }
 
 .login{
-    max-width: 1000px;
+    /* max-width: 1000px; */
     margin: 3rem auto;
 }
 
+.popup_container-login {
+    color: var(--light);
+    background-color: var(--main);
+
+    display: flex;
+    /* height: 75vh; */
+    width: 1000px;
+    text-align: left;
+    border-radius: .5rem;
+    margin: auto;
+    overflow: hidden;
+}
+
 .form-img {
-    height: 100%;
     width: 50%;
     /* background-image: url(../../images/farm_portrait.jpg); */
     background-image: url("https://img.freepik.com/vecteurs-libre/vecteur-paysage-fond-colline_529539-315.jpg?w=996&t=st=1665063024~exp=1665063624~hmac=383ff0f1f33884fd4de9294bb77776faa6cde801319e6d0be371d28fba447c2b");
@@ -77,16 +89,14 @@
     align-items: center;
 }
 
+.input-style{
+    width: 100%;
+}
+
 
 /* --- MEDIA QUERIES --- */
 /* ------------------------------------------------------------------- */
 
 @media (max-width: 480px) {
-    /* .form__container{
-        flex-direction: column;
-    }
-
-    .form-img{
-        display: none;
-    } */
+    
 }
