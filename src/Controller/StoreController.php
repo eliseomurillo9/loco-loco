@@ -2,15 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Address;
-use App\entity\Store;
+use App\Entity\Store;
 use App\Entity\StoreHours;
-use App\entity\User;
-use App\Form\AddressType;
+use App\Entity\User;
 use App\Form\StoreType;
 use App\Repository\StoreRepository;
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -18,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\Validator\Constraints\Collection;
+
 
 #[Route('/store', name: 'store_')]
 class StoreController extends AbstractController
@@ -33,15 +29,19 @@ class StoreController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-
-        $storeId = $store->getId();
-        //$address = $this->getAddresses();
-
         return $this->render('store/index.html.twig', [
             'stores' => $user->getOwnedStores(),
-            //'address'
         ]);
     }
+
+/*    public function getStoreProduct(): Response
+    {
+        $product = $this->getProducts;
+        return $this->render('product/test_product.html.twig',[
+            'products' => $product,
+        ]);
+    }
+ */
 
     #[Route('/locator', name: 'locator')]
     public function storeLocator(): Response
@@ -49,11 +49,12 @@ class StoreController extends AbstractController
         return $this->render('store/farms-locator.html.twig');
     }
 
-    #[Route('/single', name: 'single')]
-    public function storeSingle(): Response
+    #[Route('/{id}', name: 'single', requirements:["id" => "\d+"])]
+    public function storeSingle($id): Response
     {
+        $singleStore = $this->storeRepository-> find($id);
 
-        return $this->render('store/single.html.twig');
+        return $this->render('store/single.html.twig', ['singleStore' => $singleStore]);
     }
 
     #[Route('/single/about', name: 'single-about')]
