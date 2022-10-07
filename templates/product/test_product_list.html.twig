@@ -4,12 +4,15 @@
     Gérer mes produits - {{ parent() }}
 {% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/product/product-edit.css') }}">
+{% endblock %}
 
 {% block body %}
 
-    <h1>Gérer mes produits</h1>
-    <div class="grid_container">
-        {% for product in products %}
+    
+    <div>
+        {# {% for product in products %}
             <article class="card">
                 <img class="picture" src="{{ asset('images/uploads/stores' ~ product.picture) }}" alt=" jeu {{ product.name }}" >
                 <div class="detail">
@@ -18,8 +21,54 @@
 
                 </div>
             </article>
-        {% endfor %}
+        {% endfor %} #}
     </div>
 
 
+    <section class="product-edit">
+        <h1 class="title-custom marginbt-1">Gérer mes produits</h1>
+
+        {# Ajouter form data ici #}
+        <div class="form-edit flex">
+            <div class="articles temporary">
+            </div>
+
+            <div class="categories temporary">
+            </div>
+
+            <div class="upload-img temporary">
+            </div>
+
+            <button type="button" class="btn btn-second">
+                Ajouter un produit
+            </button>
+        </div>
+
+        <div class="display-products__container">
+
+            <div class="titlesWithItems">
+                <div class="titles flex">
+                    <h4 class="subtitle">Article</h4>
+                    <h4 class="subtitle">Catégorie</h4>
+                </div>
+
+                <div class="item">
+                    <div class="img-container">
+                        <img src="#" alt="#">
+                    </div>
+                    <p>Nom de l'article</p>
+                    <span class="separator"></span>
+                    <p>Nom de la catégorie</p>
+                    <button class="btn btn-main">Disponible</button>
+                </div>
+
+                <div class="item sold-out">
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </section>
 {% endblock %}

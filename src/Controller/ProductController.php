@@ -20,15 +20,15 @@ class ProductController extends AbstractController
     }
 
     //Get all products of a store
-    #[Route('', name: 'index')]
-    public function getstoreProducts(StoreRepository $storeRepository): Response
-    {
-        /** @var Store $store */
-        $store = $this->getproducts();
-        return $this->render('product/test_product.html.twig',[
-            'products' => $store,
-        ]);
-    }
+    // #[Route('', name: 'index')]
+    // public function getstoreProducts(StoreRepository $storeRepository): Response
+    // {
+    //     /** @var Store $store */
+    //     $store = $this->getproducts();
+    //     return $this->render('product/test_product.html.twig',[
+    //         'products' => $store,
+    //     ]);
+    // }
 
         #[Route('/edit', name: 'edit')]
         public function editProducts(StoreRepository $storeRepository): Response
