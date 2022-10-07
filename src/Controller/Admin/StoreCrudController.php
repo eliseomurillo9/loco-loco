@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -25,6 +26,7 @@ class StoreCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name'),
+            SlugField::new('slug')->setTargetFieldName('name'),
             TextField::new('phone_number')->hideOnIndex(),
             EmailField::new('email')->hideOnIndex(),
             TextField::new('website')->hideOnIndex(),
