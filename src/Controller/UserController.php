@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\EditProfileType;
+use App\Repository\StoreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -47,6 +48,7 @@ class UserController extends AbstractController
     #[Route('/favorite', name: 'favorite')]
     public function favorite(): Response
     {
+        
         return $this->render('user/favorite.html.twig');
     }
 
@@ -109,6 +111,34 @@ class UserController extends AbstractController
     {
     }
 
-    #[Route(path: '/get/favorite', name: 'get_favorite')]
+    #[Route(path: '/get/shop-id', name: 'get_shop_id')]
+    public function getFavorites(Request $request, StoreRepository $storeRepository, EntityManagerInterface $em): Response
+    {
+        $shopId = $request->getContent();
+
+        /** User $user */
+        if ($shopId) {
+            $user = $this->getUser();
+
+            $user->addFavourite(
+              $storeRepository->find($shopId)  
+            );
+    
+            $em->flush();        
+    
+        }
+       
+        $response = new Response(
+            $shopId,
+            Response::HTTP_OK,
+            ['content-type' => 'application/json'],
+        );
+
+      
+        return $response;
+    }
+
+    
+
 
 }
