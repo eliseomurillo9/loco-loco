@@ -34,14 +34,15 @@ class StoreController extends AbstractController
         ]);
     }
 
-/*    public function getStoreProduct(): Response
-    {
-        $product = $this->getProducts;
-        return $this->render('product/test_product.html.twig',[
-            'products' => $product,
-        ]);
-    }
- */
+    // #[Route('/product', name: 'product')]
+    // public function getStoreProduct(): Response
+    // {
+    //     $product = $this-> storeRepository -> getProducts();
+    //     return $this->render('product/test_product_list.html.twig',[
+    //         'products' => $product,
+    //     ]);
+    // }
+
 
     #[Route('/locator', name: 'locator')]
     public function storeLocator(): Response
