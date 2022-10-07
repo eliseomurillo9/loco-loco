@@ -1,18 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter un établissement{% endblock %}
+{% block title %}
+    Ajouter un établissement - {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/store/store-create.css') }}">
+{% endblock %}
 
 {% block body %}
     <div class="d-flex container flex-column">
-        <h1 class="text-center">Ajout d'un établissement</h1>
+        <h1 class="text-center">Ajouter un établissement</h1>
         {{ form_start(form) }}
-              {{ form_row(form.name) }}
+        {{ form_row(form.name) }}
 
-       {{ form_row(form.addresses.vars.prototype)}}
+        {{ form_row(form.addresses.vars.prototype)}}
 
 
 
-        <button class="btn btn-outline-success w-25 align-self-end" >Ajouter</button>
+        <button>Ajouter</button>
         {{ form_end(form) }}
 
     </div>

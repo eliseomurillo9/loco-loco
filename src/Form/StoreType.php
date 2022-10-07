@@ -22,24 +22,37 @@ class StoreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('phone_number')
-            ->add('email')
-            ->add('website')
-            ->add('siret_number')
-            ->add('picture', FileType::class,[
+                
+        ->add('name', null, 
+            [ 'label' => 'Nom' ])
 
-            ])
-            ->add('description')
-            ->add('road_specificity')
-            ->add('addresses',  CollectionType::class,[
-                'label'=> false,
-                'entry_type' => AddressType::class,
-                'entry_options' =>['label'=> 'Adresse'],
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false
-            ])
+        ->add('phone_number', null, 
+            [ 'label' => 'Numéro de téléphone' ])
+
+        ->add('email')
+
+        ->add('website', null,
+            [ 'label' => 'Site Web'])
+
+        ->add('siret_number', null,
+            [ 'label' => 'Numéro de Siret'])
+
+        ->add('picture', FileType::class,
+            [ 'label' => 'Image'])
+
+        ->add('description')
+
+        ->add('road_specificity', null,
+            [ 'label' => 'Indication routière'])
+
+        ->add('addresses',  CollectionType::class,[
+            'label'=> false,
+            'entry_type' => AddressType::class,
+            'entry_options' =>['label'=> 'Adresse'],
+            'allow_add' => true,
+            'allow_delete' => true,
+            'by_reference' => false
+        ])
 
         ;
     }
