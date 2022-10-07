@@ -132,8 +132,8 @@ class StoreController extends AbstractController
     public function hoursform(Request $request): Response
     {
         $user = $this->getUser();
-        $store = $this->getId();
-        $addHours = new StoreHours();
+        $newStore = new store();
+
 
         $form = $this->createForm(StoreType::class, $newStore);
         //  $newAddress = $this->createForm(AddressType::class, $address);
