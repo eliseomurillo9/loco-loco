@@ -26,62 +26,16 @@
                         <button class="btn btn-second-outline marginbt-1" type="submit" form="form" value="Submit">
                             <a href="{{ path('store_edit') }}">Modifier ma boutique</a>
                         </button>
-                        {# <button class="btn btn-second marginbt-1" type="submit" form="form" value="Submit">
-                            <a href="{{ path('store_single') }}">Voir ma boutique</a>
-                        </button> #}
-                    </div>
-                </div>
-                {%  endfor %}
-                                <div class="item margin box-shadow">
-                    <h4 class="subtitle-custom marginbt-1">Nom de la boutique</h4>
-                    <p>3 rue de la Sieste, Lille, 59800</p>
-                    <div class="container__picture marginbt-1">
-                        <img src="{{ asset('images/store/cow.jpg')}}" alt="vachette">
-                    </div>
-                    <div class="btns flex">
-                        <button class="btn btn-second-outline marginbt-1" type="submit" form="form" value="Submit">
-                            <a href="{{ path('store_edit') }}">Modifier ma boutique</a>
-                        </button>
-                        <button class="btn btn-second marginbt-1" type="submit" form="form" value="Submit">
-                            <a href="{{ path('store_single') }}">Voir ma boutique</a>
-                        </button>
-                    </div>
-                </div>
 
-                                <div class="item margin box-shadow">
-                    <h4 class="subtitle-custom marginbt-1">Nom de la boutique</h4>
-                    <p>3 rue de la Sieste, Lille, 59800</p>
-                    <div class="container__picture marginbt-1">
-                        <img src="{{ asset('images/store/cow.jpg')}}" alt="vachette">
-                    </div>
-                    <div class="btns flex">
-                        <button class="btn btn-second-outline marginbt-1" type="submit" form="form" value="Submit">
-                            <a href="{{ path('store_edit') }}">Modifier ma boutique</a>
-                        </button>
                         <button class="btn btn-second marginbt-1" type="submit" form="form" value="Submit">
-                            <a href="{{ path('store_single') }}">Voir ma boutique</a>
+                            <a href="{{ path('store_single', {'slug': store.slug}) }}">Voir ma boutique</a>
                         </button>
-                    </div>
-                </div>
 
-                                <div class="item margin box-shadow">
-                    <h4 class="subtitle-custom marginbt-1">Nom de la boutique</h4>
-                    <p>3 rue de la Sieste, Lille, 59800</p>
-                    <div class="container__picture marginbt-1">
-                        <img src="{{ asset('images/store/cow.jpg')}}" alt="vachette">
-                    </div>
-                    <div class="btns flex">
-                        <button class="btn btn-second-outline marginbt-1" type="submit" form="form" value="Submit">
-                            <a href="{{ path('store_edit') }}">Modifier ma boutique</a>
-                        </button>
-                        <button class="btn btn-second marginbt-1" type="submit" form="form" value="Submit">
-                            <a href="{{ path('store_single') }}">Voir ma boutique</a>
-                        </button>
                     </div>
                 </div>
-            
+            {%  endfor %}
+
             </div>
-
         </div>
     </section>
 

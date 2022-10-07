@@ -34,15 +34,15 @@ class StoreController extends AbstractController
         ]);
     }
 
-    // #[Route('/product', name: 'product')]
-    // public function getStoreProduct(): Response
-    // {
-    //     $product = $this-> storeRepository -> getProducts();
-    //     return $this->render('product/test_product_list.html.twig',[
-    //         'products' => $product,
-    //     ]);
-    // }
-
+    #[Route('/products', name: 'store-products', requirements:["id" => "\d+"])]
+   public function getStoreProduct($id): Response
+    {
+        $store = $this->storeRepository->find($id);
+        $product = $this->$store->getProducts();
+        return $this->render('product/test_product_list.html.twig',[
+            'products' => $product,
+        ]);
+    }
 
     #[Route('/locator', name: 'locator')]
     public function storeLocator(): Response
@@ -50,12 +50,10 @@ class StoreController extends AbstractController
         return $this->render('store/farms-locator.html.twig');
     }
 
-    #[Route('/{id}', name: 'single', requirements:["id" => "\d+"])]
-    public function storeSingle($id): Response
+    #[Route('/boutique/{slug}', name: 'single')]
+    public function storeSingle(Store $store = null): Response
     {
-        $singleStore = $this->storeRepository-> find($id);
-
-        return $this->render('store/single.html.twig', ['singleStore' => $singleStore]);
+        return $this->render('store/single.html.twig', ['singleStore' => $store]);
     }
 
     #[Route('/single/about', name: 'single-about')]
@@ -111,7 +109,8 @@ class StoreController extends AbstractController
 
                 $newStore->setPicture($newFilename);
             }
-
+            $name= $form->get('name')->getData();
+            $newStore->setSlug($slugger->slug($name));
             $newStore->setOwner($user);
             $newStore->getAddresses()->first()->setStores($newStore);
             $this->storeRepository->add($newStore,true);

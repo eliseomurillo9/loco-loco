@@ -57,6 +57,9 @@ class Store
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favourites')]
     private Collection $favouritesUsers;
 
+    #[ORM\Column(length: 50)]
+    private ?string $slug = null;
+
 
     public function __construct()
     {
@@ -82,6 +85,7 @@ class Store
 
         return $this;
     }
+
 
     public function getPhoneNumber(): ?string
     {
@@ -299,6 +303,18 @@ class Store
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
 }
