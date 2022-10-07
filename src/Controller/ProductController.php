@@ -34,9 +34,12 @@ class ProductController extends AbstractController
     public function form(Request $request, SluggerInterface $slugger): Response
     {
         $store = $this->getUser();
+
         $newProduct = new Product($store);
 
-        $form = $this->createForm(ProductType::class, $newProduct);
+        $form = $this->createForm(ProductType::class, $newProduct, [
+            'user' => $this->getUser()
+        ]);
         //  $newAddress = $this->createForm(AddressType::class, $address);
 
         $form->handleRequest($request);
