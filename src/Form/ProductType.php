@@ -6,8 +6,11 @@ use App\Entity\Product;
 use App\Entity\Store;
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\ArrayType;
+use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,15 +25,18 @@ class ProductType extends AbstractType
             ->add('price')
             ->add('picture')
             ->add('description')
-            ->add('category')
-            ->add('stores', EntityType::class, [
-            'label' => 'Mes Magasins',
-                    'class' => user::class,
-                    'mapped' => false,
-                'choice_label' => function ($user) {
-                    return $user->getOwnedStores();
-                }
-                ],
+            ->add('category');
+
+            $storeChoices = [];
+        foreach ($options['stores'] as $store) {
+            $storeChoices[] = [$store->getName => $store->getId()];
+            return $storeChoices
+        };
+            ->add('stores', ChoiceType::class,[
+                    'required' => false,
+                    'multiple' => true,
+                    'choices' => $options['stores']
+                ]
             )
         ;
     }
@@ -39,6 +45,13 @@ class ProductType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Product::class,
-        ]);
+                // ...,
+                'stores' => [],
+            ]);
+
+        // you can also define the allowed types, allowed values and
+        // any other feature supported by the OptionsResolver component
+        $resolver->setAllowedTypes('stores', 'array');
+
     }
 }

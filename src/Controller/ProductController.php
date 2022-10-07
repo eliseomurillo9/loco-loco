@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\Store;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use App\Repository\StoreRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -17,7 +20,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('/product', name: 'product_')]
 class ProductController extends AbstractController
 {
-    public function __construct(private ProductRepository $productRepository, private PaginatorInterface $paginator)
+    public function __construct(private ProductRepository $productRepository, PaginatorInterface $paginator, StoreRepository $storeRepository)
     {
 
     }
@@ -29,14 +32,17 @@ class ProductController extends AbstractController
         return $this->render('product/test_product.html.twig');
     }
 
+    //Add product
     #[Route('/add', name: 'create')]
     //Add new store by producer
-    public function form(Request $request, SluggerInterface $slugger): Response
+    public function form(Request $request, SluggerInterface $slugger, StoreRepository $storeRepository): Response
     {
-        $store = $this->getUser();
-        $newProduct = new Product($store);
+        $user = $this->getUser();
+        $newProduct = new Product();
 
-        $form = $this->createForm(ProductType::class, $newProduct);
+        $stores = $storeRepository->findBy(['owner' => $user], ['name' => 'ASC']);
+
+        $form = $this->createForm(ProductType::class, $newProduct, ['stores'=>$stores]);
         //  $newAddress = $this->createForm(AddressType::class, $address);
 
         $form->handleRequest($request);
@@ -60,8 +66,10 @@ class ProductController extends AbstractController
 
                 $newProduct->setPicture($newFilename);
             }
+            //$newProduct->addStore($store);
 
-            $newProduct->getStores()->last()->addProduct($newProduct);
+           $newProduct->getStores($stores);//->getOwner()->getOwnedStores();//->addProduct($newProduct);
+
             $this->productRepository->add($newProduct,true);
 
             $this->addFlash('success', 'Votre boutique a été créée');
