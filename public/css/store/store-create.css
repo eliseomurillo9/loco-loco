@@ -1,0 +1,93 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.store-create{
+    margin: 6rem auto;
+}
+
+.popup_container-create {
+    color: var(--light-bis);
+    background-color: var(--main);
+
+    display: flex;
+    text-align: left;
+    border-radius: .5rem;
+    margin: auto;
+    overflow: hidden;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-content__container{
+    padding: 3rem;
+}
+
+.form-content__container div{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-content__container label{
+    margin: .5rem 0;
+}
+
+
+.form-content{
+    width: 400px;
+    margin: 0 auto;
+}
+
+
+/* --- INPUT --- */
+/* ------------------------------------------------------------------- */
+input[type=text],
+textarea{
+    padding: 7px 4px;
+    background-color: var(--main-bis);
+    color: var(--light-bis);
+
+    font-family: Roboto, sans-serif;
+    font-size: 0.9rem;
+
+    border: none;
+    border-radius: 4px;
+
+    appearance: none;
+    outline: none;
+}
+
+button{
+    width: auto;
+    padding: .5rem;
+    border-radius: .5rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+/* --- MEDIA QUERIES --- */
+/* ------------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+    .popup_container-login{
+        flex-direction: column;
+        width: auto;
+    }
+
+    .form-img{
+        display: none;
+    }
+
+    .form-content__container{
+        width: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-content{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+    }
+}
