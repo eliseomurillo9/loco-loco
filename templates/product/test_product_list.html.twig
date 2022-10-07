@@ -46,29 +46,25 @@
 
         <div class="display-products__container">
 
-            <div class="titlesWithItems">
-                <div class="titles flex">
-                    <h4 class="subtitle">Article</h4>
-                    <h4 class="subtitle">Catégorie</h4>
+            <div class="item flex">
+                <div class="img-container">
+                    <img src="{{ asset('images/tomatoes-photo.jpg') }}" alt="#">
                 </div>
-
-                <div class="item">
-                    <div class="img-container">
-                        <img src="#" alt="#">
-                    </div>
-                    <p>Nom de l'article</p>
-                    <span class="separator"></span>
-                    <p>Nom de la catégorie</p>
-                    <button class="btn btn-main">Disponible</button>
-                </div>
-
-                <div class="item sold-out">
-                </div>
+                <p>Nom de l'article</p>
+                <p>Nom de la catégorie</p>
+                <p>Disponible</p>
             </div>
 
-
+            <div class="item flex sold-out">
+                <div class="img-container">
+                    <img src="{{ asset('images/tomatoes-photo.jpg') }}" alt="#">
+                </div>
+                <p>Pommes de terre</p>
+                <p>Féculents</p>
+                <p>Rupture de stock</p>
+            </div>
+            
         </div>
-
 
     </section>
 {% endblock %}
