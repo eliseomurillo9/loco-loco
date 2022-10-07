@@ -34,8 +34,8 @@
 
             {# --- TABS START --- #}
             <div class="single__tab box-shadow flex">
-                <a class="tab subtitle active-tab" href="{{ path('store_single-about')}}">A propos</a>
-                <a class="tab subtitle inactive-tab" href="{{ path('store_single')}}">Boutique</a>
+                <a class="tab subtitle active-tab" href="{{ path('store_single-about', {id: storeInfo.id})}}">A propos</a>
+                <a class="tab subtitle inactive-tab" href="{{ path('store_single', {id: storeInfo.id})}}">Boutique</a>
             </div>
             {# --- TABS END --- #}
 
@@ -61,15 +61,15 @@
                             <div class="details">
                                 <div class="text-content marginbt-1">
                                     <p>Adresse :</p>
-                                    <p>.</p>
+                                    <p>{{ storeAddress.street }}, {{ storeAddress.city }}, {{ storeAddress.zipcode }}</p>
                                 </div>
                                 <div class="text-content marginbt-1">
                                     <p>Téléphone :</p>
                                     <p>.</p>
                                 </div>
                                 <div class="text-content marginbt-1">
-                                    <p>Mail :</p>
-                                    <p>.</p>
+                                    <p>Email :</p>
+                                    <p> {{ storeInfo.email }} </p>
                                 </div>
                                 <div class="text-content marginbt-1">
                                     <p>Site Web :</p>

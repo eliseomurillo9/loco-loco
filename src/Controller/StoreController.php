@@ -6,6 +6,8 @@ use App\Entity\Store;
 use App\Entity\StoreHours;
 use App\Entity\User;
 use App\Form\StoreType;
+use App\Repository\AddressRepository;
+use App\Repository\ProductRepository;
 use App\Repository\StoreRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,17 +52,33 @@ class StoreController extends AbstractController
     }
 
     #[Route('/{id}', name: 'single', requirements:["id" => "\d+"])]
-    public function storeSingle($id): Response
+    public function storeSingle($id, AddressRepository $addressRepository, ProductRepository $productRepository): Response
     {
         $singleStore = $this->storeRepository-> find($id);
 
-        return $this->render('store/single.html.twig', ['singleStore' => $singleStore]);
+        $storeAddress = $addressRepository->find($id);
+
+        $products = $productRepository->find($id);
+        
+
+        return $this->render('store/single.html.twig', 
+        ['storeInfo' => $singleStore,
+        'storeAddress' => $storeAddress,
+        'storeProduct' => $products,
+    ]);
     }
 
-    #[Route('/single/about', name: 'single-about')]
-    public function storeSingleAbout(): Response
+    #[Route('/single/about/{id}', name: 'single-about', requirements:["id" => "\d+"])]
+    public function storeSingleAbout($id, AddressRepository $addressRepository, ProductRepository $productRepository): Response
     {
-        return $this->render('store/single-about.html.twig');
+        $singleStore = $this->storeRepository-> find($id);
+
+        $storeAddress = $addressRepository->find($id);
+
+        return $this->render('store/single-about.html.twig', [
+            'storeInfo' => $singleStore,
+        'storeAddress' => $storeAddress,
+        ]);
     }
 
     #[Route('/edit', name: 'edit')]

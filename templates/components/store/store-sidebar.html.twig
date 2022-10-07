@@ -11,12 +11,11 @@
         </div>
 
         <h1 class="subtitle marginbt-1">
-            Le domaine de la Sainte Vachette
+           {{ storeInfo.name }}
         </h1>
 
         <p class="marginbt-1">
-            Ici, nous vendons des produits frais. Notre spécialité ?
-            Les produits laitiers.
+            {{ storeInfo.description }}
         </p>
 
         <div class="ratingAndFavorite marginbt-1">
@@ -39,22 +38,22 @@
         <div class="item flex">
             <i class="fas fa-store"></i>
             <div class="text-content">
-                <p>3 rue de la Prairie</p>
-                <p>Ville, <span>Code postal</span></p>
+                <p>{{ storeAddress.street }}</p>
+                <p>{{ storeAddress.city }}, <span>{{ storeAddress.zipcode }}</span></p>
             </div>
         </div>
 
         <div class="item flex">
             <i class="fas fa-phone"></i>
             <div class="text-content">
-                <p>03 20 78 54 35</p>
+                <p>{{'à régler' }}</p>
             </div>
         </div>
 
         <div class="item flex">
             <i class="fas fa-envelope"></i>
             <div class="text-content">
-                <p>mail@gmail.com</p>
+                <p>{{ storeInfo.email }}</p>
             </div>
         </div>
 
