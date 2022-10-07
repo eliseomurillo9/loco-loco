@@ -4,14 +4,16 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\EditProfileType;
-use App\Repository\StoreRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserRepository;
+use App\Repository\StoreRepository;
+use Symfony\Component\Process\Process;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Loader\Configurator\session;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route('', name: 'user_')]
@@ -112,32 +114,42 @@ class UserController extends AbstractController
     }
 
     #[Route(path: '/get/shop-id', name: 'get_shop_id')]
-    public function getFavorites(Request $request, StoreRepository $storeRepository, EntityManagerInterface $em): Response
+    public function getFavorites(Request $request, ): Response
     {
+    //    $session = $request->getSession();
+
         $shopId = $request->getContent();
 
-        /** User $user */
-        if ($shopId) {
-            $user = $this->getUser();
+        // $session->set('shopId', $shopId);
 
-            $user->addFavourite(
-              $storeRepository->find($shopId)  
-            );
     
-            $em->flush();        
-    
-        }
-       
+
         $response = new Response(
             $shopId,
             Response::HTTP_OK,
             ['content-type' => 'application/json'],
         );
-
-      
+       
         return $response;
     }
 
+    #[Route(path: '/post/shop-id', name: 'post_shop_id')]
+    public function postFavorites(StoreRepository $storeRepository, EntityManagerInterface $em, $shopId)
+{
+    // $session = $this->request->getSession();
+    // $shopId = $session->get('shopId', 0);
+    $user = $this->getUser();
+
+    if ($shopId) {
+         $user->addFavourite(
+        $storeRepository->find($shopId)  
+    );
+
+    $em->flush();   
+}       
+   
+    return $shopId;
+}
     
 
 
