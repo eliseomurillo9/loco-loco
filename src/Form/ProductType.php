@@ -8,6 +8,7 @@ use App\Entity\Product;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,7 +22,7 @@ class ProductType extends AbstractType
             ->add('name')
             ->add('is_available')
             ->add('price')
-            ->add('picture',FileType::class,)
+            ->add('picture', FileType::class)
             ->add('description')
             ->add('category')
             ->add('stores', EntityType::class, [

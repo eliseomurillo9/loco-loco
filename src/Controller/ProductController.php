@@ -49,9 +49,8 @@ class ProductController extends AbstractController
     //Add new store by producer
     public function form(Request $request, SluggerInterface $slugger): Response
     {
-        $store = $this->getUser();
 
-        $newProduct = new Product($store);
+        $newProduct = new Product();
 
         $form = $this->createForm(ProductType::class, $newProduct, [
             'user' => $this->getUser()
@@ -80,7 +79,8 @@ class ProductController extends AbstractController
                 $newProduct->setPicture($newFilename);
             }
 
-            $newProduct->getStores()->last()->addProduct($newProduct);
+            $test = $form->get('stores')->getData();
+            $test->addProduct($newProduct);
             $this->productRepository->add($newProduct,true);
 
             $this->addFlash('success', 'Votre boutique a été créée');

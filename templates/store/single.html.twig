@@ -43,7 +43,22 @@
                         <h2 class="marginbt-1">Catégorie</h2>
 
                         <div class="products-list flex">
-
+                            {%  for product in singleStore.products %}
+                            <div class="product-card box-shadow flex">
+                                <div class="img__container flex">
+                                    <img src="{{ asset('images/uploads/products/' ~ product.picture)}}" alt="product">
+                                </div>
+                                <div class="text-content">
+                                    <h4 class="marginbt-1">{{ product.name }}</h4>
+                                    <span>{{ product.price}} €</span>
+                                </div>
+                                <button class="btn-second flex">
+                                    <a class="flex" href="#">
+                                        Ajouter à mon panier
+                                    </a>
+                                </button>
+                            </div>
+                            {% endfor %}
                             {% include "components/product/product-card-available.html.twig" %}
                             {% include "components/product/product-card-available.html.twig" %}
                             {% include "components/product/product-card-sold-out.html.twig" %}
