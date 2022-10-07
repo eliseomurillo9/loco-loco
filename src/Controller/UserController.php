@@ -73,14 +73,26 @@ class UserController extends AbstractController
     {
     }
 
-    #[Route('/location', name: 'location')]
-    public function storeLocation(Request $request)
+    #[Route('/location', name: 'location', methods:['POST'])]
+    public function userLocation(Request $request): Response
     {
-        $session = $request->getSession();
+        $geolocation = $request->getContent();
+       $session = $request->getSession();
 
-        $geolocation = $request->get('geolocation');
-        $session->set('geolocation', $geolocation);
+        // dd($geolocation);
+        // $session->set('geolocation', $geolocation);
 
-        return $geolocation;
+        $response = new Response(
+            $geolocation,
+            Response::HTTP_OK,
+            ['content-type' => 'application/json'],
+        );
+
+        // $geolocation = $request->request->get('geolocation');
+
+        // dd($geolocation);
+        $session->set('geolocation', $response);
+        // dd($geolocation);
+        return $response;
     }
 }

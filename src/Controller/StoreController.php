@@ -44,6 +44,11 @@ class StoreController extends AbstractController
         StoreRepository $storeRepository, 
         AddressRepository $addressRespostory): Response
     {
+
+        $session = $request->getSession();
+       $geoloc = $session->get('geolocation');
+        
+
     
         // Récupération des infos dans la requete
         $searchbar = $request->get('searchbar');
@@ -58,7 +63,7 @@ class StoreController extends AbstractController
             foreach ($stores as &$store) {
                 $storeId = $store->getId();
                 $storeLocation = $addressRespostory->find($storeId);
-    
+                dd($storeLocation);
                 if($storeLocation) {
                     $distance = $geoUtilities->getDistanceFromLatLonInKm(
                         $position->lat, 
