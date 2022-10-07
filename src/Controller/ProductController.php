@@ -21,14 +21,19 @@ class ProductController extends AbstractController
     {
 
     }
-
-    //Get all products of a store
+    
     #[Route('', name: 'index')]
     public function index(): Response
     {
         return $this->render('product/test_product.html.twig');
     }
 
+    #[Route('/edit', name: 'edit')]
+    public function editProducts(StoreRepository $storeRepository): Response
+    {
+        return $this->render('product/test_product_list.html.twig');
+    }
+        
     #[Route('/add', name: 'create')]
     //Add new store by producer
     public function form(Request $request, SluggerInterface $slugger): Response
@@ -78,7 +83,4 @@ class ProductController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
-
-
 }
