@@ -108,4 +108,7 @@ class UserController extends AbstractController
     public function logout(): void
     {
     }
+
+    #[Route(path: '/get/favorite', name: 'get_favorite')]
+
 }

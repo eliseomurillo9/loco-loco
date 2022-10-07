@@ -2,6 +2,11 @@
 	<link rel="stylesheet" href="{{ asset('css/store/store-sidebar.css') }}">
 {% endblock %}
 
+{% block javascript %}
+<script src="{{ asset('js/favorite-function.js') }}" defer></script>
+{% endblock %}
+
+
 <div class="sidebar box-shadow">
 
     <div class="sidebar__presentation flex">
@@ -27,7 +32,7 @@
                 <i class="far fa-star"></i>
             </div>
             <div class="favorite">
-                <i class="far fa-heart"></i>
+                <i class="far fa-heart" id="favorite_button"><input type="hidden" name="favorite" value="{{ storeInfo.id }}" id="favorite_id"></i>
             </div>
         </div>
 
