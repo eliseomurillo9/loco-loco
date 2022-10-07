@@ -21,7 +21,7 @@ nav{
 
 nav ul{
     float: right;
-    margin-top: 1.7rem; /* Si problème d'affichage avec la navbar, voir ce margin-top*/
+    height: 100%;
     margin-right: 20px;
     align-items: center;
 }
