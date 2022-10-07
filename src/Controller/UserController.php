@@ -98,12 +98,6 @@ class UserController extends AbstractController
         return $this->render('user/profil-pro.html.twig');
     }
 
-    #[Route('/add-place', name: 'add-place')]
-    public function addPlace(): Response
-    {
-        return $this->render('user/add-place.html.twig');
-    }
-
     #[Route(path: '/logout', name: 'logout')]
     public function logout(): void
     {

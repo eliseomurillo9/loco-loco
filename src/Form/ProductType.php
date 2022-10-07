@@ -21,7 +21,7 @@ class ProductType extends AbstractType
             ->add('name')
             ->add('is_available')
             ->add('price')
-            ->add('picture')
+            ->add('picture',FileType::class,)
             ->add('description')
             ->add('category')
             ->add('stores', EntityType::class, [
