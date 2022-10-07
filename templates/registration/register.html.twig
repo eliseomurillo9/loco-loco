@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
+{% block title %}
+	S'inscrire - {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -19,7 +20,7 @@
 			<div class="register_img"></div>
 			<div class="form_container">
 				{{ form_start(registrationForm, {'action':'register'}) }}
-				<h1 class="title">Créer un compte</h1>
+				<h1>Créer un compte</h1>
 				<div class="user_selector">
 					<span>Je suis:</span>
 					<user class="options">
@@ -34,7 +35,7 @@
 				</div>
 
 
-				<button type="submit" class="btn btn-second">Register</button>
+				<button type="submit" class="btn btn-second">S'inscrire</button>
 				{{ form_end(registrationForm) }}
 			</div>
 		</div>

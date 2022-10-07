@@ -11,6 +11,7 @@
 
 .popup_container .form_container h1 {
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .popup_container .form_container div:not(.user-password) {
@@ -86,6 +87,7 @@ form label {
 
     .popup_container .form_container h1 {
         margin-bottom: 10px;
+        text-align: left;
         font-size: 1.7rem;
     }
 
@@ -142,6 +144,7 @@ form label {
 
     .popup_container .form_container h1 {
         margin-bottom: 10px;
+        text-align: left;
     }
 }
 
