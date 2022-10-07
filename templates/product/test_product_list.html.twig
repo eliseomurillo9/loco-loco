@@ -1,9 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Gérer mes produits - {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/product/product-edit.css') }}">
+{% endblock %}
 
 {% block body %}
 
-    <h1 >Catalogue</h1>
-    <div class="grid_container">
-        {% for product in products %}
+        {# {% for product in products %}
             <article class="card">
                 <img class="picture" src="{{ asset('images/uploads/stores' ~ product.picture) }}" alt=" jeu {{ product.name }}" >
                 <div class="detail">
@@ -12,8 +19,48 @@
 
                 </div>
             </article>
-        {% endfor %}
-    </div>
+        {% endfor %} #}
 
+    <section class="product-edit">
+        <h1 class="title-custom marginbt-1">Gérer mes produits</h1>
 
+        {# Ajouter form data ici #}
+        <div class="form-edit flex">
+            <div class="articles temporary">
+            </div>
+
+            <div class="categories temporary">
+            </div>
+
+            <div class="upload-img temporary">
+            </div>
+
+            <button type="button" class="btn btn-second">
+                Ajouter un produit
+            </button>
+        </div>
+
+        <div class="display-products__container">
+
+            <div class="item flex">
+                <div class="img-container">
+                    <img src="{{ asset('images/tomatoes-photo.jpg') }}" alt="#">
+                </div>
+                <p>Nom de l'article</p>
+                <p>Nom de la catégorie</p>
+                <p>Disponible</p>
+            </div>
+
+            <div class="item flex sold-out">
+                <div class="img-container">
+                    <img src="{{ asset('images/tomatoes-photo.jpg') }}" alt="#">
+                </div>
+                <p>Pommes de terre</p>
+                <p>Féculents</p>
+                <p>Rupture de stock</p>
+            </div>
+
+        </div>
+
+    </section>
 {% endblock %}
