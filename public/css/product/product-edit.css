@@ -56,13 +56,6 @@
     border-right: 1px solid var(--main-bis);
 }
 
-.separator{
-    background: var(--main-bis);
-    width: .1rem;
-    height: 50px;
-    margin: 0 1rem;
-}
-
 .img-container{
     height: 80px;
     width: 80px;
@@ -79,3 +72,36 @@
     filter: grayscale(80%);
 }
 
+
+/* --- MEDIA QUERIES --- */
+/* -------------------------------------------------- */
+@media all and (max-device-width: 480px)
+{
+    .product-edit{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title-custom{
+        text-align: center;
+    }
+
+    .form-edit{
+        flex-direction: column;
+    }
+
+    .item{
+        flex-direction: column;
+    }
+
+    .item p{
+        border-bottom: 1px solid var(--main-bis);
+        border-right: 1px solid transparent;
+        margin-bottom: .5rem;
+        padding-bottom: .5rem;
+    }
+
+    .img-container{
+        margin-bottom: 1rem;
+    }
+}
