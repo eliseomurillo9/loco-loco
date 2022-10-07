@@ -1,102 +1,117 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}
     {# "Boutique" à remplacer par le nom en dynamique de la vrai boutique #}
-    Boutique - {{ parent() }}
+    Boutique - 
+    {{ parent() }}
 {% endblock %}
-
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/store/store-single.css') }}">
-{% endblock %}
-
-{% block javascript %}
-    <script src="{{ asset('js/locator.js')}}" defer></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&map_ids=981b93be4c70d164&callback=initMap" defer></script>
-{% endblock %}
-
-{% block body %}
-    <section class="single">
-
-        {# --- BANNIERE START --- #}
-        <div class="single__banniere">
-            <img src="{{ asset('images/store/banniere.png')}}" alt="banniere de la boutique">
-        </div>
-        {# --- BANNIERE END --- #}
-
-        {# === TOP LAYOUT START === #}
-        <div class="flex top-layout">
-
-            {# --- SIDEBAR START --- #}
-            <div class="single__sidebar">
-                {% include "components/store/store-sidebar.html.twig" %}
-            </div>
-            {# --- SIDEBAR END --- #}
-
-            {# --- TABS START --- #}
-            <div class="single__tab box-shadow flex">
-                <a class="tab subtitle active-tab" href="{{ path('store_single-about', {id: storeInfo.id})}}">A propos</a>
-                <a class="tab subtitle inactive-tab" href="{{ path('store_single', {id: storeInfo.id})}}">Boutique</a>
-            </div>
-            {# --- TABS END --- #}
-
-            {# === CONTENT LAYOUT START === #}
-            <div class="content-layout flex">
-                <div class="single__store-content">
-                    <p class="marginbt-1">Hauts-de-France(59) / Ville</p>
-
-                    {# --- GALLERY START --- #}
-                    <div class="single__gallery marginbt-1">
-                        {% include "components/store/store-gallery.html.twig" %}
+    {% endblock %}
+    {% block javascript %}
+        <script src="{{ asset('js/locator.js') }}" defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&map_ids=981b93be4c70d164&callback=initMap" defer></script>
+    {% endblock %}
+    {% block body %}
+        <section class="single">
+            {# --- BANNIERE START --- #}
+            <div class="single__banniere">
+                <img src="{{ asset('images/store/banniere.png') }}" alt="banniere de la boutique"></div>
+                {# --- BANNIERE END --- #}
+                {# === TOP LAYOUT START === #}
+                <div class="flex top-layout">
+                    {# --- SIDEBAR START --- #}
+                    <div class="single__sidebar">
+                        {% include "components/store/store-sidebar.html.twig" %}
                     </div>
-                    {# --- GALLERY END --- #}
-
-
-                    {# --- CONTACT DETAILS START --- #}
-                    <div class="single__contact-details">
-                        
-                        <h4 class="marginbt-1">Coordonnées</h4>
-
-                        <div class="contact-details__container flex">
-
-                            <div class="details">
-                                <div class="text-content marginbt-1">
-                                    <p>Adresse :</p>
-                                    <p>{{ storeAddress.street }}, {{ storeAddress.city }}, {{ storeAddress.zipcode }}</p>
-                                </div>
-                                <div class="text-content marginbt-1">
-                                    <p>Téléphone :</p>
-                                    <p>.</p>
-                                </div>
-                                <div class="text-content marginbt-1">
-                                    <p>Email :</p>
-                                    <p> {{ storeInfo.email }} </p>
-                                </div>
-                                <div class="text-content marginbt-1">
-                                    <p>Site Web :</p>
-                                    <p>.</p>
-                                </div>
-                                <div class="text-content">
-                                    <p>Indication routière :</p>
-                                    <p>.</p>
-                                </div>
-
-                                
+                    {# --- SIDEBAR END --- #}
+                    {# --- TABS START --- #}
+                    <div class="single__tab box-shadow flex">
+                        <a class="tab subtitle active-tab" href="{{ path('store_single-about', {id: storeInfo.id}) }}">
+                            A propos
+                        </a>
+                        <a class="tab subtitle inactive-tab" href="{{ path('store_single', {id: storeInfo.id}) }}">
+                            Boutique
+                        </a>
+                    </div>
+                    {# --- TABS END --- #}
+                    {# === CONTENT LAYOUT START === #}
+                    <div class="content-layout flex">
+                        <div class="single__store-content">
+                            <p class="marginbt-1">
+                                Hauts-de-France(59) / Ville
+                            </p>
+                            {# --- GALLERY START --- #}
+                            <div class="single__gallery marginbt-1">
+                                {% include "components/store/store-gallery.html.twig" %}
                             </div>
-
-                            <div class="single__map flex">
-                                {# placeholder map temporaire #}
+                            {# --- GALLERY END --- #}
+                            {# --- CONTACT DETAILS START --- #}
+                            <div class="single__contact-details">
+                                <h4 class="marginbt-1">
+                                    Coordonnées
+                                </h4>
+                                <div class="contact-details__container flex">
+                                    <div class="details">
+                                        <div class="text-content marginbt-1">
+                                            <p>
+                                                Adresse :
+                                            </p>
+                                            <p>
+                                                {{ storeAddress.street }}
+                                                , 
+                                                {{ storeAddress.city }}
+                                                , 
+                                                {{ storeAddress.zipcode }}
+                                            </p>
+                                        </div>
+                                        <div class="text-content marginbt-1">
+                                            <p>
+                                                Téléphone :
+                                            </p>
+                                            <p>
+                                                .
+                                            </p>
+                                        </div>
+                                        <div class="text-content marginbt-1">
+                                            <p>
+                                                Email :
+                                            </p>
+                                            <p>
+                                                {{ storeInfo.email }}
+                                            </p>
+                                        </div>
+                                        <div class="text-content marginbt-1">
+                                            <p>
+                                                Site Web :
+                                            </p>
+                                            <p>
+                                                {{ storeInfo.website }}
+                                            </p>
+                                        </div>
+                                        <div class="text-content">
+                                            <p>
+                                                Indication routière :
+                                            </p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    <div class="single__map flex">
+                                    <iframe
+                                    width="100%"
+                                    height="100%"
+                                    frameborder="0" style="border:0"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&q={{ storeAddress.latitude }},{{ storeAddress.longitude }}"
+                                    allowfullscreen>
+                                  </iframe>
+                                </div>
                             </div>
-
+                        {# --- CONTACT DETAILS END --- #}
                         </div>
                     </div>
-                    {# --- CONTACT DETAILS END --- #}
-
+                {# === CONTENT LAYOUT END === #}
                 </div>
-            </div>
-            {# === CONTENT LAYOUT END === #}
-
-        </div>
-        {# === TOP LAYOUT END === #}
-
-    </section> 
-{% endblock %}
+            {# === TOP LAYOUT END === #}
+            </section>
+        {% endblock %}
+        
