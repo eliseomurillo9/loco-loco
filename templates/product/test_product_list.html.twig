@@ -1,7 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Gérer mes produits - {{ parent() }}
+{% endblock %}
+
 
 {% block body %}
 
-    <h1 >Catalogue</h1>
+    <h1>Gérer mes produits</h1>
     <div class="grid_container">
         {% for product in products %}
             <article class="card">

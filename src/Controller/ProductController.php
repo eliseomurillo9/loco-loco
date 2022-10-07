@@ -30,4 +30,10 @@ class ProductController extends AbstractController
         ]);
     }
 
+        #[Route('/edit', name: 'edit')]
+        public function editProducts(StoreRepository $storeRepository): Response
+        {
+            return $this->render('product/test_product_list.html.twig');
+        }
+
 }
