@@ -16,7 +16,7 @@
 		class="flex">
 
 		{# Si, je suis connecté en tant que commerçant #}
-		{% if is_granted('ROLE_PRO') %}
+		{% if is_granted('ROLE_PRODUCER') %}
 			<li>
 				<a class="btn btn-main-outline" href="{{ path('store_create')}}">Ajoutez votre établissement</a>
 			</li>
@@ -39,6 +39,11 @@
 			</li>
 			<li>
 				<a href="{{ path('user_profil-client')}}"><img class="avatar" src="{{ asset('images/carrot.png')}}" alt="avatar client"></a>
+			</li>
+
+		{% elseif is_granted('ROLE_ADMIN') %}
+			<li>
+				<a class="btn btn-main-outline" href="{{ path('admin')}}">BackOffice</a>
 			</li>
 
 

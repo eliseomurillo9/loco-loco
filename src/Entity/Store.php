@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StoreRepository::class)]
 class Store
@@ -17,24 +18,40 @@ class Store
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message:"Veuillez saisir le nom de votre boutique")]
     private ?string $name = null;
 
     #[ORM\Column(length: 15, nullable: true)]
     private ?string $phone_number = null;
 
     #[ORM\Column(length: 180)]
+    #[Assert\NotBlank(message:"Veuillez saisir une adresse email")]
+    #[Assert\length(max : 180)]
+    #[Assert\Email]
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $website = null;
 
     #[ORM\Column(length: 14)]
+    #[Assert\NotBlank(message:"Veuillez saisir un numéro de Siret à 14 chiffres")]
+    #[Assert\length(
+        min : 14,
+        max : 14
+    )]
     private ?string $siret_number = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message:"Veuillez saisir une description")]
+    #[Assert\Length(
+        min: 20,
+        max: 2000,
+        minMessage: 'La description doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'La description ne doit pas excéder {{ limit }} caractères',
+    )]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
