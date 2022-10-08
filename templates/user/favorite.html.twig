@@ -13,21 +13,29 @@
             <h1 class="title-custom marginbt-3">Mes favoris</h1>
 
             <div class="favorite__container">
-
+            {% if favoritesList %}
+                {% for favorite in favoritesList %}
                 <div class="favorite-item flex marginbt-1">
                     <div class="img-container">
-                        <img src="{{ asset('images/store/vegetable.png')}}" alt="farm">
+                        <img src="{{ 'images/uploads/stores/' ~ favorite.picture }}" alt="farm">
                     </div>
                     <div class="details-container">
-                        <h4>Nom</h4>
-                        <p>Adresse</p>
-                        <p>Code Postal</p>
+                        <h4>{{ favorite.name }}</h4>
+                {% for address in favorite.addresses %}
+
+                        <p>{{ address.street }}, {{ address.city }}</p>
+                        <p>{{ address.zipcode }}</p>
+            {% endfor %}
+
                     </div>
                     <div class="delete flex">
-                        <i class="fas fa-times"></i>
+                        <a href="{{ path('user_remove_favorite', {id: favorite.id}) }}"> <i class="fas fa-times"></i></a>
                     </div>
                 </div>
-
+            {% endfor %}
+            {% else %}
+            <h2>Aucun ferme ajouté au favorite</h2>
+            {% endif %}
             </div>
     </section>
 

@@ -2,7 +2,7 @@
 
 {% block title %}
     {# "Boutique" à remplacer par le nom en dynamique de la vrai boutique #}
-     {{ singleStore.name }} - {{ parent() }}
+     {{ storeInfo.name }} - {{ parent() }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -15,7 +15,7 @@
 
         {# --- BANNIERE START --- #}
         <div class="single__banniere">
-            <img src="{{ asset('images/uploads/stores/' ~ singleStore.picture )}}" alt="banniere de la boutique">
+            <img src="{{ asset('images/uploads/stores/' ~ storeInfo.picture )}}" alt="banniere de la boutique">
         </div>
         {# --- BANNIERE END --- #}
 
@@ -31,21 +31,21 @@
 
             {# --- TABS START --- #}
             <div class="single__tab box-shadow flex">
-                <a class="tab subtitle inactive-tab" href="{{ path('store_single-about')}}">A propos</a>
-               <a class="tab subtitle active-tab" href="">Boutique </a>
+                <a class="tab subtitle inactive-tab" href="{{ path('store_single-about', {'slug': storeInfo.slug}) }}">A propos</a>
+               <a class="tab subtitle active-tab" href="#">Boutique </a>
             </div>
             {# --- TABS END --- #}
 
             {# === CONTENT LAYOUT START === #}
             <div class="content-layout flex">
                 <div class="single__store-content">
-                    <p class="marginbt-1">Hauts-de-France(59) / Ville</p>
+            <p class="marginbt-1">Hauts-de-France({{  storeAddress.zipcode }}) / {{storeAddress.city }}</p>
 
                     <div class="products-list__container marginbt-1">
                         <h2 class="marginbt-1">Catégorie</h2>
 
                         <div class="products-list flex">
-                            {%  for product in singleStore.products %}
+                            {%  for product in storeInfo.products %}
                             <div class="product-card box-shadow flex">
                                 <div class="img__container flex">
                                     <img src="{{ asset('images/uploads/products/' ~ product.picture)}}" alt="product">
@@ -55,20 +55,13 @@
                                     <span>{{ product.price}} €</span>
                                 </div>
                                 <button class="btn-second flex">
-                                    <a class="flex" href="#">
-                                        Ajouter à mon panier
+                                    <a class="flex " href="{{ path('user_add_shop-list', {id: product.id}) }}">
+                                        Ajouter à ma liste
                                     </a>
                                 </button>
                             </div>
                             {% endfor %}
-                            {% include "components/product/product-card-available.html.twig" %}
-                            {% include "components/product/product-card-available.html.twig" %}
-                            {% include "components/product/product-card-sold-out.html.twig" %}
-                            {% include "components/product/product-card-available.html.twig" %}
-                            {% include "components/product/product-card-available.html.twig" %}
-                            {% include "components/product/product-card-sold-out.html.twig" %}
-                            {% include "components/product/product-card-available.html.twig" %}
-                            {% include "components/product/product-card-available.html.twig" %}
+                            
 
                         </div>
                     </div>
