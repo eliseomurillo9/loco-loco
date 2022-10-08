@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Store;
 use App\Form\EditProfileType;
 use App\Repository\UserRepository;
 use App\Repository\StoreRepository;
@@ -48,7 +49,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/favorite', name: 'favorite')]
-    public function favorite(StoreRepository $storeRepository, EntityManagerInterface $em): Response
+    public function favorite(): Response
     {
       
        
@@ -114,45 +115,19 @@ class UserController extends AbstractController
     {
     }
 
-    #[Route(path: '/get/shop-id', name: 'get_shop_id', methods:["POST"])]
-    public function getFavorites(Request $request, StoreRepository $storeRepository, EntityManagerInterface $em): Response
-    {
-        $session = new Session();
-        $shopId = json_decode($request->getContent())->favoriteId;
-        error_log($shopId);
-        
-        postFavorites($shopId);
+    
 
-        $session->set('shopId', $shopId);
-        error_log($shopId);
-
-       
-        // dd($shopId);
-        $response = new Response(
-            $shopId,
-            Response::HTTP_OK,
-            ['content-type' => 'application/json'],
-        );
-       
-        return $response;
-    }
-
-    #[Route(path: '/post/shop-id', name: 'post_shop_id')]
-    public function postFavorites($storeId, StoreRepository $storeRepository, EntityManagerInterface $em)
+    #[Route(path: '/add/favorite/{id}', name: 'add_favorite')]
+    public function postFavorites(Request $request, StoreRepository $storeRepository, EntityManagerInterface $em, Store $store)
 {
-    $session = new Session();
-
-       $shopId = json_decode($session->get('shopId'))->favoriteId;
-
-    $user = $this->getUser();
-
+$storeId = $store->getId();
         $user = $this->getUser();
         $user->addFavourite(
-            $storeRepository->find(3)
+            $storeRepository->find($storeId)
         );
         $em->flush();   
    
-    return $shopId;
+    return $this->redirect($request->headers->get('referer'));
 }
     
 

@@ -32,7 +32,7 @@
                 <i class="far fa-star"></i>
             </div>
             <div class="favorite">
-                <i class="far fa-heart" id="favorite_button"><input type="hidden" name="favorite" value="{{ storeInfo.id }}" id="favorite_id"></i>
+               <a href="{{ path('user_add_favorite', {id: storeInfo.id}) }}"> <i class="far fa-heart" id="favorite_button"></i> </a>
             </div>
         </div>
 
@@ -51,7 +51,7 @@
         <div class="item flex">
             <i class="fas fa-phone"></i>
             <div class="text-content">
-                <p>{{'à régler' }}</p>
+                <p>{{ storeInfo.phone_number }}</p>
             </div>
         </div>
 

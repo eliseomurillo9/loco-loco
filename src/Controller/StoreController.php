@@ -55,7 +55,6 @@ class StoreController extends AbstractController
     public function storeSingle($id, AddressRepository $addressRepository, ProductRepository $productRepository): Response
     {
         $singleStore = $this->storeRepository-> find($id);
-
         $storeAddress = $addressRepository->find($id);
 
         $products = $productRepository->find($id);
@@ -74,6 +73,13 @@ class StoreController extends AbstractController
         $singleStore = $this->storeRepository-> find($id);
 
         $storeAddress = $addressRepository->find($id);
+
+        dd($singleStore);
+
+        $user = $this->getUser();
+        dd($user->getFavourite(
+            $this->storeRepository->find($storeId)
+        ));
 
         return $this->render('store/single-about.html.twig', [
             'storeInfo' => $singleStore,
