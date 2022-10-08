@@ -32,6 +32,8 @@ class RegistrationController extends AbstractController
     /**
      * @throws TransportExceptionInterface
      */
+
+    //Création d'utilisateur
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
@@ -71,7 +73,8 @@ class RegistrationController extends AbstractController
             ]);
         }
 
-/*
+/*Email de vérification in progress
+
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator, UserRepository $userRepository): Response
     {

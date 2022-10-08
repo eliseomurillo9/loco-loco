@@ -19,27 +19,20 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 30)]
-    #[Assert\NotBlank(message:"Veuillez saisir le nom de votre produit")]
+
     private ?string $name = null;
 
     #[ORM\Column]
     private ?bool $is_available = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    #[Assert\NotBlank(message:"Veuillez saisir le prix de votre produit en € au format 10.22")]
+
     private ?string $price = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Assert\NotBlank(message:"Veuillez saisir une description du produit (variété, conditionnement, aspect, saveur ...)")]
-    #[Assert\Length(
-        min: 10,
-        max: 2000,
-        minMessage: 'La description doit contenir au moins {{ limit }} caractères',
-        maxMessage: 'La description ne doit pas excéder {{ limit }} caractères',
-    )]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
