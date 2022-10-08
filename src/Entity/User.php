@@ -22,7 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\NotBlank(message:"Veuillez saisir une adresse email")]
-    #[Assert\length(max : 180)]
+    #[Assert\Length(max : 180)]
     #[Assert\Email]
     private ?string $email = null;
 
@@ -40,7 +40,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 30)]
     #[Assert\NotBlank]
-    #[Assert\length(
+    #[Assert\Length(
         min : 3,
         max : 30
     )]

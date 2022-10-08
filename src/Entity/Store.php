@@ -26,7 +26,7 @@ class Store
 
     #[ORM\Column(length: 180)]
     #[Assert\NotBlank(message:"Veuillez saisir une adresse email")]
-    #[Assert\length(max : 180)]
+    #[Assert\Length(max : 180)]
     #[Assert\Email]
     private ?string $email = null;
 
@@ -35,7 +35,7 @@ class Store
 
     #[ORM\Column(length: 14)]
     #[Assert\NotBlank(message:"Veuillez saisir un numéro de Siret à 14 chiffres")]
-    #[Assert\length(
+    #[Assert\Length(
         min : 14,
         max : 14
     )]

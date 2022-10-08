@@ -26,7 +26,7 @@ class Address
 
     #[ORM\Column(length: 5)]
     #[Assert\NotBlank(message:"Veuillez saisir un code postal à 5 chiffres")]
-    #[Assert\length(
+    #[Assert\Length(
         min : 5,
         max : 5
     )]
