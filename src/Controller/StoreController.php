@@ -6,6 +6,7 @@ use App\Entity\Store;
 use App\Entity\StoreHours;
 use App\Entity\User;
 use App\Form\StoreType;
+use App\Repository\AddressRepository;
 use App\Repository\StoreRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,8 +54,12 @@ class StoreController extends AbstractController
     #[Route('/boutique/{slug}', name: 'single')]
     public function storeSingle(Store $store = null): Response
     {
-
-        return $this->render('store/single.html.twig', ['singleStore' => $store]);
+        
+        $storeAddress = $store->getAddresses()->getValues()[0];
+        return $this->render('store/single.html.twig',
+         ['singleStore' => $store,
+         'storeAddress' => $storeAddress
+        ]);
     }
 
     #[Route('/single/about', name: 'single-about')]
