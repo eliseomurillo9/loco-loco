@@ -91,7 +91,9 @@ class UserController extends AbstractController
         // $geolocation = $request->request->get('geolocation');
 
         // dd($geolocation);
-        $session->set('geolocation', $response);
+        if ($geolocation) {
+            $session->set('geolocation', $response);
+        }
         // dd($geolocation);
         return $response;
     }

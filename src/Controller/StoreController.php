@@ -46,24 +46,40 @@ class StoreController extends AbstractController
     {
 
         $session = $request->getSession();
-       $geoloc = $session->get('geolocation');
         
 
     
         // Récupération des infos dans la requete
         $searchbar = $request->get('searchbar');
         $categoryId = $searchbar['category'];
+        $range = $searchbar['range'];
+        
+        // get real time position or address typed
+        if ($searchbar['location']) {
+            $address = $searchbar['location'];
+            $client = HttpClient::create();
+            $response = $client->request('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $address . '&key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo');
+    
+            $content = json_decode($response->getContent(), true);
+            $propertyAccessor = PropertyAccess::createPropertyAccessor();
+    
+            $position = (object) array('lat' => $propertyAccessor->getValue($content, '[results][0][geometry][location][lat]'), 'lng' => $propertyAccessor->getValue($content, '[results][0][geometry][location][lng]'));
+            
+        }else {
+            $getPosition = $session->get('geolocation');
+            $position = json_decode($getPosition->getContent())->geolocation;
+        }
+
         $stores = $storeRepository->findByProductCategory($categoryId);
 
         // Récupération de la location de l'utilisateur
-        $position = $geoUtilities->getUserLocationFromGoogleApi($searchbar['location']);
-
+        $storesList = array();
+        $storeAddressList = array();
         // Calcul des distances pour chaque stores
-        if ($position) {
             foreach ($stores as &$store) {
                 $storeId = $store->getId();
                 $storeLocation = $addressRespostory->find($storeId);
-                dd($storeLocation);
+                
                 if($storeLocation) {
                     $distance = $geoUtilities->getDistanceFromLatLonInKm(
                         $position->lat, 
@@ -71,17 +87,20 @@ class StoreController extends AbstractController
                         $storeLocation->getLatitude(),
                         $storeLocation->getLongitude(),
                     );
-                    $store->distance = $distance;
+                   $store->distance = $distance;
+                }
+
+                if ($distance <= $range) {
+                    array_push($storesList, $store);
+                    array_push($storeAddressList, $storeLocation);
                 }
             }
-        }
-
       
                 
         // TODO Trier le tableau par distance croissant
 
         return $this->render('store/farms-locator.html.twig', [
-            'stores' => $stores
+            'stores' => $storesList
         ]);
     }
 }
