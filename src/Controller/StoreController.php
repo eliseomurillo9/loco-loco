@@ -112,13 +112,10 @@ class StoreController extends AbstractController
 
         $addresses = $session->get('addressList');
         // dd($addresses);
-        $addressList = array();
-        foreach($addresses as $address){
-            array_push($addressList, $address);
-        }
+        
         // dd($addressList);
-        header('Content-Type: application/json; charset=utf-8');
-        return json_encode($addresses);
+        header('Content-Type: application/json');
+        return new JsonResponse($addresses);
 
        
 }
