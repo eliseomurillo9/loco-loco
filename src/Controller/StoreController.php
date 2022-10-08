@@ -74,13 +74,7 @@ class StoreController extends AbstractController
 
         $storeAddress = $addressRepository->find($id);
 
-        dd($singleStore);
-
-        $user = $this->getUser();
-        dd($user->getFavourite(
-            $this->storeRepository->find($storeId)
-        ));
-
+        
         return $this->render('store/single-about.html.twig', [
             'storeInfo' => $singleStore,
         'storeAddress' => $storeAddress,
