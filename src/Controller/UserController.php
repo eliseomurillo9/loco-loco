@@ -12,8 +12,8 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\Loader\Configurator\session;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route('', name: 'user_')]
@@ -48,9 +48,10 @@ class UserController extends AbstractController
     }
 
     #[Route('/favorite', name: 'favorite')]
-    public function favorite(): Response
+    public function favorite(StoreRepository $storeRepository, EntityManagerInterface $em): Response
     {
-        
+      
+       
         return $this->render('user/favorite.html.twig');
     }
 
@@ -113,17 +114,20 @@ class UserController extends AbstractController
     {
     }
 
-    #[Route(path: '/get/shop-id', name: 'get_shop_id')]
-    public function getFavorites(Request $request, ): Response
+    #[Route(path: '/get/shop-id', name: 'get_shop_id', methods:["POST"])]
+    public function getFavorites(Request $request, StoreRepository $storeRepository, EntityManagerInterface $em): Response
     {
-    //    $session = $request->getSession();
+        $session = new Session();
+        $shopId = json_decode($request->getContent())->favoriteId;
+        error_log($shopId);
+        
+        postFavorites($shopId);
 
-        $shopId = $request->getContent();
+        $session->set('shopId', $shopId);
+        error_log($shopId);
 
-        // $session->set('shopId', $shopId);
-
-    
-
+       
+        // dd($shopId);
         $response = new Response(
             $shopId,
             Response::HTTP_OK,
@@ -134,19 +138,19 @@ class UserController extends AbstractController
     }
 
     #[Route(path: '/post/shop-id', name: 'post_shop_id')]
-    public function postFavorites(StoreRepository $storeRepository, EntityManagerInterface $em, $shopId)
+    public function postFavorites($storeId, StoreRepository $storeRepository, EntityManagerInterface $em)
 {
-    // $session = $this->request->getSession();
-    // $shopId = $session->get('shopId', 0);
+    $session = new Session();
+
+       $shopId = json_decode($session->get('shopId'))->favoriteId;
+
     $user = $this->getUser();
 
-    if ($shopId) {
-         $user->addFavourite(
-        $storeRepository->find($shopId)  
-    );
-
-    $em->flush();   
-}       
+        $user = $this->getUser();
+        $user->addFavourite(
+            $storeRepository->find(3)
+        );
+        $em->flush();   
    
     return $shopId;
 }
