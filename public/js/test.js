@@ -1,68 +1,47 @@
-// let userLat = parseFloat(document.getElementById('lat').value);
-// let userLng = parseFloat(document.getElementById('lng').value);
-console.log('hello');
-async function getStores() 
-    try{
-        let data = await fetch('http://127.0.0.1:8080/store/locator',
-        {method:'GET', 
-        headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With' : 'XMLHttpRequest'
-        },
-        data:{data:'test'}
-        });
-        let res = await data.json();
-        console.log(data.headers.get('Content-Type'));
-        console.log(res);
-        return res.position;
-    }catch(error){
-        console.error('ERROR',error)
-    }
+// console.log('hola');
+async function getAddress(){
+  try{
+      let data = await fetch('http://127.0.0.1:8080/store/address_list',
+      {method:'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With' : 'XMLHttpRequest'
+      },
+      });
+      let res = await data.json();
+      console.log(res);
 
-
-getStores();
-
-function getDistanceFromLatLonInKm(userLat,userLng,storeLat,storeLng) {
-    var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(storeLat-userLat);  // deg2rad below
-    var dLon = deg2rad(storeLng-userLng); 
-    var a = 
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(deg2rad(userLat)) * Math.cos(deg2rad(storeLat)) * 
-      Math.sin(dLon/2) * Math.sin(dLon/2)
-      ; 
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    var d = R * c; // Distance in km
-    return d;
+      return res.position;
+  }catch(error){
+      console.error('ERROR',error)
   }
 
+}
+
+addressList = getAddress().address;
+console.log(addressList);
 
 
-
-
-
-
-
-
-
-
-
-
-// let getPosition = $.ajax({
-//     url: "http://127.0.0.1:8080/store/locator", // point to server-side PHP script
-//     dataType: 'json',
-//     type: 'GET',
-//     success: function (data) {
-//         console.log(data);
-//     }
-// });
-
-// $.get('http://127.0.0.1:8080/store/locator', { 'product': this.product },  data => {     
-//     console.log(data);
-
-// console.log(position);
-
-;
+async function initMap() {
+    const position = await getPosition()
+  
+    if (position) {
+      map = await new google.maps.Map(document.getElementById('map'), {
+        mapId: '981b93be4c70d164',
+        center: { lat: position.lat, lng: position.lng },
+        zoom: 16,
+      })
+    } else {
+      map = await new google.maps.Map(document.getElementById('map'), {
+        mapId: '981b93be4c70d164',
+        center: { lat: 50.271196466416896, lng: 3.141769201769933 },
+        zoom: 9,
+      })
+    }
+  }
+  
+  window.initMap = initMap
+  
 
 
     // infoWindow = new google.maps.InfoWindow();

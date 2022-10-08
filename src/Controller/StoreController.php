@@ -9,6 +9,7 @@ use App\Repository\StoreRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use App\Service\GeoUtilities;
+use Error;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -95,7 +96,7 @@ class StoreController extends AbstractController
                     array_push($storeAddressList, $storeLocation);
                 }
             }
-      
+            $session->set('addressList', $storeAddressList);
                 
         // TODO Trier le tableau par distance croissant
 
@@ -103,4 +104,22 @@ class StoreController extends AbstractController
             'stores' => $storesList
         ]);
     }
+
+    #[Route('/address_list', name: 'address_list',  methods: ['GET'])]
+    public function storesList(Request $request)
+    {
+        $session = $request->getSession();
+
+        $addresses = $session->get('addressList');
+        // dd($addresses);
+        $addressList = array();
+        foreach($addresses as $address){
+            array_push($addressList, $address);
+        }
+        // dd($addressList);
+        header('Content-Type: application/json; charset=utf-8');
+        return json_encode($addresses);
+
+       
+}
 }
