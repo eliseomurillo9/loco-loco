@@ -24,12 +24,20 @@ class Store
     private ?string $phone_number = null;
 
     #[ORM\Column(length: 180)]
+    #[Assert\NotBlank(message:"Veuillez saisir une adresse email")]
+    #[Assert\Length(max : 180)]
+    #[Assert\Email]
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $website = null;
 
     #[ORM\Column(length: 14)]
+    #[Assert\NotBlank(message:"Veuillez saisir un numéro de Siret à 14 chiffres")]
+    #[Assert\Length(
+        min : 14,
+        max : 14
+    )]
     private ?string $siret_number = null;
 
     #[ORM\Column(length: 255, nullable: true)]

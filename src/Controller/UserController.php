@@ -2,9 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Entity\Store;
+use App\Entity\Product;
 use App\Form\EditProfileType;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\AddressRepository;
 use App\Repository\UserRepository;
+use App\Repository\StoreRepository;
+use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,7 +49,11 @@ class UserController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function favorite(): Response
     {
-        return $this->render('user/favorite.html.twig');
+        
+        $getFavorites = $this->getUser()->getFavourites()->getValues();
+
+        return $this->render('user/favorite.html.twig', [
+    "favoritesList" => $getFavorites]);
     }
 
     #[Route('/grocery-list', name: 'grocery-list')]
@@ -89,6 +99,20 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/remove/favorite/{id}', name: 'remove_favorite')]
+    public function removeFavorite(Request $request, StoreRepository $storeRepository, EntityManagerInterface $em, Store $store): Response
+    {
+        $storeId = $store->getId();
+        $user = $this->getUser();
+        $user->RemoveFavourite(
+            $storeRepository->find($storeId)
+        );
+        $em->flush();   
+
+        return $this->redirect($request->headers->get('referer'));
+
+    }
+
     #[Route('/profil-pro', name: 'profil-pro')]
     #[IsGranted('ROLE_PRODUCER')]
     public function profilPro(): Response
@@ -100,4 +124,34 @@ class UserController extends AbstractController
     public function logout(): void
     {
     }
+
+    #[Route(path: '/add/favorite/{id}', name: 'add_favorite')]
+    public function postFavorites(Request $request, StoreRepository $storeRepository, EntityManagerInterface $em, Store $store)
+    {
+            $storeId = $store->getId();
+            $user = $this->getUser();
+            $user->addFavourite(
+                $storeRepository->find($storeId)
+            );
+            $em->flush();   
+    
+        return $this->redirect($request->headers->get('referer'));
+    }
+
+    #[Route('/add/shop-list/{id}', name: 'add_shop-list')]
+    //Add product to list
+    public function form(Request $request, EntityManagerInterface $em, ProductRepository $productRepository, Product $product): Response
+    {
+        $productId = $product->getId();
+        $user = $this->getUser();
+        $user->addProduct(
+            $productRepository->find($productId)
+        );
+
+        $em->flush();   
+
+        return $this->redirect($request->headers->get('referer'));
+        
+    }
+
 }

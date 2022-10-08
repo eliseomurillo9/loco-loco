@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Store;
 use App\Entity\User;
 use App\Form\StoreType;
+use App\Repository\AddressRepository;
 use App\Repository\StoreRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -55,14 +56,25 @@ class StoreController extends AbstractController
     #[Route('/boutique/{slug}', name: 'single')]
     public function storeSingle(Store $store = null): Response
     {
+        $storeAddress = $store->getAddresses()->getValues()[0];
+        
 
-        return $this->render('store/single.html.twig', ['singleStore' => $store]);
+        return $this->render('store/single.html.twig',
+         ['storeInfo' => $store,
+         'storeAddress' => $storeAddress
+        ]);
     }
 
-    #[Route('/single/about', name: 'single-about')]
-    public function storeSingleAbout(): Response
+    #[Route('/single/about/{slug}', name: 'single-about')]
+    public function storeSingleAbout(Store $store = null): Response
     {
-        return $this->render('store/single-about.html.twig');
+        $storeAddress = $store->getAddresses()->getValues()[0];
+
+        return $this->render('store/single-about.html.twig', [
+            'storeInfo' => $store,
+            'storeAddress' => $storeAddress
+
+        ]);
     }
 
 
