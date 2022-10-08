@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Store;
-use App\Entity\StoreHours;
 use App\Entity\User;
 use App\Form\StoreType;
 use App\Repository\StoreRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +24,7 @@ class StoreController extends AbstractController
 
     }
     #[Route('', name: 'index')]
+    #[IsGranted('ROLE_PRODUCER')]
     // show all producer stores
     public function storeIndex(): Response
     {
@@ -50,6 +51,7 @@ class StoreController extends AbstractController
         return $this->render('store/farms-locator.html.twig');
     }
 
+    // Get single store information
     #[Route('/boutique/{slug}', name: 'single')]
     public function storeSingle(Store $store = null): Response
     {
@@ -63,13 +65,9 @@ class StoreController extends AbstractController
         return $this->render('store/single-about.html.twig');
     }
 
-    #[Route('/edit', name: 'edit')]
-    public function storeEdit(): Response
-    {
-        return $this->render('store/edit.html.twig');
-    }
 
     #[Route('/create', name: 'create')]
+    #[IsGranted('ROLE_PRODUCER')]
     //Add new store by producer
     public function form(Request $request, SluggerInterface $slugger): Response
     {
@@ -112,42 +110,10 @@ class StoreController extends AbstractController
             ]);
         }
 
-        //$user = $this->manager->getRepository('App\Entity\User')->find('id');
         $this->addFlash('error', 'erreur lors de la création de votre boutique');
         return $this->render('store/store_form.html.twig',[
             'form' => $form->createView()
         ]);
     }
-    /*
-    #[Route('/addHours', name: 'hours')]
-    //Add opening hours by store
-    public function hoursform(Request $request): Response
-    {
-        $user = $this->getUser();
-        $newStore = new store();
 
-
-        $form = $this->createForm(StoreType::class, $newStore);
-        //  $newAddress = $this->createForm(AddressType::class, $address);
-
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-
-            $newStore->setOwner($user);
-            $newStore->getAddresses()->first()->setStores($newStore);
-            $this->storeRepository->add($newStore,true);
-
-            $this->addFlash('success', 'Votre boutique a été créée');
-            return $this->redirectToRoute('main_index',[
-                'id'=> $newStore->getId()
-            ]);
-        }
-
-        //$user = $this->manager->getRepository('App\Entity\User')->find('id');
-        $this->addFlash('error', 'erreur lors de la création de votre boutique');
-        return $this->render('store/store_form.html.twig',[
-            'form' => $form->createView()
-        ]);
-    }
-    */
 }

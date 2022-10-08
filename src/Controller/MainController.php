@@ -13,6 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'index')]
+
+    //SearchBar in progress
     public function index(Request $request): Response
     {
         $searchForm = $this->createForm(SearchbarType::class);

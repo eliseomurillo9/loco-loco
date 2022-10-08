@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Product;
-use App\Form\EditProductType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use App\Repository\StoreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,30 +24,25 @@ class ProductController extends AbstractController
 
     }
 
-
-    #[Route('', name: 'index')]
-    public function index(): Response
-    {
-        return $this->render('product/test_product.html.twig');
-    }
-
     #[Route('/edit', name: 'edit')]
+    #[IsGranted('ROLE_PRODUCER')]
+    //Edit product by producer
     public function editProducts(StoreRepository $storeRepository): Response
     {
         return $this->render('product/product_list.html.twig');
     }
 
     #[Route('/add', name: 'create')]
+    #[IsGranted('ROLE_PRODUCER')]
     //Add new store by producer
     public function form(Request $request, SluggerInterface $slugger): Response
     {
 
         $newProduct = new Product();
 
-        $form = $this->createForm(EditProductType::class, $newProduct, [
+        $form = $this->createForm(ProductType::class, $newProduct, [
             'user' => $this->getUser()
         ]);
-        //  $newAddress = $this->createForm(AddressType::class, $address);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){

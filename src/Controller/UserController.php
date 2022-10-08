@@ -2,11 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Form\EditProfileType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,7 +38,9 @@ class UserController extends AbstractController
         ]);
     }
 
+    //Get and set User favourites stores
     #[Route('/favorite', name: 'favorite')]
+    #[IsGranted('ROLE_USER')]
     public function favorite(): Response
     {
         return $this->render('user/favorite.html.twig');
@@ -62,6 +63,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/profile-edit', name: 'profile-edit')]
+    #[IsGranted('ROLE_USER')]
     public function editProfile(
         Request $request,
         EntityManagerInterface $em
@@ -88,6 +90,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/profil-pro', name: 'profil-pro')]
+    #[IsGranted('ROLE_PRODUCER')]
     public function profilPro(): Response
     {
         return $this->render('user/profil-pro.html.twig');
