@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Form\EditProductType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use App\Repository\StoreRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -22,17 +24,7 @@ class ProductController extends AbstractController
 
     }
 
-    //Get all products of a store
-    // #[Route('', name: 'index')]
-    // public function getstoreProducts(StoreRepository $storeRepository): Response
-    // {
-    //     /** @var Store $store */
-    //     $store = $this->getproducts();
-    //     return $this->render('product/test_product_list.html.twig',[
-    //         'products' => $store,
-    //     ]);
-    // }
-    
+
     #[Route('', name: 'index')]
     public function index(): Response
     {
@@ -42,9 +34,9 @@ class ProductController extends AbstractController
     #[Route('/edit', name: 'edit')]
     public function editProducts(StoreRepository $storeRepository): Response
     {
-        return $this->render('product/test_product_list.html.twig');
+        return $this->render('product/product_list.html.twig');
     }
-        
+
     #[Route('/add', name: 'create')]
     //Add new store by producer
     public function form(Request $request, SluggerInterface $slugger): Response
@@ -52,7 +44,7 @@ class ProductController extends AbstractController
 
         $newProduct = new Product();
 
-        $form = $this->createForm(ProductType::class, $newProduct, [
+        $form = $this->createForm(EditProductType::class, $newProduct, [
             'user' => $this->getUser()
         ]);
         //  $newAddress = $this->createForm(AddressType::class, $address);
@@ -79,8 +71,8 @@ class ProductController extends AbstractController
                 $newProduct->setPicture($newFilename);
             }
 
-            $test = $form->get('stores')->getData();
-            $test->addProduct($newProduct);
+            $form->get('stores')->getData()->addProduct($newProduct);
+
             $this->productRepository->add($newProduct,true);
 
             $this->addFlash('success', 'Votre boutique a été créée');
@@ -90,8 +82,10 @@ class ProductController extends AbstractController
         }
 
         $this->addFlash('error', 'erreur lors de la création de votre boutique');
-        return $this->render('product/test_product_form.html.twig',[
+        return $this->render('product/product_form.html.twig',[
             'form' => $form->createView()
         ]);
     }
+
+
 }

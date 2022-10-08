@@ -34,15 +34,15 @@ class StoreController extends AbstractController
         ]);
     }
 
-    #[Route('/products', name: 'store-products', requirements:["id" => "\d+"])]
+/*    #[Route('/products', name: 'store-products', requirements:["id" => "\d+"])]
    public function getStoreProduct($id): Response
     {
         $store = $this->storeRepository->find($id);
         $product = $this->$store->getProducts();
-        return $this->render('product/test_product_list.html.twig',[
+        return $this->render('product/product_list.html.twig',[
             'products' => $product,
         ]);
-    }
+    }*/
 
     #[Route('/locator', name: 'locator')]
     public function storeLocator(): Response
@@ -53,6 +53,7 @@ class StoreController extends AbstractController
     #[Route('/boutique/{slug}', name: 'single')]
     public function storeSingle(Store $store = null): Response
     {
+
         return $this->render('store/single.html.twig', ['singleStore' => $store]);
     }
 
@@ -67,16 +68,6 @@ class StoreController extends AbstractController
     {
         return $this->render('store/edit.html.twig');
     }
-
-/*
-    #[Route('/{name}', name: 'single', requirements:["id" => "\d+"])]
-    public function storeSingle($id): Response
-    {
-        $singleStore = $this->storeRepository-> find($id);
-        dump($singleStore);
-        return $this->render('store/single.html.twig', ['singleStore' => $singleStore]);
-    }
-*/
 
     #[Route('/create', name: 'create')]
     //Add new store by producer
@@ -123,10 +114,11 @@ class StoreController extends AbstractController
 
         //$user = $this->manager->getRepository('App\Entity\User')->find('id');
         $this->addFlash('error', 'erreur lors de la création de votre boutique');
-        return $this->render('store/test_store_form.html.twig',[
+        return $this->render('store/store_form.html.twig',[
             'form' => $form->createView()
         ]);
     }
+    /*
     #[Route('/addHours', name: 'hours')]
     //Add opening hours by store
     public function hoursform(Request $request): Response
@@ -153,8 +145,9 @@ class StoreController extends AbstractController
 
         //$user = $this->manager->getRepository('App\Entity\User')->find('id');
         $this->addFlash('error', 'erreur lors de la création de votre boutique');
-        return $this->render('store/test_store_form.html.twig',[
+        return $this->render('store/store_form.html.twig',[
             'form' => $form->createView()
         ]);
     }
+    */
 }

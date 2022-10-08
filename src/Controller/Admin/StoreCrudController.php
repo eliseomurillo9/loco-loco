@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Store;
 use App\Form\AddressType;
-use App\Form\ProductType;
+use App\Form\EditProductType;
 use App\Form\StoreHoursType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -36,7 +36,7 @@ class StoreCrudController extends AbstractCrudController
             TextEditorField::new('road_specificity')->hideOnIndex(),
             CollectionField::new('addresses')->setEntryType(AddressType::class)->hideOnIndex(),
             CollectionField::new('storeHours')->setEntryType(StoreHoursType::class)->hideOnIndex(),
-            CollectionField::new('products')->setEntryType(ProductType::class)->hideOnIndex(),
+            CollectionField::new('products')->setEntryType(EditProductType::class)->hideOnIndex(),
             AssociationField::new('owner')
         ];
     }
