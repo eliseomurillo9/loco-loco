@@ -42,7 +42,7 @@
 
 /* --- INPUT --- */
 /* ------------------------------------------------------------------- */
-input[type=text],
+input[type=text], input[type=email],
 textarea{
     padding: 7px 4px;
     background-color: var(--main-bis);

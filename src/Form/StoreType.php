@@ -11,8 +11,10 @@ use phpDocumentor\Reflection\Types\Collection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,27 +25,39 @@ class StoreType extends AbstractType
     {
         $builder
                 
-        ->add('name', null, 
-            [ 'label' => 'Nom' ])
+        ->add('name', null, [ 
+            'label' => 'Nom',
+           
+             ])
 
         ->add('phone_number', null, 
-            [ 'label' => 'Numéro de téléphone' ])
+            [ 'label' => 'Numéro de téléphone',
+           ])
 
-        ->add('email')
+        ->add('email', EmailType::class, [
+           
+        ])
 
         ->add('website', null,
-            [ 'label' => 'Site Web'])
+            [ 'label' => 'Site Web',
+            
+           ])
 
-        ->add('siret_number', null,
-            [ 'label' => 'Numéro de Siret'])
+        ->add('siret_number', NumberType::class,
+            [ 'label' => 'Numéro de Siret',
+            ])
 
         ->add('picture', FileType::class,
-            [ 'label' => 'Image'])
+            [ 'label' => 'Image', 
+            ])
 
-        ->add('description')
+        ->add('description', null, [
+           
+        ])
 
         ->add('road_specificity', null,
-            [ 'label' => 'Indication routière'])
+            [ 'label' => 'Indication routière',
+            ])
 
         ->add('addresses',  CollectionType::class,[
             'label'=> false,
@@ -51,7 +65,8 @@ class StoreType extends AbstractType
             'entry_options' =>['label'=> 'Adresse'],
             'allow_add' => true,
             'allow_delete' => true,
-            'by_reference' => false
+            'by_reference' => false,
+            
         ])
 
         ;

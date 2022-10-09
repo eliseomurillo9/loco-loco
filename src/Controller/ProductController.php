@@ -25,42 +25,42 @@ class ProductController extends AbstractController
 
     }
 
-    #[Route('{id}/modifier', name: 'edit')]
+    #[Route('/{id}/edit', name: 'edit')]
 
     //Edit product by producer
-    public function editProduct(Product $product,EntityManagerInterface $em, SluggerInterface $slugger, Request $request): Response
+    public function editProduct(Product $product, ProductRepository $productRepository, EntityManagerInterface $em, SluggerInterface $slugger, Request $request): Response
     {
-        $form = $this->createForm(ProductType::class);
+        $productInfo = $productRepository->find($product->getId());
+
+        $form = $this->createForm(EditProductType::class, $productInfo);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
             $imageFile = $form->get('picture')->getData();
+
             // upload images
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'.'.$imageFile->guessExtension();
+        if ($imageFile) {
+            $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            // this is needed to safely include the file name as part of the URL
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'.'.$imageFile->guessExtension();
 
-                try {
-                    $imageFile->move(
-                        $this->getParameter('product_new_images_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-
-                }
-
-                $product->setPicture($newFilename);
+            try {
+                $imageFile->move(
+                    $this->getParameter('product_new_images_directory'),
+                    $newFilename
+                );
+            } catch (FileException $e) {
             }
 
-            $product = $form->getData();
-            $em->persist($product);
+            $product->setPicture($newFilename);
+        }
+
+            $em->persist($productInfo);
             $em->flush();
 
-            $this->addFlash('success', 'Votre produit a été mis à jour');
-            return $this->redirectToRoute('store_indexpro',[
-                'id'=> $product->getId()
-            ]);
+            return $this->redirectToRoute('user_profil-client');
         }
 
 
