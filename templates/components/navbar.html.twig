@@ -27,6 +27,11 @@
 
 			{# Sinon si, je suis connecté en tant que client #}
 		{% elseif is_granted('ROLE_USER') %}
+		<li>
+			<a class="nav-icon" href="{{ path('user_favorite')}}">
+		<i class="fa-solid fa-store"></i>
+			</a>
+		</li>
 			<li>
 				<a class="nav-icon" href="{{ path('user_favorite')}}">
 					<i class="fas fa-fw fa-heart"></i>
