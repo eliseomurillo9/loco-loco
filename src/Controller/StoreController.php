@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use Error;
 use App\entity\Store;
+use App\Entity\Address;
 use App\Form\StoreType;
-use App\Repository\AddressRepository;
+use App\Service\GeoUtilities;
 use App\Repository\StoreRepository;
+use App\Repository\AddressRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
-use App\Service\GeoUtilities;
-use Error;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,16 +71,14 @@ class StoreController extends AbstractController
             $getPosition = $session->get('geolocation');
             $position = json_decode($getPosition->getContent())->geolocation;
         }
-
         $stores = $storeRepository->findByProductCategory($categoryId);
-
+        
         // Récupération de la location de l'utilisateur
         $storesList = array();
         $storeAddressList = array();
         // Calcul des distances pour chaque stores
-            foreach ($stores as &$store) {
-                $storeId = $store->getId();
-                $storeLocation = $addressRespostory->find($storeId);
+        foreach ($stores as &$store) {
+            $storeLocation = $store->getAddresses($store->getId())->getValues()[0];
                 
                 if($storeLocation) {
                     $distance = $geoUtilities->getDistanceFromLatLonInKm(
@@ -89,9 +88,10 @@ class StoreController extends AbstractController
                         $storeLocation->getLongitude(),
                     );
                    $store->distance = $distance;
+                //    dd($distance);
                 }
-
-                if ($distance <= $range) {
+                
+                if ($store->distance <= $range) {
                     array_push($storesList, $store);
                     array_push($storeAddressList, $storeLocation);
                 }
@@ -99,9 +99,10 @@ class StoreController extends AbstractController
             $session->set('addressList', $storeAddressList);
                 
         // TODO Trier le tableau par distance croissant
-
         return $this->render('store/farms-locator.html.twig', [
-            'stores' => $storesList
+            'stores' => $storesList,
+            'position' => $position,
+            'addressList' => $storeAddressList
         ]);
     }
 

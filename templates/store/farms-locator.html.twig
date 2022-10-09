@@ -15,12 +15,7 @@
 
 {% block body %}
 
-	{% for store in stores %}
-
-		<h3>{{ store.name }} <small>{{ store.distance }}km</small></h3>
-
-	{% endfor %}
-
+	
 	<section>
 		<div class="container">
 			<div class="bar-search">
@@ -48,23 +43,31 @@
 					</div>
 				</div>
 				<div class="products">
+				{% for store in stores %}
+
+
+	
 					<div class="product_card">
 						<div class="img_div">
-							<img src="{{ asset('images/tomatoes-photo.jpg') }}" alt="" srcset="">
+							<img src="{{ asset('images/uploads/stores/' ~ store.picture )}}" alt="image de {{store.name }} " >
 						</div>
 						<div class="product_info">
-							<h2>Domaine de la Sainte Vachette</h2>
-							<p>Nous vendons des varietés bien de chez nous</p>
+							<h2>{{ store.name }}</h2>
+							<p>{{ store.description }}</p>
 							<div class="buttons">
 								<div class="watch-button">
 									<a href="#">Voir</a>
 								</div>
+								
 								<div class="route-button">
-									<a href="#">Itinéraire</a>
+									<a href="https://www.google.fr/maps/dir/">Itinéraire</a>
+								
 								</div>
 							</div>
 						</div>
 					</div>
+				{% endfor %}
+
 				</div>
 			</div>
 			<div id="map"></div>
