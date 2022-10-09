@@ -92,11 +92,15 @@ class StoreController extends AbstractController
                 }
                 
                 if ($store->distance <= $range) {
+                    $storePositon = (object) ['lat' => $storeLocation->getLatitude(), 'lng' => $storeLocation->getLongitude()];
+                   
                     array_push($storesList, $store);
-                    array_push($storeAddressList, $storeLocation);
+                    array_push($storeAddressList, $storePositon);
                 }
             }
-            $session->set('addressList', $storeAddressList);
+
+            
+            $session->set('storeCoords', $storeAddressList);
                 
         // TODO Trier le tableau par distance croissant
         return $this->render('store/farms-locator.html.twig', [
@@ -111,13 +115,14 @@ class StoreController extends AbstractController
     {
         $session = $request->getSession();
 
-        $addresses = $session->get('addressList');
-        // dd($addresses);
-        
-        // dd($addressList);
-        header('Content-Type: application/json');
-        return new JsonResponse($addresses);
-
+        $addresses = $session->get('storeCoords');
        
+        // error_log($addresses);
+        // dd($addresses);
+
+       $response = new JsonResponse($addresses);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
 }
 }
