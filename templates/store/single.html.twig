@@ -39,8 +39,9 @@
             {# === CONTENT LAYOUT START === #}
             <div class="content-layout flex">
                 <div class="single__store-content">
-            <p class="marginbt-1">Hauts-de-France({{  storeAddress.zipcode }}) / {{storeAddress.city }}</p>
-
+                {% for address in storeAddress %}
+            <p class="marginbt-1">Hauts-de-France({{  address.zipcode }}) / {{ address.city }}</p>
+        {% endfor %}
                     <div class="products-list__container marginbt-1">
                         <h2 class="marginbt-1">Catégorie</h2>
 

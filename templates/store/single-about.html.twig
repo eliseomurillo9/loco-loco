@@ -2,14 +2,14 @@
 {% block title %}
     {# "Boutique" à remplacer par le nom en dynamique de la vrai boutique #}
     Boutique - 
+        
     {{ storeInfo.name }}
 {% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/store/store-single.css') }}">
         <link rel="stylesheet" href="{{ asset('css/product/product-card.css') }}">
         {% endblock %}
-        {% block javascript %}
-        {% endblock %}
+        {% block javascript %}{% endblock %}
         {% block body %}
             <section class="single">
                 {# --- BANNIERE START --- #}
@@ -27,48 +27,54 @@
                         <div class="single__tab box-shadow flex">
                             <a class="tab subtitle active-tab" href="#">
                                 A propos
+                                                            
                             </a>
-                            <a class="tab subtitle inactive-tab" 
-                            
-                            href="{{ path('store_single', {'slug': storeInfo.slug})}}">
+                            <a class="tab subtitle inactive-tab" href="{{ path('store_single', {'slug': storeInfo.slug}) }}">
                                 Boutique
+                                                            
                             </a>
                         </div>
                         {# === CONTENT LAYOUT START === #}
                         <div class="content-layout flex">
                             <div class="single__store-content">
-                                <p class="marginbt-1">
-                                    Hauts-de-France({{storeAddress.zipcode }}) /{{storeAddress.city }}
-                                </p>
-                                {# --- GALLERY START --- #}
-                                <div class="single__gallery marginbt-1">
-                                    {% include "components/store/store-gallery.html.twig" %}
-                                </div>
-                                {# --- GALLERY END --- #}
+                                {% for address in storeAddress %}
+                                    <p class="marginbt-1">
+                                        Hauts-de-France(
+                                        {{ address.zipcode }}
+                                        ) / 
+                                        {{ address.city }}
+                                    </p>
+                                {% endfor %}
+                               
                                 {# --- CONTACT DETAILS START --- #}
                                 <div class="single__contact-details">
                                     <h4 class="marginbt-1">
                                         Coordonnées
+                                                                            
                                     </h4>
                                     <div class="contact-details__container flex">
                                         <div class="details">
                                             <div class="text-content marginbt-1">
                                                 <p>
                                                     Adresse :
+                                                                                                    
                                                 </p>
                                                 <p>
                                                     {{ storeAddress.street }}
                                                     , 
-                                                                                                
+                                                                                                                                                    
+                                                                                                        
                                                     {{ storeAddress.city }}
                                                     , 
-                                                                                                
+                                                                                                                                                    
+                                                                                                        
                                                     {{ storeAddress.zipcode }}
                                                 </p>
                                             </div>
                                             <div class="text-content marginbt-1">
                                                 <p>
                                                     Téléphone :
+                                                                                                    
                                                 </p>
                                                 <p>
                                                     {{ storeInfo.phonenumber }}
@@ -77,6 +83,7 @@
                                             <div class="text-content marginbt-1">
                                                 <p>
                                                     Mail :
+                                                                                                    
                                                 </p>
                                                 <p>
                                                     {{ storeInfo.email }}
@@ -85,6 +92,7 @@
                                             <div class="text-content marginbt-1">
                                                 <p>
                                                     Site Web :
+                                                                                                    
                                                 </p>
                                                 <p>
                                                     {{ storeInfo.website }}
@@ -93,19 +101,16 @@
                                             <div class="text-content">
                                                 <p>
                                                     Indication routière :
+                                                                                                    
                                                 </p>
                                                 <p>
                                                     .
+                                                                                                    
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="single__map flex">
-                                        <iframe
-                                    frameborder="0" 
-                                    referrerpolicy="no-referrer-when-downgrade"
-                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&q={{ storeAddress.latitude }},{{ storeAddress.longitude }}"
-                                    allowfullscreen>
-                                  </iframe>
+                                            <iframe frameborder="0" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&q={{ storeAddress.latitude }},{{ storeAddress.longitude }}" allowfullscreen></iframe>
                                         </div>
                                     </div>
                                 </div>

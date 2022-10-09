@@ -69,7 +69,7 @@ class StoreController extends AbstractController
     #[Route('/boutique/{slug}', name: 'single')]
     public function storeSingle(Store $store = null): Response
     {
-        $storeAddress = $store->getAddresses()->getValues()[0];
+        $storeAddress = $store->getAddresses()->getValues();
         
 
         return $this->render('store/single.html.twig',
