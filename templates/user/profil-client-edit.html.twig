@@ -62,10 +62,18 @@
                         </h4>
                         <div class="text-icon">
                             <p>
-                                {{ form_row(formEdit.email, { 'attr': {'class': "span12",
-                                'placeholder': user.email} }) }}
+                                {{ form_row(formEdit.lastname, { 'attr': {'class': "span12",
+                                    'placeholder': user.lastname} }) }}
                             </p>
                         </div>
+
+                        <div class="text-icon">
+                            <p>
+                                {{ form_row(formEdit.firstname, { 'attr': {'class': "span12",
+                                    'placeholder': user.firstname} }) }}
+                            </p>
+                        </div>
+
                         {{ form_end(formEdit) }}
                     </div>
                 </div>

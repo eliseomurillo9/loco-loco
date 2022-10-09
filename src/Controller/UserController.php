@@ -143,7 +143,10 @@ class UserController extends AbstractController
     #[IsGranted('ROLE_PRODUCER')]
     public function profilPro(): Response
     {
-        return $this->render('user/profil-pro.html.twig');
+        $user = $this->getUser();
+        return $this->render('user/profil-pro.html.twig', [
+            'user' => $user,
+        ]);
     }
 
     #[Route(path: '/logout', name: 'logout')]

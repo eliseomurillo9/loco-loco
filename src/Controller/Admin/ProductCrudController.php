@@ -3,14 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
-use App\Form\CategoryType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -29,7 +26,11 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('name'),
             BooleanField::new('is_available'),
             MoneyField::new('price')->setCurrency('EUR')->hideOnIndex(),
-            TextField::new('picture')->hideOnIndex(),
+            ImageField::new('picture')
+            ->setBasePath('images/uploads/products')
+            ->setUploadDir('public/images/uploads/products')
+            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
+            ->hideOnIndex(),
             TextEditorField::new('description')->hideOnIndex(),
             AssociationField::new('category')->hideOnIndex()
         ];

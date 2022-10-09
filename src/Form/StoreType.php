@@ -2,18 +2,11 @@
 
 namespace App\Form;
 
-use App\Entity\Address;
-use App\Form\AddressType;
 use App\Entity\Store;
-use App\Repository\AddressRepository;
-use Doctrine\ORM\EntityRepository;
-use phpDocumentor\Reflection\Types\Collection;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,29 +16,45 @@ class StoreType extends AbstractType
     {
         $builder
                 
-        ->add('name', null, 
-            [ 'label' => 'Nom' ])
+        ->add('name', null, [
+            'data_class' => null,
+            'label' => 'Nom'
+        ])
 
-        ->add('phone_number', null, 
-            [ 'label' => 'Numéro de téléphone' ])
+        ->add('phone_number', null, [
+            'data_class' => null,
+            'label' => 'Numéro de téléphone'
+        ])
 
         ->add('email')
 
-        ->add('website', null,
-            [ 'label' => 'Site Web'])
+        ->add('website', null, [
+            'data_class' => null,
+            'label' => 'Site Web'
+        ])
 
-        ->add('siret_number', null,
-            [ 'label' => 'Numéro de Siret'])
+        ->add('siret_number', null, [
+            'data_class' => null,
+            'label' => 'Numéro de Siret'
+        ])
 
-        ->add('picture', FileType::class,
-            [ 'label' => 'Image'])
+        ->add('picture', FileUploadType::class, [
+            'data_class' => null,
+            'label' => 'Image'
+        ],
+            )
 
-        ->add('description')
+        ->add('description', null,[
+            'data_class' => null,
+        ])
 
-        ->add('road_specificity', null,
-            [ 'label' => 'Indication routière'])
+        ->add('road_specificity', null, [
+            'data_class' => null,
+            'label' => 'Indication routière'
+        ])
 
         ->add('addresses',  CollectionType::class,[
+            'data_class' => null,
             'label'=> false,
             'entry_type' => AddressType::class,
             'entry_options' =>['label'=> 'Adresse'],

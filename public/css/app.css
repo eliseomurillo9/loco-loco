@@ -191,7 +191,7 @@ main {
     background-color: var(--main);
 
     display: flex;
-    height: 75vh;
+    height: 80vh;
     width: 70vw;
     text-align: left;
     border-radius: .5rem;

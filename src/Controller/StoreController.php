@@ -100,7 +100,6 @@ class StoreController extends AbstractController
         $newStore = new Store();
 
         $form = $this->createForm(StoreType::class, $newStore);
-      //  $newAddress = $this->createForm(AddressType::class, $address);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){

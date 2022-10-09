@@ -10,7 +10,7 @@
 
 {% block body %}
 <section class="profil">
-    <h1 class="title-custom marginbt-1">Mon profil utilisateur</h1>
+    <h1 class="title-custom marginbt-1">Mon profil Producteur</h1>
 
     <div class="content flex">
         <div class="start-pro margin ">
@@ -25,20 +25,22 @@
 
             <h4>Nom du gérant :</h4>
             <div class="text-icon">
-                <p>Raphaelito</p>
+                <p>{{ user.username }}</p>
                 <i class="fas fa-edit"></i>
             </div>
 
             <h4>Email :</h4>
             <div class="text-icon">
-                <p>raph@gmail.com</p>
+                <p>{{ user.email }}</p>
                 <i class="fas fa-edit"></i>
             </div>
 
             <h4>Adresse :</h4>
             <div class="text-icon">
-                <p>3 rue de la sieste, Lille, 59800</p>
+                {% for address in app.user.addresses %}
+                <p>{{ address.street }}, {{ address.city }} {{ address.zipcode }}</p>
                 <i class="fas fa-edit"></i>
+                {% endfor %}
             </div>
 
             <div class="newsletter-option">
@@ -48,14 +50,12 @@
 
         </div>
         <div class="end-pro margin">
-            <button class="marginbt-1 btn btn-second">
-                {# <a href="{{ path('store_single')}}"><i class="fas fa-globe-europe m-r-1"></i>Consulter ma page publique</a> #}
-            </button>
+
             <button class="marginbt-1 btn btn-second">
                 <a href="{{ path('store_create')}}"><i class="fa-solid fa-plus m-r-1"></i>Ajouter une boutique</a>
             </button>
             <button class="marginbt-1 btn btn-second">
-                <a href="{{ path('store_index')}}"><i class="fas fa-store m-r-1"></i>Gérer mes boutiques</a>
+                <a href="{{ path('store_indexpro')}}"><i class="fas fa-store m-r-1"></i>Gérer mes boutiques</a>
             </button>
             <button class="marginbt-1 btn btn-main-outline">
                 <a href="#" >Une question ? <br> Contactez le support technique</a>
