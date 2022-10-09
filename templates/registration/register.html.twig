@@ -21,13 +21,12 @@
                     Créer un compte
                 </h1>
                 <div class="user_selector">
-                    <span>
+                    <span class="bold">
                         Je suis:
-					<input type="button" class="checkbox" id="smsflash" name="button_name">
                     </span>
-                    <user class="options">
+                    <div class="options">
                         {{ form_row(registrationForm.roles) }}
-                    </user>
+                    </div>
                 </div>
                 {{ form_row(registrationForm.email) }}
                 <div class="user-password">

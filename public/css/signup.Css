@@ -29,41 +29,61 @@
     align-self: flex-start;
 }
 
+
+
 .popup_container .form_container .options {
     margin-top: 10px;
     height: 30px;
 }
 
-.popup_container .form_container .options button {
-    background-color: transparent;
-    color: var(--light);
+.popup_container .form_container .user_selector .options select {
+    padding: 7px 4px;
+    background-color: var(--main-bis);
+    color: var(--light-bis);
 
     font-family: Roboto, sans-serif;
-    font-size: 1rem;
-    margin: auto;
+    font-size: 0.9rem;
 
-    cursor: pointer;
-
-    transition: 0.4s;
+    border: none;
+    border-radius: 4px;
 }
 
-.popup_container .form_container .options button:first-of-type {
-    padding-right: 6px;
-    border-right: 1px solid var(--light);
+.popup_container .form_container .user_selector .options select[multiple] {
+    padding: 7px 4px;
+    background-color: var(--main-bis);
+    color: var(--light-bis);
+
+    font-family: Roboto, sans-serif;
+    font-size: 0.9rem;
+
+    border: none;
+    border-radius: 4px;
+    height: 3.5rem;
+  }
+.popup_container .form_container .user_selector .options select[multiple] option {
+    font-family: Roboto, sans-serif;
+  }
+
+  
+.popup_container .form_container .user_selector .options select:focus {
+    border: none;
 }
 
-.popup_container .form_container .options button:last-of-type {
-    padding-left: 5px;
+
+.popup_container .form_container .user_selector .options option {
+    background-color: transparent;
+    border: none;
 }
 
-.popup_container .form_container .options button:hover {
-    font-size: 1.1rem;
-    font-weight: bold;
+.popup_container .form_container .user_selector .options option:focus {
+    border: none;
 }
 
 .popup_container .form_container input[type=email] {
     width: 372px;
 }
+
+
 
 form label {
     text-align: left;
