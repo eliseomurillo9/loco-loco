@@ -1,4 +1,6 @@
-
+.container{
+    text-align: center;
+}
 .container h2{
     text-align: center;
     margin-top: 40px;
@@ -9,7 +11,6 @@
 }
 .products-container{
     margin: auto;
-    text-align: center;
     height: 100%;
     padding-top: 10px;
 }
