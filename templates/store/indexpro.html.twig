@@ -10,7 +10,7 @@
 
 {% block body %}
     <section class="store-list">
-        <h1 class="title-custom marginbt-1">Les boutiques disponibles</h1>
+        <h1 class="title-custom marginbt-1">Gérer mes boutiques</h1>
 
         <div class="flex">
 
@@ -22,15 +22,13 @@
                     <div class="container__picture marginbt-1">
                         <img src="{{ asset('images/uploads/stores/' ~ store.picture)}}" alt="vachette">
                     </div>
-
                     <div class="btns flex">
-
-                        <div>
-                      {{ store.description | striptags | slice (0,200)}}
-                        </div>
+                        <button class="btn btn-second-outline marginbt-1" type="submit" form="form" value="Submit">
+                            <a href="">Modifier ma boutique</a>
+                        </button>
 
                         <button class="btn btn-second marginbt-1" type="submit" form="form" value="Submit">
-                            <a href="{{ path('store_single' , {'slug': store.slug} ) }}">Voir la boutique</a>
+                            <a href="{{ path('store_single', {'slug': store.slug}) }}">Voir ma boutique</a>
                         </button>
 
                     </div>
