@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormTypeInterface;
@@ -54,8 +55,14 @@ class ProductType extends AbstractType
                     ->setParameter('val', $options['user']);
                 },
                 'choice_label' => 'name',
-            ]);
-        ;
+            ])
+        ->add('valider', SubmitType::class, [
+            'label' => 'Valider',
+            'attr' => [
+            'class' => 'btn-second',
+            'style' => 'width: 200px'
+                    ]
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
