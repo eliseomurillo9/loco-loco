@@ -24,9 +24,13 @@
                     </div>
 
                     <div class="btns flex">
-
                         <div>
-                      {{ store.description | striptags | slice (0,200)}}
+                            {% for address in store.addresses %}
+                                {{ address.zipcode }}, {{ address.city }}
+                            {% endfor %}
+                        </div>
+                        <div>
+                      {{ store.description | striptags | slice (0,50)}}
                         </div>
 
                         <button class="btn btn-second marginbt-1" type="submit" form="form" value="Submit">

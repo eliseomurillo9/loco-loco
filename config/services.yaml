@@ -6,6 +6,7 @@
 parameters:
     images_directory: '%kernel.project_dir%/public/images/uploads/stores'
     product_images_directory: '%kernel.project_dir%/public/images/uploads/products'
+    product_new_images_directory: '%kernel.project_dir%/public/images/uploads/editproducts'
 services:
     # default configuration for services in *this* file
     _defaults:

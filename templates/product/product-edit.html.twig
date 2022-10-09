@@ -1,16 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifer un produit{% endblock %}
+{% block title %}
+    Modifier un produit - {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/store/store-create.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+{% endblock %}
 
 {% block body %}
-    <div class="d-flex container flex-column">
-        <h1 class="text-center">Modifier un produit</h1>
-        {{ form_start(form) }}
+    <section class="store-create popup_container-create">
+
+        <div class="form-content__container">
+            <h1 class="marginbt-1">Modifier un produit</h1>
+
+            <div class="form-content flex">
 
 
+                <div class="start">
+                    {{ form_start(form) }}
+                    <div class="part">
 
-        <button class="btn btn-outline-success w-25 align-self-end" >Ajouter</button>
-        {{ form_end(form) }}
+                        {{ form_row(form.description) }}
+                    </div>
+                    <div class="part">
+                        {{ form_row(form.price) }}
+                        {{ form_row(form.picture)  }}
+                    </div>
+                </div>
 
-    </div>
+                <div class="end">
+
+                    <div class="part">
+                        {{ form_label(form.is_available)}}
+                        {{ form_errors(form.is_available)}}
+                        {{ form_widget(form.is_available)}}
+                        {{ form_help(form.is_available)}}
+
+                    </div>
+                    <div class="part">
+
+                  {{ form_row(form.valider) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
 {% endblock %}

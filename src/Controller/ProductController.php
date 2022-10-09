@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Form\EditProductType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use App\Repository\StoreRepository;
@@ -25,9 +26,9 @@ class ProductController extends AbstractController
     }
 
     #[Route('{id}/modifier', name: 'edit')]
-    #[IsGranted('ROLE_PRODUCER')]
+
     //Edit product by producer
-    public function editProducts(Product $product,EntityManagerInterface $em, SluggerInterface $slugger, Request $request): Response
+    public function editProduct(Product $product,EntityManagerInterface $em, SluggerInterface $slugger, Request $request): Response
     {
         $form = $this->createForm(ProductType::class);
         $form->handleRequest($request);
@@ -42,7 +43,7 @@ class ProductController extends AbstractController
 
                 try {
                     $imageFile->move(
-                        $this->getParameter('product_images_directory'),
+                        $this->getParameter('product_new_images_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {
@@ -57,14 +58,14 @@ class ProductController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Votre produit a été mis à jour');
-            return $this->render('product/product-edit.html.twig',[
-                'id'=> $product->getId(),
+            return $this->redirectToRoute('store_indexpro',[
+                'id'=> $product->getId()
             ]);
         }
 
 
         $this->addFlash('error', 'erreur lors de la mise à jour de votre produit');
-        return $this->render('product/product_form.html.twig',[
+        return $this->render('product/product-edit.html.twig',[
             'form' => $form->createView()
         ]);
 
@@ -73,7 +74,7 @@ class ProductController extends AbstractController
 
 
     #[Route('/add', name: 'create')]
-    #[IsGranted('ROLE_PRODUCER')]
+
     //Add new store by producer
     public function form(Request $request, SluggerInterface $slugger): Response
     {
