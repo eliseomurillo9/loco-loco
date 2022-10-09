@@ -24,13 +24,53 @@ class ProductController extends AbstractController
 
     }
 
-    #[Route('/edit', name: 'edit')]
+    #[Route('{id}/modifier', name: 'edit')]
     #[IsGranted('ROLE_PRODUCER')]
     //Edit product by producer
-    public function editProducts(StoreRepository $storeRepository): Response
+    public function editProducts(Product $product,EntityManagerInterface $em, SluggerInterface $slugger, Request $request): Response
     {
-        return $this->render('product/product_list.html.twig');
+        $form = $this->createForm(ProductType::class);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('picture')->getData();
+            // upload images
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'.'.$imageFile->guessExtension();
+
+                try {
+                    $imageFile->move(
+                        $this->getParameter('product_images_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+
+                }
+
+                $product->setPicture($newFilename);
+            }
+
+            $product = $form->getData();
+            $em->persist($product);
+            $em->flush();
+
+            $this->addFlash('success', 'Votre produit a été mis à jour');
+            return $this->render('product/product-edit.html.twig',[
+                'id'=> $product->getId(),
+            ]);
+        }
+
+
+        $this->addFlash('error', 'erreur lors de la mise à jour de votre produit');
+        return $this->render('product/product_form.html.twig',[
+            'form' => $form->createView()
+        ]);
+
     }
+
+
 
     #[Route('/add', name: 'create')]
     #[IsGranted('ROLE_PRODUCER')]
@@ -70,13 +110,13 @@ class ProductController extends AbstractController
 
             $this->productRepository->add($newProduct,true);
 
-            $this->addFlash('success', 'Votre boutique a été créée');
+            $this->addFlash('success', 'Votre produit a été ajouté');
             return $this->redirectToRoute('main_index',[
                 'id'=> $newProduct->getId()
             ]);
         }
 
-        $this->addFlash('error', 'erreur lors de la création de votre boutique');
+        $this->addFlash('error', 'erreur lors de l\'ajout de votre produit');
         return $this->render('product/product_form.html.twig',[
             'form' => $form->createView()
         ]);

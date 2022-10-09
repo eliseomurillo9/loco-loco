@@ -24,14 +24,27 @@ class StoreController extends AbstractController
     {
 
     }
+
     #[Route('', name: 'index')]
-    #[IsGranted('ROLE_PRODUCER')]
+
     // show all producer stores
     public function storeIndex(): Response
     {
+        $stores = $this->storeRepository->findBy([], ['name' => 'ASC']);
+
+        return $this->render('store/index.html.twig', [
+            'stores' => $stores,
+        ]);
+    }
+
+    #[Route('/pro', name: 'indexpro')]
+
+    // show all producer stores
+    public function storeIndexPro(): Response
+    {
         /** @var User $user */
         $user = $this->getUser();
-        return $this->render('store/index.html.twig', [
+        return $this->render('store/indexpro.html.twig', [
             'stores' => $user->getOwnedStores(),
         ]);
     }
