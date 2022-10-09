@@ -83,9 +83,6 @@ class UserController extends AbstractController
 
         return $this->redirect($request->headers->get('referer'));
 
-        return $this->render('user/grocery-list.html.twig', [
-            'groceryList' => $GroceriesList
-        ]);
     }
 
     #[Route('/profil-client', name: 'profil-client')]
@@ -126,6 +123,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/remove/favorite/{id}', name: 'remove_favorite')]
+    #[IsGranted('ROLE_USER')]
     public function removeFavorite(Request $request, StoreRepository $storeRepository, EntityManagerInterface $em, Store $store): Response
     {
         $storeId = $store->getId();
@@ -155,6 +153,7 @@ class UserController extends AbstractController
     }
 
     #[Route(path: '/add/favorite/{id}', name: 'add_favorite')]
+    #[IsGranted('ROLE_USER')]
     public function postFavorites(Request $request, StoreRepository $storeRepository, EntityManagerInterface $em, Store $store)
     {
             $storeId = $store->getId();
@@ -168,6 +167,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/add/shop-list/{id}', name: 'add_shop-list')]
+    #[IsGranted('ROLE_USER')]
     //Add product to list
     public function form(Request $request, EntityManagerInterface $em, ProductRepository $productRepository, Product $product): Response
     {

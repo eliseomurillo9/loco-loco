@@ -38,7 +38,7 @@ class StoreType extends AbstractType
             'label' => 'Numéro de Siret'
         ])
 
-        ->add('picture', FileUploadType::class, [
+        ->add('picture', FileType::class, [
             'data_class' => null,
             'label' => 'Image'
         ],

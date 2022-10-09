@@ -42,10 +42,19 @@
             <p class="marginbt-1">Hauts-de-France({{  storeAddress.zipcode }}) / {{storeAddress.city }}</p>
 
                     <div class="products-list__container marginbt-1">
-                        <h2 class="marginbt-1">Catégorie</h2>
+                        <h2 class="marginbt-1">Nos produits</h2>
+
+                        {% if  app.user == storeInfo.owner %}
+                        <button class="btn-second flex">
+                            <a class="flex " href="{{ path('product_create')}}">
+                                Ajouter un produit
+                            </a>
+                        </button>
+                        {% endif %}
 
                         <div class="products-list flex">
                             {%  for product in storeInfo.products %}
+                                {% if (product.isavailable == true) or  is_granted('ROLE_PRODUCER')%}
                             <div class="product-card box-shadow flex">
                                 <div class="img__container flex">
                                     <img src="{{ asset('images/uploads/products/' ~ product.picture)}}" alt="product">
@@ -54,19 +63,21 @@
                                     <h4 class="marginbt-1">{{ product.name }}</h4>
                                     <span>{{ product.price}} €</span>
                                 </div>
-                                {% if  app.user == storeInfo.owner %}
+
+                                    {% if  app.user == storeInfo.owner %}
                                 <button class="btn-second flex">
-                                    <a class="flex " href="{{ path('product_edit', {id: product.id}) }}">
+                                    <a class="flex " href="{{ path('product_edit', {id : product.id}) }}">
                                         Modifier mon produit
                                     </a>
                                 </button>
-                                {% else %}
+                                    {% else %}
                                 <button class="btn-second flex">
                                     <a class="flex " href="{{ path('user_add_shop-list', {id: product.id}) }}">
                                         Ajouter à ma liste
                                     </a>
                                 </button>
                                     {% endif %}
+                                {% endif %}
                             </div>
                             {% endfor %}
                             

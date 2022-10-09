@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Store;
 use App\Form\AddressType;
+use App\Form\EditProductType;
 use App\Form\ProductType;
 use App\Form\StoreHoursType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -14,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class StoreCrudController extends AbstractCrudController
 {
@@ -35,8 +37,8 @@ class StoreCrudController extends AbstractCrudController
             ImageField::new('picture')
                 ->setBasePath('images/uploads/stores')
                 ->setUploadDir('public/images/uploads/stores')
-                ->setUploadedFileNamePattern('[slug].[extension]'),
-
+                ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
+                ->hideOnIndex(),
             TextEditorField::new('description')->hideOnIndex(),
             TextEditorField::new('road_specificity')->hideOnIndex(),
             CollectionField::new('addresses')->setEntryType(AddressType::class)->hideOnIndex(),

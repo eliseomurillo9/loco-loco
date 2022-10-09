@@ -49,7 +49,11 @@ button {
 }
 
 
-
+.appflash {
+    background-color: green;
+    color: #dfdfdf;
+    text-align: center;
+}
 
 
 /* !! === CUSTOM CLASSES === !! */

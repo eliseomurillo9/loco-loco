@@ -1,5 +1,6 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/user-profil.css') }}">
 {% endblock %}
 
 {% block javascript %}{% endblock %}
@@ -12,8 +13,12 @@
 	<label class="logo bold subtitle">
 		<a href="{{ path('main_index')}}">Loco Loco</a>
 	</label>
+
 	<ul
 		class="flex">
+		{% if app.user  %}
+			<h1 class="title-custom ">{{ app.user.username }}</h1>
+		{% endif %}
 
 		{# Si, je suis connecté en tant que commerçant #}
 		{% if is_granted('ROLE_PRODUCER') %}

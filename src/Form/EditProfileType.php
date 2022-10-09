@@ -28,15 +28,15 @@ class EditProfileType extends AbstractType
                 ] 
             ])
             ->add('lastname', null,[
-                'label' => 'Nom',
+                'label' => false,
                 'attr' => [
-                    'class' => 'input-style',
+                    'style' => 'border-radius: 6px; border: 1px solid var(--main-bis); padding: 5px; '
                 ],
             ])
             ->add('firstname', null,[
-                'label' => 'Prénom',
+                'label' => false,
                 'attr' => [
-                    'class' => 'input-style',
+                    'style' => 'border-radius: 6px; border: 1px solid var(--main-bis); padding: 5px; '
                 ],
             ])
 
