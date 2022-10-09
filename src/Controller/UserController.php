@@ -57,9 +57,35 @@ class UserController extends AbstractController
     }
 
     #[Route('/grocery-list', name: 'grocery-list')]
+    #[IsGranted('ROLE_USER')]
     public function groceryList(): Response
     {
-        return $this->render('user/grocery-list.html.twig');
+
+        $GroceriesList = $this->getUser()->getProducts()->getValues();
+
+        return $this->render('user/grocery-list.html.twig', [
+            'groceryList' => $GroceriesList
+        ]);
+    }
+
+    #[Route('/remove-product/{id}', name: 'remove-product')]
+    #[IsGranted('ROLE_USER')]
+    public function removeProduct(Request $request, EntityManagerInterface $em, ProductRepository $productRepository, Product $product): Response
+    {
+
+        $productId = $product->getId();
+        $user = $this->getUser();
+        $user->removeProduct(
+            $productRepository->find($productId)
+        );
+
+        $em->flush();   
+
+        return $this->redirect($request->headers->get('referer'));
+
+        return $this->render('user/grocery-list.html.twig', [
+            'groceryList' => $GroceriesList
+        ]);
     }
 
     #[Route('/profil-client', name: 'profil-client')]

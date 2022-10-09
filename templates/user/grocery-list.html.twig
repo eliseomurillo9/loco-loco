@@ -1,14 +1,99 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}
-    {# Catalogue - {{ parent() }} #}
+    Ma liste de course - 
+                                    
+                                
+                            
+                        
+                    
+                
+            
+        
+    {{ parent() }}
 {% endblock %}
-
 {% block stylesheets %}
-    {# <link rel="stylesheet" href="{{ asset('css/game-list.css') }}"> #}
+    <link rel="stylesheet" href="{{ asset('css/user/groceries-list.css') }}">
 {% endblock %}
-
 {% block body %}
-    <h1>Ma liste de course</h1>
-
+    <div class="container">
+        <h2>
+             Ma liste de course
+                                                                                                                                            
+                                                                                                                            
+                                                                                                            
+                                                                                            
+                                                                            
+                                                            
+                                            
+                            
+         </h2>
+        <div class="products-container">
+            {% if groceryList %}
+                {% for product in groceryList %}
+                    <div class="product-card">
+                        <div class="product_img" style="background-image: url( {{ asset('images/uploads/products/' ~ product.picture ) }})"></div>
+                            <span class="bold">
+                                {{ product.name }}
+                            </span>
+                            <div class="price">
+                                <h3>
+                                    Prix                
+                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                    
+                                                                                                                                                                                
+                                                                                                                                            
+                                                                                                        
+                                                                    
+                                </h3>
+                                <span>
+                                    &euro; 
+                                                                                                                                                                                                                        
+                                                                                                                                                                                    
+                                                                                                                                                
+                                                                                                            
+                                                                        
+                                    {{ product. price }}
+                                    /kg
+                                                                                                                                                                                                                    
+                                                                                                                                                                                
+                                                                                                                                            
+                                                                                                        
+                                                                    
+                                </span>
+                            </div>
+                            {% for farm in product.stores %}
+                                <div class="farm">
+                                    <h3>
+                                        Ferme
+                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                            
+                                                                                                                                                                                                    
+                                                                                                                                                            
+                                                                                                                    
+                                                                            
+                                    </h3>
+                                    <span>
+                                        {{ farm.name }}
+                                    </span>
+                                </div>
+                            {% endfor %}
+                            <a href="{{ path('user_remove-product', {id: product.id}) }}">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </div>
+                {% endfor %}
+                    </div>
+                <a href="" class="btn btn-second btn-validate">Valider ma liste de course</a>
+            {% else %}
+                <h2>
+                    Votre liste de course est vide.
+                                                                                                                
+                                                                                            
+                                                                        
+                                                    
+                                    
+                </h2>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
