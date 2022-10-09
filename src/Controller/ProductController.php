@@ -33,7 +33,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/add', name: 'create')]
-    #[IsGranted('ROLE_PRODUCER')]
+
     //Add new store by producer
     public function form(Request $request, SluggerInterface $slugger): Response
     {

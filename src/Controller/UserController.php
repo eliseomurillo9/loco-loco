@@ -43,6 +43,8 @@ class UserController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function favorite(): Response
     {
+        $getaddresses =$this->getUser()->getfavourites()->getValues();
+        dd($getaddresses);
         return $this->render('user/favorite.html.twig');
     }
 
