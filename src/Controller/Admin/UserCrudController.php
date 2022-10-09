@@ -9,8 +9,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use phpDocumentor\Reflection\Types\Boolean;
+
 
 class UserCrudController extends AbstractCrudController
 {
@@ -27,7 +28,11 @@ class UserCrudController extends AbstractCrudController
             TextField::new('firstname'),
             TextField::new('email')->hideOnIndex(),
             TextField::new('plainPassword')->hideOnIndex(),
-            TextField::new('avatar')->hideOnIndex(),
+            ImageField::new('avatar')
+                ->setBasePath('images/uploads/avatars')
+                ->setUploadDir('public/images/uploads/avatars')
+                ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
+                ->hideOnIndex(),
             ArrayField::new('roles'),
             BooleanField::new('is_enabled'),
             CollectionField::new('Addresses')->setEntryType(AddressType::class)->hideOnIndex(),

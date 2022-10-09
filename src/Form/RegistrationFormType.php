@@ -3,21 +3,14 @@
 namespace App\Form;
 
 use App\Entity\User;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\ChoiceList\ChoiceList;
-use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class RegistrationFormType extends AbstractType
@@ -35,7 +28,7 @@ class RegistrationFormType extends AbstractType
                 'label' => false,
                 'choices' => [
                     'Un client' => "ROLE_USER",
-                    'Un commerçiant' => "ROLE_PRODUCER",
+                    'Un commerçant' => "ROLE_PRODUCER",
                 ],
                 'attr' => [
                     'style' => 'font-family: Roboto, sans-serif;'

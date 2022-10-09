@@ -34,9 +34,23 @@
 		<header>
 			{% include "components/navbar.html.twig" %}
 		</header>
-		
-		{% block body %}{% endblock %}
-		
+		<div class="appflash">
+		{% for label, messages in app.flashes %}
+			{% for message in messages %}
+
+				<div class="notification {{ label }}">
+					{{ message }}
+				</div>
+
+			{% endfor %}
+
+		{% endfor %}
+
+		</div>
+		{% block body %}
+
+		{% endblock %}
+
 
 
 		<footer>
