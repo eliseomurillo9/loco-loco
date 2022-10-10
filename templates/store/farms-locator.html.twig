@@ -17,17 +17,18 @@
 
 	
 	<section>
+		{% if stores %}
 		<div class="container">
 			<div class="bar-search">
 				<div class="head-bar">
-					<p>Autour de
+					{# <p>Autour de
 						<span>{{  userlocation }}</span>
-					</p>
+					</p> #}
 					{# <span id="location-point">
 						<i class="fa-solid fa-location-crosshairs"></i>
 					</span> #}
 					<div class="filter">
-						{{ range }} Km
+						{{ range }} Km autour de vous
 					</div>
 				</div>
 				<div class="products">
@@ -60,5 +61,8 @@
 			</div>
 			<div id="map"></div>
 		</div>
+		{% else %}
+		<h2>Aucun Ferme trouver dans votre rayon</h2>
+		{% endif %}
 	</section>
 {% endblock %}

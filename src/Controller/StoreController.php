@@ -64,6 +64,7 @@ class StoreController extends AbstractController
     
             $content = json_decode($response->getContent(), true);
             $propertyAccessor = PropertyAccess::createPropertyAccessor();
+            
             $userCity = $propertyAccessor->getValue($content, '[results][0][formatted_address]');
             $position = (object) array('lat' => $propertyAccessor->getValue($content, '[results][0][geometry][location][lat]'), 'lng' => $propertyAccessor->getValue($content, '[results][0][geometry][location][lng]'));
             
@@ -107,7 +108,6 @@ class StoreController extends AbstractController
             'stores' => $storesList,
             'position' => $position,
             'addressList' => $storeAddressList,
-            'userlocation' =>  $userCity,
             'range' => $range
         ]);
     }
