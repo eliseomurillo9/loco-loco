@@ -39,6 +39,28 @@ class StoreRepository extends ServiceEntityRepository
         }
     }
 
+
+   /**
+    * @return Store[] Returns an array of Store objects
+    */
+   public function findByProductCategory($categoryId): array
+   {
+
+    // SELECT * FROM `store`, `product`, `store_product` 
+        // WHERE store.id = store_product.store_id 
+        // AND store_product.product_id = product.id 
+        // AND product.category_id = 1;
+
+       return $this->createQueryBuilder('s')
+           ->andWhere('product.category = :val')
+           ->setParameter('val', $categoryId)
+           ->join('s.products', 'product')
+           ->orderBy('s.id', 'ASC')
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
 //    /**
 //     * @return Store[] Returns an array of Store objects
 //     */
@@ -52,6 +74,7 @@ class StoreRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
+
 
 //    public function findOneBySomeField($value): ?Store
 //    {

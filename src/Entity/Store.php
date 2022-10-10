@@ -17,6 +17,8 @@ class Store
     #[ORM\Column]
     private ?int $id = null;
 
+    public ?int $distance = null;
+
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 

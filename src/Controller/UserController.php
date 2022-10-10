@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 use App\Entity\User;
 use App\Entity\Store;
 use App\Entity\Product;
@@ -158,6 +161,32 @@ class UserController extends AbstractController
     #[Route(path: '/logout', name: 'logout')]
     public function logout(): void
     {
+    }
+
+
+    #[Route('/location', name: 'location', methods:['POST'])]
+    public function userLocation(Request $request): Response
+    {
+        $geolocation = $request->getContent();
+       $session = $request->getSession();
+
+        // dd($geolocation);
+        // $session->set('geolocation', $geolocation);
+
+        $response = new Response(
+            $geolocation,
+            Response::HTTP_OK,
+            ['content-type' => 'application/json'],
+        );
+
+        // $geolocation = $request->request->get('geolocation');
+
+        // dd($geolocation);
+        if ($geolocation) {
+            $session->set('geolocation', $response);
+        }
+        // dd($geolocation);
+        return $response;
     }
 
     #[Route(path: '/add/favorite/{id}', name: 'add_favorite')]

@@ -26,27 +26,30 @@
 	{# === HERO END === #}
 
 	{# === SEARCHBAR START === #}
-	{# Créer un composant SEARCHBAR #}
+	<div class="searchbar">
+		{% include "components/search-bar.html.twig" %}
+	</div>
 	{# === SEARCHBAR END === #}
 
 	{# === ABOUT US START === #}
-		<section class="about"> <div class="content">
+	<section class="about">
+		<div class="about-content">
 			<h2 class="marginbt-3 subtitle">Amateur de produits frais et locaux ?</h2>
 			<p class="marginbt-1">
 				<i class=" m-r-1 fas fa-arrow-circle-right"></i>
 				<span class="subtitle bold">Loco Loco</span>
 				veille à ce que vous puissiez trouver 
-				            chaussure à votre pied.
+				chaussure à votre pied.
 				<br>
 				Que vous soyez chez vous, au travail ou en voyage,
-				            ce site
+				ce site
 				<span class="bold">référence</span>
 				et
 				<span class="bold">géo-localise</span>
 				pour vous les
 				<span class="bold">producteurs</span>
 				et les points de vente proposant les produits au
-				            plus proche de chez vous.
+				plus proche de chez vous.
 			</p>
 			<div class="deco-icons marginbt-1">
 				<i class="fas fa-apple-alt"></i>
@@ -55,7 +58,6 @@
 		</div>
 	</section>
 	{# === ABOUT US END === #}
-	{% include "components/search-bar.html.twig" %}
 
 	{# === RATING START === #}
 	<section class="rating">
