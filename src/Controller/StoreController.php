@@ -80,7 +80,6 @@ class StoreController extends AbstractController
     public function storeSingleAbout(Store $store = null): Response
     {
         $storeAddress = $store->getAddresses()->getValues();
-
         return $this->render('store/single-about.html.twig', [
             'storeInfo' => $store,
             'storeAddress' => $storeAddress
