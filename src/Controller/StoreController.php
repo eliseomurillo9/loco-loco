@@ -64,7 +64,7 @@ class StoreController extends AbstractController
     
             $content = json_decode($response->getContent(), true);
             $propertyAccessor = PropertyAccess::createPropertyAccessor();
-    
+            $userCity = $propertyAccessor->getValue($content, '[results][0][formatted_address]');
             $position = (object) array('lat' => $propertyAccessor->getValue($content, '[results][0][geometry][location][lat]'), 'lng' => $propertyAccessor->getValue($content, '[results][0][geometry][location][lng]'));
             
         }else {
@@ -101,12 +101,14 @@ class StoreController extends AbstractController
 
             
             $session->set('storeCoords', $storeAddressList);
-                
+            $session->set('userCoords', $position);
         // TODO Trier le tableau par distance croissant
         return $this->render('store/farms-locator.html.twig', [
             'stores' => $storesList,
             'position' => $position,
-            'addressList' => $storeAddressList
+            'addressList' => $storeAddressList,
+            'userlocation' =>  $userCity,
+            'range' => $range
         ]);
     }
 
@@ -116,11 +118,14 @@ class StoreController extends AbstractController
         $session = $request->getSession();
 
         $addresses = $session->get('storeCoords');
+        $userCoords = $session->get('userCoords');
+
+        $data = ['storeCoords' => $addresses, 'userCoords' => $userCoords];
        
         // error_log($addresses);
         // dd($addresses);
 
-       $response = new JsonResponse($addresses);
+       $response = new JsonResponse($data);
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;

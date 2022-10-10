@@ -18,19 +18,21 @@ async function getAddress() {
 }
 
 async function initMap() {
-  const position = await getAddress()
-
-  if (position) {
-    map = await new google.maps.Map(document.getElementById('map'), {
+  let userPosition = await getAddress().userCoords;
+  // const storePosition = await getAddress().storeCoords;
+  console.log(userPosition);
+  if (storePosition) {
+    map =  new google.maps.Map(document.getElementById('map'), {
       mapId: '981b93be4c70d164',
-      center: { lat: parseFloat(coords.lat), lng: parseFloat(coords.lng) },
+      center:  { userPosition },
       zoom: 16,
     })
 
-    position.forEach(async (coords) => {
+    storePosition.forEach(async (coords) => {
+      console.log(coords);
       await new google.maps.Marker({
-        position:{ lat: parseFloat(coords.lat), lng: parseFloat(coords.lng) },
-        map,
+        position: new google.maps.LatLng(parseFloat(coords.lat), parseFloat(coords.lng)),
+        map: map,
         title: 'Hello World!',
       })
     })

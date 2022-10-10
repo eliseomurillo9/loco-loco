@@ -7,8 +7,9 @@ use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class SearchbarType extends AbstractType
@@ -20,20 +21,23 @@ class SearchbarType extends AbstractType
         ->setMethod('GET')
         ->add('category', EntityType::class, [
             'label' => false,
+            'placeholder' => 'Categorie',
             'required' => false,
             'class' => Category::class,
         ])
-        ->add('location', TextareaType::class, [
-            'label' => 'On tas?',
+        ->add('location', TextType::class, [
+            'label' => 'Ou suis je?',
             'required' => false,
+            
 
         ])
         ->add('range', ChoiceType::class, [
-            'label' => 'Cuanto remas?',
+            'placeholder' => 'Dans un rayons de:',
+            'label' => false,
             'choices' => [
-                '5' => 5,
-                '10' => 10,
-                '15' => 15,
+                '5 km' => 5,
+                '10 km' => 10,
+                '15 km' => 15,
             ]
         ]);
     }

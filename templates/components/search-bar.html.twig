@@ -1,5 +1,5 @@
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/search-bar.css') }}">
 
 {% endblock %}
 
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block body %}
-	<h1>hello</h1>
+	<div class="search-bar">
 	{{ form_start(searchForm) }}
 	{{ form_row(searchForm.category) }}
 	<span id="location-point">
@@ -16,6 +16,9 @@
 	</span>
 	{{ form_row(searchForm.location) }}
 	{{ form_row(searchForm.range) }}
-	<button type="submit" class="btn btn-second">Register</button>
+	<div class="submit_button">
+	<button type="submit" class="btn btn-second">Regarder les fermes</button>
+</div>
 	{{ form_end(searchForm) }}
+</div>
 {% endblock %}

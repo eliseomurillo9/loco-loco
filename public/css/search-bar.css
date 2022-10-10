@@ -1,0 +1,52 @@
+
+.search-bar form{
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    width: 90vw;
+    margin: auto;
+
+    margin: 29px auto;
+}
+
+.search-bar form div{
+display: flex;
+flex-direction: column;
+margin: auto;
+}
+
+label{
+    color: var(--main-bis);
+    font-size: 0.8rem;
+}
+
+select{
+    border-radius: 4px;
+    padding: 8px;
+    font-weight: bold;
+    border: none;
+    
+}
+
+input{
+    border-radius: 4px;
+    padding: 8px;
+
+    border: none;
+}
+
+span{
+    margin: auto;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+span:hover{
+    color: var(--main);
+}
+
+
+textarea{
+    border-radius: 8px;
+}

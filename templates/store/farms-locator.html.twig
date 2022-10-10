@@ -21,25 +21,13 @@
 			<div class="bar-search">
 				<div class="head-bar">
 					<p>Autour de
-						<span>Ville</span>
+						<span>{{  userlocation }}</span>
 					</p>
 					{# <span id="location-point">
 						<i class="fa-solid fa-location-crosshairs"></i>
 					</span> #}
 					<div class="filter">
-						<span>Filter par distance</span>
-						<select name="range-filter" id="range-filter">
-
-							<option value="1 km">
-								5 KM
-							</option>
-							<option value="2 km">
-								10 KM
-							</option>
-							<option value="3 km">
-								15 KM
-							</option>
-						</select>
+						{{ range }} Km
 					</div>
 				</div>
 				<div class="products">
