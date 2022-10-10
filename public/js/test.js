@@ -41,7 +41,7 @@ async function initMap() {
     map =  new google.maps.Map(document.getElementById('map'), {
       mapId: '981b93be4c70d164',
       center:  { lat: userPosition.lat, lng: userPosition.lng },
-      zoom: 1,
+      zoom: 12,
     })
 
     storePosition.forEach(async (coords) => {
