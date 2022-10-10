@@ -2,23 +2,16 @@
 
 namespace App\Form;
 
-use App\Entity\User;
 use App\Entity\Store;
 use App\Entity\Product;
-use App\Repository\UserRepository;
-use Doctrine\DBAL\Types\AsciiStringType;
-use Doctrine\DBAL\Types\BinaryType;
-use Doctrine\DBAL\Types\BooleanType;
 use Doctrine\ORM\EntityRepository;
-use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 
 class ProductType extends AbstractType
 {
@@ -38,7 +31,7 @@ class ProductType extends AbstractType
                 'label' => 'Prix'
             ])
             ->add('picture', FileType::class, [
-                'label' => 'Image du produit'
+                'label' => 'Image du produit',
             ])
             ->add('description',null,[
                 'attr'=>[

@@ -10,7 +10,7 @@
 
 {% block body %}
 <section class="profil">
-    <h1 class="title-custom marginbt-1">Mon profil utilisateur</h1>
+    <h1 class="title-custom marginbt-1">Mon profil Producteur</h1>
 
     <div class="content flex">
         <div class="start-pro margin ">
@@ -22,25 +22,30 @@
         </div>
 
         <div class="infos margin">
-
-            <h4>Nom du gérant :</h4>
-            <div class="text-icon">
-                <p>Raphaelito</p>
+            <a href="{{ path('user_profile-edit') }}" style="font-weight: bold">
+                Modifier le profil
                 <i class="fas fa-edit"></i>
+            </a>
+
+            <h4>Pseudo :</h4>
+            <div class="text-icon">
+                <p>{{ user.username }}</p>
+
             </div>
 
             <h4>Email :</h4>
             <div class="text-icon">
-                <p>raph@gmail.com</p>
-                <i class="fas fa-edit"></i>
+                <p>{{ user.email }}</p>
+
             </div>
 
-            <h4>Adresse :</h4>
+            {% if (app.user.lastname) and  (app.user.firstname) %}
+            <h4>Nom et Prénom du gérant:</h4>
             <div class="text-icon">
-                <p>3 rue de la sieste, Lille, 59800</p>
-                <i class="fas fa-edit"></i>
-            </div>
+                <p>{{ user.lastname }} {{ user.firstname }} </p>
 
+            </div>
+            {% endif %}
             <div class="newsletter-option">
                 <h4>Souhaitez-vous être abonné à notre newsletter ?</h4>
                 <i class="fas fa-toggle-off"></i>
@@ -48,14 +53,12 @@
 
         </div>
         <div class="end-pro margin">
-            <button class="marginbt-1 btn btn-second">
-                {# <a href="{{ path('store_single')}}"><i class="fas fa-globe-europe m-r-1"></i>Consulter ma page publique</a> #}
-            </button>
+
             <button class="marginbt-1 btn btn-second">
                 <a href="{{ path('store_create')}}"><i class="fa-solid fa-plus m-r-1"></i>Ajouter une boutique</a>
             </button>
             <button class="marginbt-1 btn btn-second">
-                <a href="{{ path('store_index')}}"><i class="fas fa-store m-r-1"></i>Gérer mes boutiques</a>
+                <a href="{{ path('store_indexpro')}}"><i class="fas fa-store m-r-1"></i>Gérer mes boutiques</a>
             </button>
             <button class="marginbt-1 btn btn-main-outline">
                 <a href="#" >Une question ? <br> Contactez le support technique</a>

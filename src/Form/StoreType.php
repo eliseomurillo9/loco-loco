@@ -2,13 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Address;
-use App\Form\AddressType;
 use App\Entity\Store;
-use App\Repository\AddressRepository;
-use Doctrine\ORM\EntityRepository;
-use phpDocumentor\Reflection\Types\Collection;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -24,7 +19,7 @@ class StoreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-                
+
         ->add('name', null, [ 
             'label' => 'Nom',
            
@@ -34,9 +29,11 @@ class StoreType extends AbstractType
             [ 'label' => 'Numéro de téléphone',
            ])
 
+
         ->add('email', EmailType::class, [
            
         ])
+
 
         ->add('website', null,
             [ 'label' => 'Site Web',
@@ -59,7 +56,9 @@ class StoreType extends AbstractType
             [ 'label' => 'Indication routière',
             ])
 
+
         ->add('addresses',  CollectionType::class,[
+            'data_class' => null,
             'label'=> false,
             'entry_type' => AddressType::class,
             'entry_options' =>['label'=> 'Adresse'],

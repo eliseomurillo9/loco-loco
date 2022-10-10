@@ -25,8 +25,9 @@ class ProductController extends AbstractController
 
     }
 
-    #[Route('/{id}/edit', name: 'edit')]
 
+    #[Route('/{id}/edit', name: 'edit')]
+    #[IsGranted('ROLE_PRODUCER')]
     //Edit product by producer
     public function editProduct(Product $product, ProductRepository $productRepository, EntityManagerInterface $em, SluggerInterface $slugger, Request $request): Response
     {
@@ -64,7 +65,7 @@ class ProductController extends AbstractController
         }
 
 
-        $this->addFlash('error', 'erreur lors de la mise à jour de votre produit');
+
         return $this->render('product/product-edit.html.twig',[
             'form' => $form->createView()
         ]);
@@ -74,7 +75,7 @@ class ProductController extends AbstractController
 
 
     #[Route('/add', name: 'create')]
-
+    #[IsGranted('ROLE_PRODUCER')]
     //Add new store by producer
     public function form(Request $request, SluggerInterface $slugger): Response
     {
@@ -112,12 +113,12 @@ class ProductController extends AbstractController
             $this->productRepository->add($newProduct,true);
 
             $this->addFlash('success', 'Votre produit a été ajouté');
-            return $this->redirectToRoute('main_index',[
+            return $this->redirectToRoute('store_indexpro',[
                 'id'=> $newProduct->getId()
             ]);
         }
 
-        $this->addFlash('error', 'erreur lors de l\'ajout de votre produit');
+
         return $this->render('product/product_form.html.twig',[
             'form' => $form->createView()
         ]);

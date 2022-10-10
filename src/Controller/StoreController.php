@@ -38,7 +38,7 @@ class StoreController extends AbstractController
     }
 
     #[Route('/pro', name: 'indexpro')]
-
+    #[IsGranted('ROLE_PRODUCER')]
     // show all producer stores
     public function storeIndexPro(): Response
     {
@@ -100,7 +100,6 @@ class StoreController extends AbstractController
         $newStore = new Store();
 
         $form = $this->createForm(StoreType::class, $newStore);
-      //  $newAddress = $this->createForm(AddressType::class, $address);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -135,7 +134,7 @@ class StoreController extends AbstractController
             ]);
         }
 
-        $this->addFlash('error', 'erreur lors de la création de votre boutique');
+
         return $this->render('store/store_form.html.twig',[
             'form' => $form->createView()
         ]);

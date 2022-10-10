@@ -27,6 +27,19 @@ class EditProfileType extends AbstractType
                     'style' => 'border-radius: 6px; border: 1px solid var(--main-bis); padding: 5px; '
                 ] 
             ])
+            ->add('lastname', null,[
+                'label' => false,
+                'attr' => [
+                    'style' => 'border-radius: 6px; border: 1px solid var(--main-bis); padding: 5px; '
+                ],
+            ])
+            ->add('firstname', null,[
+                'label' => false,
+                'attr' => [
+                    'style' => 'border-radius: 6px; border: 1px solid var(--main-bis); padding: 5px; '
+                ],
+            ])
+
             ->add('Valider', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-main',

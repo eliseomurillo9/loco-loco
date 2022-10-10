@@ -23,10 +23,9 @@
                         <img src="{{ asset('images/uploads/stores/' ~ store.picture)}}" alt="vachette">
                     </div>
                     <div class="btns flex">
-                        <button class="btn btn-second-outline marginbt-1" type="submit" form="form" value="Submit">
-                            <a href="">Modifier ma boutique</a>
-                        </button>
-
+                        {% for address in store.addresses %}
+                            {{ address.street }}, {{ address.city }} {{ address.zipcode }}
+                        {% endfor %}
                         <button class="btn btn-second marginbt-1" type="submit" form="form" value="Submit">
                             <a href="{{ path('store_single', {'slug': store.slug}) }}">Voir ma boutique</a>
                         </button>
