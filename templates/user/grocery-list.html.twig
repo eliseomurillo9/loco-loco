@@ -1,32 +1,15 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}
-    Ma liste de course - 
-                                    
-                                
-                            
-                        
-                    
-                
-            
-        
-    {{ parent() }}
+    Ma liste de course - {{ parent() }}
 {% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/user/groceries-list.css') }}">
 {% endblock %}
 {% block body %}
     <div class="container">
-        <h2>
-             Ma liste de course
-                                                                                                                                            
-                                                                                                                            
-                                                                                                            
-                                                                                            
-                                                                            
-                                                            
-                                            
-                            
-         </h2>
+        <h2> Ma liste de course</h2>
         <div class="products-container">
             {% if groceryList %}
                 {% for product in groceryList %}
@@ -38,39 +21,17 @@
                             <div class="price">
                                 <h3>
                                     Prix                
-                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                    
-                                                                                                                                                                                
-                                                                                                                                            
-                                                                                                        
-                                                                    
                                 </h3>
                                 <span>
                                     &euro; 
-                                                                                                                                                                                                                        
-                                                                                                                                                                                    
-                                                                                                                                                
-                                                                                                            
-                                                                        
                                     {{ product. price }}
                                     /kg
-                                                                                                                                                                                                                    
-                                                                                                                                                                                
-                                                                                                                                            
-                                                                                                        
-                                                                    
                                 </span>
                             </div>
                             {% for farm in product.stores %}
                                 <div class="farm">
                                     <h3>
                                         Ferme
-                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                            
-                                                                                                                                                                                                    
-                                                                                                                                                            
-                                                                                                                    
-                                                                            
                                     </h3>
                                     <span>
                                         {{ farm.name }}
@@ -83,15 +44,9 @@
                         </div>
                 {% endfor %}
                     </div>
-                <a href="" class="btn btn-second btn-validate">Valider ma liste de course</a>
             {% else %}
                 <h2>
                     Votre liste de course est vide.
-                                                                                                                
-                                                                                            
-                                                                        
-                                                    
-                                    
                 </h2>
             {% endif %}
         </div>
