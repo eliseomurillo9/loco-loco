@@ -161,8 +161,8 @@ class UserController extends AbstractController
             $user->addFavourite(
                 $storeRepository->find($storeId)
             );
-            $em->flush();   
-    
+            $em->flush();
+        $this->addFlash('success', 'Le magasin a été ajouté à vos favoris');
         return $this->redirect($request->headers->get('referer'));
     }
 
