@@ -33,4 +33,11 @@ class MainController extends AbstractController
             'searchForm' => $searchForm->createView(),
         ]);
     }
+
+    #[Route('/conditions', name: 'condicitions')]
+    public function conditions(): Response
+    {
+        return $this->render('main/conditions.html.twig', [
+        ]);
+    }
 }
