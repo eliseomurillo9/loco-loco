@@ -33,7 +33,7 @@ class ProductCrudController extends AbstractCrudController
             ->setUploadDir('public/images/uploads/products')
             ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
             ->hideOnIndex(),
-            TextEditorField::new('description')->hideOnIndex(),
+            TextField::new('description')->hideOnIndex()->renderAsHtml(),
             AssociationField::new('category')->hideOnIndex()
         ];
     }

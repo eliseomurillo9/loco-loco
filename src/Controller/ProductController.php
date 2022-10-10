@@ -61,10 +61,8 @@ class ProductController extends AbstractController
             $em->persist($productInfo);
             $em->flush();
 
-            return $this->redirectToRoute('user_profil-client');
+            return $this->redirectToRoute('store_indexpro');
         }
-
-
 
         return $this->render('product/product-edit.html.twig',[
             'form' => $form->createView()

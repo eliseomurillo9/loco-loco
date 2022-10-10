@@ -46,7 +46,7 @@
                         <h2 class="marginbt-1">Nos produits</h2>
 
                         {% if  app.user == storeInfo.owner %}
-                        <button class="btn-second flex">
+                        <button class="btn btn-second flex">
                             <a class="flex " href="{{ path('product_create')}}">
                                 Ajouter un produit
                             </a>
@@ -55,7 +55,7 @@
 
                         <div class="products-list flex">
                             {%  for product in storeInfo.products %}
-                                {% if (product.isavailable == true) or  is_granted('ROLE_PRODUCER')%}
+                                {% if (product.isavailable) or  is_granted('ROLE_PRODUCER')%}
                             <div class="product-card box-shadow flex">
                                 <div class="img__container flex">
                                     <img src="{{ asset('images/uploads/products/' ~ product.picture)}}" alt="product">

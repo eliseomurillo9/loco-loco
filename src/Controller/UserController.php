@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 use App\Entity\User;
 use App\Entity\Store;
 use App\Entity\Product;
@@ -63,6 +66,7 @@ class UserController extends AbstractController
 
         $GroceriesList = $this->getUser()->getProducts()->getValues();
 
+
         return $this->render('user/grocery-list.html.twig', [
             'groceryList' => $GroceriesList
         ]);
@@ -113,14 +117,21 @@ class UserController extends AbstractController
             $em->persist($userInfo);
             $em->flush();
 
-            return $this->redirectToRoute('user_profil-client');
+            if ($this->isGranted('ROLE_PRODUCER')) {
+            return $this->redirectToRoute('user_profil-pro');
+            }
+            else {
+
+                return $this->redirectToRoute('user_profil-client');
+            }
         }
 
-        return $this->render('user/profil-client-edit.html.twig', [
-            'user' => $userInfo,
-            'formEdit' => $form->createView(),
-        ]);
-    }
+    return $this->render('user/profil-client-edit.html.twig', [
+        'user' => $userInfo,
+        'formEdit' => $form->createView(),
+    ]);
+}
+
 
     #[Route('/remove/favorite/{id}', name: 'remove_favorite')]
     #[IsGranted('ROLE_USER')]
@@ -152,6 +163,32 @@ class UserController extends AbstractController
     {
     }
 
+
+    #[Route('/location', name: 'location', methods:['POST'])]
+    public function userLocation(Request $request): Response
+    {
+        $geolocation = $request->getContent();
+       $session = $request->getSession();
+
+        // dd($geolocation);
+        // $session->set('geolocation', $geolocation);
+
+        $response = new Response(
+            $geolocation,
+            Response::HTTP_OK,
+            ['content-type' => 'application/json'],
+        );
+
+        // $geolocation = $request->request->get('geolocation');
+
+        // dd($geolocation);
+        if ($geolocation) {
+            $session->set('geolocation', $response);
+        }
+        // dd($geolocation);
+        return $response;
+    }
+
     #[Route(path: '/add/favorite/{id}', name: 'add_favorite')]
     #[IsGranted('ROLE_USER')]
     public function postFavorites(Request $request, StoreRepository $storeRepository, EntityManagerInterface $em, Store $store)
@@ -161,8 +198,9 @@ class UserController extends AbstractController
             $user->addFavourite(
                 $storeRepository->find($storeId)
             );
-            $em->flush();   
-    
+            $em->flush();
+
+        $this->addFlash('success', 'La boutique a été ajouté à vos favoris');
         return $this->redirect($request->headers->get('referer'));
     }
 

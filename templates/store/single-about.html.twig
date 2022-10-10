@@ -50,6 +50,7 @@
                                         {{ address.city }}
                                     </p>
                                 {% endfor %}
+                               
                                 {# --- CONTACT DETAILS START --- #}
                                 <div class="single__contact-details">
                                     <h4 class="marginbt-1">
@@ -59,32 +60,28 @@
                                     </h4>
                                     <div class="contact-details__container flex">
                                         <div class="details">
-                                            {% for address in storeAddress %}
-                                                <div class="text-content marginbt-1">
-                                                    <p>
-                                                        Adresse :
-                                                                                                                                                            
-                                                                                                        
-                                                    </p>
-                                                    <p>
-                                                        {{ address.street }}
-                                                        , 
-                                                                                                                                                                                                            
-                                                                                                                                                                
-                                                                                                            
-                                                        {{ address.city }}
-                                                        , 
-                                                                                                                                                                                                            
-                                                                                                                                                                
-                                                                                                            
-                                                        {{ address.zipcode }}
-                                                    </p>
-                                                </div>
-                                            {% endfor %}
-                                            <div class="text-content marginbt-1">
+                                        {% for address in storeAddress %}
+                                        <div class="text-content marginbt-1">
+                                        <p>
+                                            Adresse :
+                                            
+                                        </p>
+                                        <p>
+                                            {{ address.street }}
+                                            , 
+                                            
+                                            
+                                            {{ address.city }}
+                                            , 
+                                            
+                                            
+                                            {{ address.zipcode }}
+                                        </p>
+                                    </div>
+                                {% endfor %}
+                                    <div class="text-content marginbt-1">
                                                 <p>
-                                                    Téléphone :
-                                                                                                                                                        
+                                                    Téléphone :                                                                                                             
                                                                                                     
                                                 </p>
                                                 <p>
@@ -113,9 +110,7 @@
                                             </div>
                                             <div class="text-content">
                                                 <p>
-                                                    Indication routière :
-                                                                                                                                                        
-                                                                                                    
+                                                    Indication routière :                                            
                                                 </p>
                                                 <p>
                                                     .
@@ -125,6 +120,7 @@
                                             </div>
                                         </div>
                                         {% for address in storeAddress %}
+
                                         <div class="single__map flex">
                                             <iframe frameborder="0" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&q={{ address.latitude }},{{ address.longitude }}" allowfullscreen></iframe>
                                         </div>
