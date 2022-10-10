@@ -39,6 +39,14 @@
     font-size: 96px;
 }
 
+/* === SEARCHBAR === */
+/* -------------------------------------------------- */
+.searchbar{
+    position: absolute;
+    top: 70%;
+    right: 0;
+    left: 0;
+}
 
 /* === ABOUT US === */
 
