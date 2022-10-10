@@ -1,6 +1,5 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/search-bar.css') }}">
-
 {% endblock %}
 
 {% block javascript %}
@@ -11,13 +10,13 @@
 	<div class="search-bar">
 	{{ form_start(searchForm) }}
 	{{ form_row(searchForm.category) }}
-	<span id="location-point">
-		<i class="fa-solid fa-location-crosshairs"></i>
-	</span>
-	{{ form_row(searchForm.location) }}
+		<span id="location-point">
+			<i class="fa-solid fa-location-crosshairs"></i>
+		</span>
+		{{ form_row(searchForm.location) }}
 	{{ form_row(searchForm.range) }}
 	<div class="submit_button">
-	<button type="submit" class="btn btn-main">Rechercher</button>
+	<button type="submit" class="btn-search btn-main">Rechercher</button>
 </div>
 	{{ form_end(searchForm) }}
 </div>

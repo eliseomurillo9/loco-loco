@@ -26,13 +26,13 @@ class SearchbarType extends AbstractType
             'class' => Category::class,
         ])
         ->add('location', TextType::class, [
-            'label' => 'Ou suis je?',
+            'label' => 'Où suis je ?',
             'required' => false,
             
 
         ])
         ->add('range', ChoiceType::class, [
-            'placeholder' => 'Dans un rayons de:',
+            'placeholder' => 'Dans un rayons de :',
             'label' => false,
             'choices' => [
                 '5 km' => 5,

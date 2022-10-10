@@ -1,52 +1,67 @@
-
 .search-bar form{
     display: flex;
-    justify-content: space-around;
-    align-content: center;
-    /* width: 90vw; */
-    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
 
-    background-color: var(--second);
+    width: 70vw;
+    margin: 0 auto; 
+
+    background-color: var(--light);
+    padding: 2rem;
+    border-radius: .5rem;
 }
 
 .search-bar form div{
-display: flex;
-flex-direction: column;
-margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+    position: relative;
+
 }
 
 label{
-    color: var(--main-bis);
+    color: var(--dark);
     font-size: 0.8rem;
+    position: absolute;
+    top: -60%;
+    left: 6%;
 }
 
 select{
-    border-radius: 4px;
-    padding: 8px;
     font-weight: bold;
-    border: none;  
 }
 
 input{
-    border-radius: 4px;
-    padding: 8px;
-
-    border: none;
-    outline: none;
+    padding-left: .5rem;
 }
 
-span{
+
+select,
+input,
+textarea{
+    border: 1px solid var(--main-bis);
+    outline: none;
+    border-radius: .5rem;
+    padding: .5rem;
+}
+
+#location-point{
+    position: absolute;
+    left: 30%;
     margin: auto;
     cursor: pointer;
 
     transition: 0.3s;
 }
 
-span:hover{
+#location-point:hover{
     color: var(--main);
 }
 
 
-textarea{
-    border-radius: 8px;
+.btn-search{
+    width: 10rem;
+    padding: .5rem;
+    border-radius: .5rem;
 }

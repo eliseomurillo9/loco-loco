@@ -3,9 +3,16 @@
     margin: 0 auto;
 }
 
+.about-content{
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 4rem;
+}
+
+
 /* === HERO === */
 .hero{
-    height: 70vh;
+    height: 60vh;
     width: 100%;
     background: url(../images/home/background.png) no-repeat;
     background-size: cover;
@@ -39,11 +46,16 @@
     font-size: 96px;
 }
 
+.hero i{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
 /* === SEARCHBAR === */
 /* -------------------------------------------------- */
 .searchbar{
     position: absolute;
-    top: 70%;
+    top: 65%;
     right: 0;
     left: 0;
 }
@@ -53,6 +65,7 @@
 .about{
     background-color: var(--main);
     color: var(--light-bis);
+    padding-top: 5rem;
     padding: 2rem;
     text-align: center;
 }
