@@ -202,9 +202,20 @@ class StoreController extends AbstractController
         $newStore = new Store();
 
         $form = $this->createForm(StoreType::class, $newStore);
+       
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+
+            $address = $form->get('addresses')->getData();
+            $client = HttpClient::create();
+            $response = $client->request('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $address->getValues()[0]->getStreet() . '+' . $address->getValues()[0]->getCity() . '+' . $address->getValues()[0]->getZipcode() . '&key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo');
+    
+            $content = json_decode($response->getContent(), true);
+
+            $storeLat = $content['results'][0]['geometry']['location']['lat'];
+            $storeLng = $content['results'][0]['geometry']['location']['lat'];
+
             $imageFile = $form->get('picture')->getData();
             // upload images
             if ($imageFile) {
@@ -228,6 +239,8 @@ class StoreController extends AbstractController
             $newStore->setSlug($slugger->slug($name));
             $newStore->setOwner($user);
             $newStore->getAddresses()->first()->setStores($newStore);
+            $newStore->getAddresses()->first()->setLatitude($storeLat);
+            $newStore->getAddresses()->first()->setLongitude($storeLng);
             $this->storeRepository->add($newStore,true);
 
             $this->addFlash('success', 'Votre boutique a été créée');
