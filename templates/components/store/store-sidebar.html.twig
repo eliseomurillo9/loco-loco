@@ -23,11 +23,9 @@
                     </div>
 
             <div class="favorite">
-                {% if app.user.getfavourites  %}
+
                <a href="{{ path('user_add_favorite', {id: storeInfo.id}) }}"> <i class="far fa-heart" id="favorite_button"></i> </a>
-                {% else %}
-            <a href="{{ path('user_add_favorite', {id: storeInfo.id}) }}"> <i class="fa-solid fa-heart"></i> </a>
-                {% endif %}
+
             </div>
         </div>
 
