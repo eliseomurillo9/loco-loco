@@ -39,8 +39,8 @@ class StoreCrudController extends AbstractCrudController
                 ->setUploadDir('public/images/uploads/stores')
                 ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
                 ->hideOnIndex(),
-            TextEditorField::new('description')->hideOnIndex(),
-            TextEditorField::new('road_specificity')->hideOnIndex(),
+            TextField::new('description')->hideOnIndex()->renderAsHtml(),
+            TextField::new('road_specificity')->hideOnIndex()->renderAsHtml(),
             CollectionField::new('addresses')->setEntryType(AddressType::class)->hideOnIndex(),
             CollectionField::new('storeHours')->setEntryType(StoreHoursType::class)->hideOnIndex(),
             CollectionField::new('products')->setEntryType(ProductType::class)->hideOnIndex(),

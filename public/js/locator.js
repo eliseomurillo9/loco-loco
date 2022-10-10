@@ -1,59 +1,43 @@
-let map;
-const locationPointer = document.getElementById('location-point');
-console.log(locationPointer);
+let map
+const locationPointer = document.getElementById('location-point')
+console.log(locationPointer)
 
-async function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-        mapId: "981b93be4c70d164",
-        center: { lat: 50.62936847746803, lng: 3.0572192078331324 },
-        zoom: 16,
-    });
-    
-infoWindow = new google.maps.InfoWindow();
+// Geolocation
+locationPointer.addEventListener('click', () => {
+  window.navigator.geolocation.getCurrentPosition(
+    async function (position) {
+      console.log(
+        'Position trouvée : Latitude=' +
+          position.coords.latitude +
+          ' Longitude=' +
+          position.coords.longitude,
+      )
+    let lat= position.coords.latitude;
+    let lng= position.coords.longitude;
+    let positionInfo = {lat, lng};
+      try {
+        const rawResponse = await fetch('http://127.0.0.1:8080/location', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          
+          body: JSON.stringify({ geolocation: positionInfo }),
+          
+        })
+        const content = await rawResponse.json()        
+        console.log('response', content)
+      } catch (error) {
+        console.error(error)
+      }
+      console.log(position.coords)
+    },
+    function (error) {
+      console.log('Erreur de géoloc N°' + error.code + ' : ' + error.message)
+      console.log(error)
+    },
+    )
+})
 
-    console.log('hello', infoWindow);
 
-    locationPointer.addEventListener('click', () => {
-        map = new google.maps.Map(document.getElementById("map"), {
-            mapId: "981b93be4c70d164",
-            center: { lat: 50.62936847746803, lng: 3.0572192078331324 },
-            zoom: 16,
-        });
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    };
-                    console.log(pos);
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent("Location found.");
-                    infoWindow.open(map);
-                    map.setCenter(pos);
-                },
-                () => {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                }
-            );
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        };
 
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(
-                browserHasGeolocation
-                    ? "Error: The Geolocation service failed."
-                    : "Error: Your browser doesn't support geolocation."
-            )
-        };
-        infoWindow.open(map);
-
-    });
-    
-    
-}
-
-window.initMap = initMap;

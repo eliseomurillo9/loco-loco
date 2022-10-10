@@ -24,8 +24,8 @@
     margin: 15rem 2rem;
     padding-bottom: 3rem;
 
-    position: absolute;
-    top: 0;
+    position: relative;
+    top: -405px;
     right: 0;
     left: 0;
 }
@@ -109,6 +109,27 @@ iframe {
 
 /* !! === MEDIA QUERIES === !! */
 /* ------------------------------------------------------------- */
+@media all and (max-device-width: 1534px){
+    
+}
+@media all and (max-device-width: 1206px)
+{
+    .tab{
+        padding: 2rem;
+        width: 350px;
+    }
+    
+}
+
+@media all and (max-device-width: 1402px)
+{
+    .tab{
+        padding: 2rem;
+        width: 270px;
+    }
+    
+}
+
 @media all and (max-device-width: 480px)
 {
     .single__banniere{

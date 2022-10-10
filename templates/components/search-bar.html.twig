@@ -1,12 +1,25 @@
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/search-bar.css') }}">
 {% endblock %}
 
-{% block javascript %}{% endblock %}
+{% block javascript %}
+	<script src="{{ asset('js/locator.js') }}" defer></script>
+{% endblock %}
 
 {% block body %}
-	<h1>hello</h1>
+	<div class="search-bar">
 	{{ form_start(searchForm) }}
-	<button type="submit" class="btn btn-second">Register</button>
+	{{ form_row(searchForm.category) }}
+		<span id="location-point">
+			<i class="fa-solid fa-location-crosshairs"></i>
+		</span>
+		<div class="label-custom">
+			{{ form_row(searchForm.location) }}
+		</div>
+	{{ form_row(searchForm.range) }}
+	<div class="submit_button">
+	<button type="submit" class="btn-search btn-main">Rechercher</button>
+</div>
 	{{ form_end(searchForm) }}
+</div>
 {% endblock %}

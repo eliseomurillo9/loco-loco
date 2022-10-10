@@ -1,64 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StoreController!
+{% block title %}
+
 {% endblock %}
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/storespage.css') }}">
 {% endblock %}
-	{% block javascript %}
-		<script src="{{ asset('js/locator.js')}}" defer></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&map_ids=981b93be4c70d164&callback=initMap" defer></script>
-	{% endblock %}
+{% block javascript %}
+	{#<script src="{{ asset('js/locator.js') }}" defer></script>"#}
+	<script src="{{ asset('js/test.js') }}" defer></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&map_ids=981b93be4c70d164&callback=initMap" defer></script>
+{% endblock %}
 
 
 {% block body %}
+
+	
 	<section>
+		{% if stores %}
 		<div class="container">
 			<div class="bar-search">
 				<div class="head-bar">
-					<p>Autour de
-						<span>Ville</span>
-					</p>
-					<span id="location-point">
+					{# <p>Autour de
+						<span>{{  userlocation }}</span>
+					</p> #}
+					{# <span id="location-point">
 						<i class="fa-solid fa-location-crosshairs"></i>
-					</span>
+					</span> #}
 					<div class="filter">
-						<span>Filter par distance</span>
-						<select name="range-filter" id="range-filter">
-
-							<option value="1 km">
-								5 KM
-							</option>
-							<option value="2 km">
-								10 KM
-							</option>
-							<option value="3 km">
-								15 KM
-							</option>
-						</select>
+						{{ range }} Km autour de vous
 					</div>
 				</div>
 				<div class="products">
+				{% for store in stores %}
+
+
+	
 					<div class="product_card">
 						<div class="img_div">
-							<img src="{{ asset('images/tomatoes-photo.jpg') }}" alt="" srcset="">
+							<img src="{{ asset('images/uploads/stores/' ~ store.picture )}}" alt="image de {{store.name }} " >
 						</div>
 						<div class="product_info">
-							<h2>Domaine de la Sainte Vachette</h2>
-							<p>Nous vendons des varietés bien de chez nous</p>
+							<h2>{{ store.name }}</h2>
+							<p>{{ store.description }}</p>
 							<div class="buttons">
 								<div class="watch-button">
-									<a href="#">Voir</a>
+									<a href="{{ path('store_single-about', {'slug': store.slug}) }}">Voir</a>
 								</div>
+								
 								<div class="route-button">
-									<a href="#">Itinéraire</a>
+									<a href="https://www.google.fr/maps/dir/">Itinéraire</a>
+								
 								</div>
 							</div>
 						</div>
 					</div>
+				{% endfor %}
+
 				</div>
 			</div>
 			<div id="map"></div>
 		</div>
+		{% else %}
+		<p class="none-store">Aucune boutique trouvée autour de vous.</p>
+		{% endif %}
 	</section>
 {% endblock %}
