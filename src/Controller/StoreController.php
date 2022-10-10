@@ -215,7 +215,7 @@ class StoreController extends AbstractController
             $content = json_decode($response->getContent(), true);
 
             $storeLat = $content['results'][0]['geometry']['location']['lat'];
-            $storeLng = $content['results'][0]['geometry']['location']['lat'];
+            $storeLng = $content['results'][0]['geometry']['location']['lng'];
 
             $imageFile = $form->get('picture')->getData();
             // upload images
