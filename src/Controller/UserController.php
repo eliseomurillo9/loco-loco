@@ -200,7 +200,7 @@ class UserController extends AbstractController
             );
             $em->flush();
 
-        $this->addFlash('success', 'Le magasin a été ajouté à vos favoris');
+        $this->addFlash('success', 'La boutique a été ajouté à vos favoris');
         return $this->redirect($request->headers->get('referer'));
     }
 

@@ -157,7 +157,7 @@ class StoreController extends AbstractController
 
         return $response;
 }
-}
+
 
 /*    #[Route('/products', name: 'store-products', requirements:["id" => "\d+"])]
    public function getStoreProduct($id): Response

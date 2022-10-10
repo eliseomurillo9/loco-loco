@@ -276,6 +276,13 @@ main {
     outline: none;
 }
 
+.none-store{
+    margin-top: 3rem;
+    text-align: center;
+    color: var(--main-bis);
+    font-weight: bold;
+}
+
 /* === FOOTER === */
 
 footer {

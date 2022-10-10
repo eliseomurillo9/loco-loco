@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StoreController!
+{% block title %}
+
 {% endblock %}
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/storespage.css') }}">
@@ -62,7 +63,7 @@
 			<div id="map"></div>
 		</div>
 		{% else %}
-		<h2>Aucun Ferme trouver dans votre rayon</h2>
+		<p class="none-store">Aucune boutique trouvée autour de vous.</p>
 		{% endif %}
 	</section>
 {% endblock %}
