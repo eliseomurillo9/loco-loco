@@ -63,6 +63,7 @@ class UserController extends AbstractController
 
         $GroceriesList = $this->getUser()->getProducts()->getValues();
 
+        $this->addFlash('success', 'Produit ajouté à la liste de course avec succès');
         return $this->render('user/grocery-list.html.twig', [
             'groceryList' => $GroceriesList
         ]);
