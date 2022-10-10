@@ -24,8 +24,8 @@
     margin: 15rem 2rem;
     padding-bottom: 3rem;
 
-    position: absolute;
-    top: 0;
+    position: relative;
+    top: -405px;
     right: 0;
     left: 0;
 }
