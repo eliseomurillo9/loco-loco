@@ -10,7 +10,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -28,10 +27,14 @@ class ProductCrudController extends AbstractCrudController
 
             TextField::new('name'),
             BooleanField::new('is_available'),
-            MoneyField::new('price')->setCurrency('EUR'),
-            TextField::new('picture'),
-            TextEditorField::new('description'),
-            AssociationField::new('category')
+            MoneyField::new('price')->setCurrency('EUR')->hideOnIndex(),
+            ImageField::new('picture')
+            ->setBasePath('images/uploads/products')
+            ->setUploadDir('public/images/uploads/products')
+            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
+            ->hideOnIndex(),
+            TextField::new('description')->hideOnIndex()->renderAsHtml(),
+            AssociationField::new('category')->hideOnIndex()
         ];
     }
 

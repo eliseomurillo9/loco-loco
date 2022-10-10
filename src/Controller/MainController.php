@@ -14,6 +14,8 @@ class MainController extends AbstractController
 {
 
     #[Route('/', name: 'index')]
+
+    //SearchBar in progress
     public function index(Request $request): Response
     {
         $session = $request->getSession();
@@ -30,8 +32,16 @@ class MainController extends AbstractController
 
 
 
+
         return $this->render('main/index.html.twig', [
             'searchForm' => $searchForm->createView(),
+        ]);
+    }
+
+    #[Route('/conditions', name: 'condicitions')]
+    public function conditions(): Response
+    {
+        return $this->render('main/conditions.html.twig', [
         ]);
     }
 }

@@ -6,9 +6,83 @@
 {% endblock %}
 
 {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/store/store-edit.css') }}">
 {% endblock %}
 
 {% block body %}
-    <h1>Modifier ma boutique</h1>
+    <section class="store-edit">
+        <h1 class="title-custom marginbt-1">Modifier ma boutique</h1>
 
+        <div class="content flex marginbt-1">
+
+            <div class="infos">
+                <h4>Nom du commerce :</h4>
+                <div class="text-icon">
+                    <p>Le domaine de la Sainte Vachette</p>
+                    <i class="fas fa-edit"></i>
+                </div>
+    
+                <h4 >Description :</h4>
+                <div class="text-icon">
+                    <p class="reduce-box">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sapiente recusandae qui in suscipit excepturi? Pariatur iure asperiores,
+                        enim iusto excepturi alias veritatis quia omnis architecto magnam,
+                        eum vel exercitationem voluptas quos dolores aut facere molestiae illum,
+                        ipsum maxime? Quisquam, animi?
+                    </p>
+                    <i class="fas fa-edit"></i>
+                </div>
+
+                <h4>Horaires :</h4>
+                <div class="text-icon">
+                    <p>10h - 15h tous les jours.</p>
+                    <i class="fas fa-edit"></i>
+                </div>
+            </div>
+
+
+            <div class="infos">
+                <h4>Email publique :</h4>
+                <div class="text-icon">
+                    <p>mailrandom@gmail.com</p>
+                    <i class="fas fa-edit"></i>
+                </div>
+        
+                <h4>Adresse :</h4>
+                <div class="text-icon">
+                    <p>5 rue de la Mafia, Lille, 59800</p>
+                    <i class="fas fa-edit"></i>
+                </div>
+                <h4>Téléphone :</h4>
+                <div class="text-icon">
+                    <p>5 rue de la Mafia, Lille, 59800</p>
+                    <i class="fas fa-edit"></i>
+                </div>
+        
+                <h4>Moyen de paiement :</h4>
+                <div class="text-icon">
+                    <p>Carte bleue, espèces</p>
+                    <i class="fas fa-edit"></i>
+                </div>
+            </div>
+
+            <div class="flex click">
+                <button class=" btn-second ">
+                    <a class="flex" href="{{ path('product_index')}}">
+                        <span class="marginbt-1">Gérer mes produits</span>
+                        <i class=" icon-product fas fa-tractor"></i>
+                    </a>
+                </button>
+            </div>
+
+        </div>
+
+        {# --- GALLERY START --- #}
+        <div class="single__gallery marginbt-1">
+            {% include "components/store/store-gallery.html.twig" %}
+        </div>
+        {# --- GALLERY END --- #}
+
+    </section>
 {% endblock %}

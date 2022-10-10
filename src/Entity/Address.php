@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @method setAddresses(Store $param)
@@ -23,12 +24,17 @@ class Address
     private ?string $street = null;
 
     #[ORM\Column(length: 5)]
+    #[Assert\NotBlank(message:"Veuillez saisir un code postal à 5 chiffres")]
+    #[Assert\Length(
+        min : 5,
+        max : 5
+    )]
     private ?string $zipcode = null;
 
     #[ORM\Column(length: 50)]
     private ?string $city = null;
 
-    #[ORM\ManyToOne(inversedBy: 'addresses')]
+    #[ORM\ManyToOne(cascade: ["persist"], inversedBy: 'addresses')]
     private ?Store $stores = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Addresses')]
@@ -152,5 +158,8 @@ class Address
 
         return $this;
     }
-
+    public function __toString() : string
+    {
+        return $this->getStores();
+    }
 }

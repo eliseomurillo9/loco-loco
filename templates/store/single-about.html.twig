@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {# "Boutique" à remplacer par le nom en dynamique de la vrai boutique #}
+    Boutique - 
+        
+    {{ storeInfo.name }}
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/store/store-single.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/product/product-card.css') }}">
+        {% endblock %}
+        {% block javascript %}{% endblock %}
+        {% block body %}
+            <section class="single">
+                {# --- BANNIERE START --- #}
+                <div class="single__banniere">
+                    <img src="{{ asset('images/uploads/stores/' ~ storeInfo.picture) }}" alt="banniere de la boutique"></div>
+                    {# --- BANNIERE END --- #}
+                    {# === TOP LAYOUT START === #}
+                    <div class="flex top-layout">
+                        {# --- SIDEBAR START --- #}
+                        <div class="single__sidebar">
+                            {% include "components/store/store-sidebar.html.twig" %}
+                        </div>
+                        {# --- SIDEBAR END --- #}
+                        {# --- TABS START --- #}
+                        <div class="single__tab box-shadow flex">
+                            <a class="tab subtitle active-tab" href="#">
+                                A propos
+                                                            
+                            </a>
+                            <a class="tab subtitle inactive-tab" href="{{ path('store_single', {'slug': storeInfo.slug}) }}">
+                                Boutique
+                                                            
+                            </a>
+                        </div>
+                        {# === CONTENT LAYOUT START === #}
+                        <div class="content-layout flex">
+                            <div class="single__store-content">
+                                {% for address in storeAddress %}
+                                    <p class="marginbt-1">
+                                        Hauts-de-France(
+                                        {{ address.zipcode }}
+                                        ) / 
+                                        {{ address.city }}
+                                    </p>
+                                {% endfor %}
+                               
+                                {# --- CONTACT DETAILS START --- #}
+                                <div class="single__contact-details">
+                                    <h4 class="marginbt-1">
+                                        Coordonnées
+                                                                            
+                                    </h4>
+                                    <div class="contact-details__container flex">
+                                        <div class="details">
+                                        {% for address in storeAddress %}
+                                        <div class="text-content marginbt-1">
+                                        <p>
+                                            Adresse :
+                                            
+                                        </p>
+                                        <p>
+                                            {{ address.street }}
+                                            , 
+                                            
+                                            
+                                            {{ address.city }}
+                                            , 
+                                            
+                                            
+                                            {{ address.zipcode }}
+                                        </p>
+                                    </div>
+                                {% endfor %}
+                                    <div class="text-content marginbt-1">
+                                                <p>
+                                                    Téléphone :
+                                                                                                    
+                                                </p>
+                                                <p>
+                                                    {{ storeInfo.phonenumber }}
+                                                </p>
+                                            </div>
+                                            <div class="text-content marginbt-1">
+                                                <p>
+                                                    Mail :
+                                                                                                    
+                                                </p>
+                                                <p>
+                                                    {{ storeInfo.email }}
+                                                </p>
+                                            </div>
+                                            <div class="text-content marginbt-1">
+                                                <p>
+                                                    Site Web :
+                                                                                                    
+                                                </p>
+                                                <p>
+                                                    {{ storeInfo.website }}
+                                                </p>
+                                            </div>
+                                            <div class="text-content">
+                                                <p>
+                                                    Indication routière :
+                                                                                                    
+                                                </p>
+                                                <p>
+                                                    .
+                                                                                                    
+                                                </p>
+                                            </div>
+                                        </div>
+                                        {% for address in storeAddress %}
+
+                                        <div class="single__map flex">
+                                            <iframe frameborder="0" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyApzqVcCxJm5_ihnjWWQqrMJcGH4H1CKjo&q={{ address.latitude }},{{ address.longitude }}" allowfullscreen></iframe>
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                            {# --- CONTACT DETAILS END --- #}
+                            </div>
+                        </div>
+                    {# === CONTENT LAYOUT END === #}
+                    </div>
+                {# === TOP LAYOUT END === #}
+                </section>
+            {% endblock %}
+            

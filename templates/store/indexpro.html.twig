@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Mes boutiques - {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/store/store-list.css') }}">
+{% endblock %}
+
+{% block body %}
+    <section class="store-list">
+        <h1 class="title-custom marginbt-1">Gérer mes boutiques</h1>
+
+        <div class="flex">
+
+            <div class="container__items flex">
+            {%  for store in stores %}
+                <div class="item margin box-shadow">
+                    <h4 class="subtitle-custom marginbt-1">{{ store.name }}</h4>
+                    <!--<p></p>-->
+                    <div class="container__picture marginbt-1">
+                        <img src="{{ asset('images/uploads/stores/' ~ store.picture)}}" alt="vachette">
+                    </div>
+                    <div class="btns flex">
+                        {% for address in store.addresses %}
+                            {{ address.street }}, {{ address.city }} {{ address.zipcode }}
+                        {% endfor %}
+                        <button class="btn btn-second marginbt-1" type="submit" form="form" value="Submit">
+                            <a href="{{ path('store_single', {'slug': store.slug}) }}">Voir ma boutique</a>
+                        </button>
+
+                    </div>
+                </div>
+            {%  endfor %}
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

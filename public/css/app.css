@@ -40,13 +40,20 @@ li {
     text-decoration: none;
     color: inherit;
 }
+d-none {
+    display :none;
+}
 
 button {
     border: none;
 }
 
 
-
+.appflash {
+    background-color: green;
+    color: #dfdfdf;
+    text-align: center;
+}
 
 
 /* !! === CUSTOM CLASSES === !! */
@@ -180,16 +187,18 @@ main {
 }
 
 /* === FORMS STYLE === */
+/* ----------------------------------------------------------- */
 .popup_container {
     color: var(--light);
     background-color: var(--main);
 
     display: flex;
-    height: 75vh;
+    height: 80vh;
     width: 70vw;
-    text-align: center;
-    border-radius: 6px;
+    text-align: left;
+    border-radius: .5rem;
     margin: auto;
+    overflow: hidden;
 }
 
 .form_container {
@@ -217,15 +226,60 @@ main {
 
     border: none;
     border-radius: 4px;
+
+    appearance: none;
 }
 
 .input-style:focus {
+    outline: none;
+    background-color: var(--main-bis);
+}
+
+.input-style:focus::placeholder{
+    color: transparent;
+}
+
+.input-style::placeholder{
+    color: #222;
+    transition: color 0.3s ease;
+}
+
+.custom-field{
+    position: relative;
+    font-size: 14px;
+    padding-top: 20px;
+    margin-bottom: 5px;
+}
+
+.custom-field .placeholder{
+    position: absolute;
+    left: 12px;
+    top: calc(50% + 10px);
+    transform: translateY(-50%);
+    color: var(--main);
+    transition: 
+        top 0.3s ease,
+        font-size 0.3s ease,
+        color 0.3s ease;
+}
+
+.custom-field input:valid + .placeholder,
+.custom-field input:focus + .placeholder{
+    top: 10px;
+    font-size: 12px;
+    color: var(--dark);
+}
+
+.custom-field input{
+    border: none;
+    appearance: none;
     outline: none;
 }
 
 /* === FOOTER === */
 
 footer {
+    margin-top: auto;
     font-size: 14px;
 }
 

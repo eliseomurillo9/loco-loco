@@ -2,13 +2,95 @@
 
 {% block title %}
     {# "Boutique" à remplacer par le nom en dynamique de la vrai boutique #}
-    Boutique - {{ parent() }}
+     {{ storeInfo.name }} - {{ parent() }}
 {% endblock %}
 
 {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/store/store-single.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/product/product-card.css') }}">
 {% endblock %}
 
 {% block body %}
-    <h1>Boutique - Vue publique</h1>
+    <section class="single">
 
+        {# --- BANNIERE START --- #}
+        <div class="single__banniere">
+            <img src="{{ asset('images/uploads/stores/' ~ storeInfo.picture )}}" alt="banniere de la boutique">
+        </div>
+        {# --- BANNIERE END --- #}
+
+
+        {# === TOP LAYOUT START === #}
+        <div class="flex top-layout">
+
+            {# --- SIDEBAR START --- #}
+            <div class="single__sidebar">
+                {% include "components/store/store-sidebar.html.twig" %}
+            </div>
+            {# --- SIDEBAR END --- #}
+
+            {# --- TABS START --- #}
+            <div class="single__tab box-shadow flex">
+                <a class="tab subtitle inactive-tab" href="{{ path('store_single-about', {'slug': storeInfo.slug}) }}">A propos</a>
+               <a class="tab subtitle active-tab" href="#">Boutique </a>
+            </div>
+            {# --- TABS END --- #}
+
+            {# === CONTENT LAYOUT START === #}
+            <div class="content-layout flex">
+                <div class="single__store-content">
+                {% for address in storeAddress %}
+            <p class="marginbt-1">Hauts-de-France({{  address.zipcode }}) / {{ address.city }}</p>
+        {% endfor %}
+                    <div class="products-list__container marginbt-1">
+                        <h2 class="marginbt-1">Nos produits</h2>
+
+                        {% if  app.user == storeInfo.owner %}
+                        <button class="btn btn-second flex">
+                            <a class="flex " href="{{ path('product_create')}}">
+                                Ajouter un produit
+                            </a>
+                        </button>
+                        {% endif %}
+
+                        <div class="products-list flex">
+                            {%  for product in storeInfo.products %}
+                                {% if (product.isavailable) or  is_granted('ROLE_PRODUCER')%}
+                            <div class="product-card box-shadow flex">
+                                <div class="img__container flex">
+                                    <img src="{{ asset('images/uploads/products/' ~ product.picture)}}" alt="product">
+                                </div>
+                                <div class="text-content">
+                                    <h4 class="marginbt-1">{{ product.name }}</h4>
+                                    <span>{{ product.price}} €</span>
+                                </div>
+
+                                    {% if  app.user == storeInfo.owner %}
+                                <button class="btn-second flex">
+                                    <a class="flex " href="{{ path('product_edit', {id : product.id}) }}">
+                                        Modifier mon produit
+                                    </a>
+                                </button>
+                                    {% else %}
+                                <button class="btn-second flex">
+                                    <a class="flex " href="{{ path('user_add_shop-list', {id: product.id}) }}">
+                                        Ajouter à ma liste
+                                    </a>
+                                </button>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {# === CONTENT LAYOUT END === #}
+
+        </div>
+        {# === TOP LAYOUT END === #}
+
+    </section> 
 {% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Ajouter un établissement - {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/store/store-create.css') }}">
+{% endblock %}
+
+{% block body %}
+    <section class="store-create popup_container-create">
+
+        <div class="form-content__container">
+            <h1 class="marginbt-1">Ajouter un établissement</h1>
+
+            <div class="form-content flex">
+
+
+                    <div class="start">
+                        {{ form_start(form) }}
+                        <div class="part">
+                            {{ form_row(form.name) }}
+                            {{ form_row(form.description) }}
+                        </div>
+                        <div class="part">
+                            {{ form_row(form.phone_number) }}
+                            {{ form_row(form.email) }}
+                        </div>
+                    </div>
+
+                    <div class="end">
+                        <div class="part">
+                            {{ form_row(form.website) }}
+                            {{ form_row(form.siret_number) }}
+                        
+                        </div>
+                        <div class="part">
+                            {{ form_row(form.addresses.vars.prototype)}}
+                            {{ form_row(form.road_specificity) }}
+                        </div>
+
+                        {{ form_row(form.picture) }}
+
+                        <button class="btn-second">
+                            Ajouter
+                        </button>
+                    {{ form_end(form) }}
+                    </div>
+
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

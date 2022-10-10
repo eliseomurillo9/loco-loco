@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StoreRepository::class)]
 class Store
@@ -25,12 +26,20 @@ class Store
     private ?string $phone_number = null;
 
     #[ORM\Column(length: 180)]
+    #[Assert\NotBlank(message:"Veuillez saisir une adresse email")]
+    #[Assert\Length(max : 180)]
+    #[Assert\Email]
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $website = null;
 
     #[ORM\Column(length: 14)]
+    #[Assert\NotBlank(message:"Veuillez saisir un numéro de Siret à 14 chiffres")]
+    #[Assert\Length(
+        min : 14,
+        max : 14
+    )]
     private ?string $siret_number = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -52,15 +61,23 @@ class Store
     #[ORM\JoinColumn(nullable: false)]
     private Collection $addresses;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'stores')]
-    private Collection $users;
+    #[ORM\ManyToOne(inversedBy: 'ownedStores')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $owner = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favourites')]
+    private Collection $favouritesUsers;
+
+    #[ORM\Column(length: 50)]
+    private ?string $slug = null;
+
 
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
         $this->storeHours = new ArrayCollection();
         $this->products = new ArrayCollection();
-        $this->users = new ArrayCollection();
+        $this->favouritesUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -79,6 +96,7 @@ class Store
 
         return $this;
     }
+
 
     public function getPhoneNumber(): ?string
     {
@@ -232,7 +250,6 @@ class Store
 
     }
 
-
     public function addAddresses(address $addresses): self
     {
         if (!$this->addresses->contains($addresses)) {
@@ -255,26 +272,41 @@ class Store
         return $this;
     }
 
-    /**
-     * @return Collection<int, user>
-     */
-    public function getUsers(): Collection
+    public function getOwner(): ?User
     {
-        return $this->users;
+        return $this->owner;
     }
 
-    public function addUser(user $user): self
+    public function setOwner(?User $owner): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getFavouritesUsers(): Collection
+    {
+        return $this->favouritesUsers;
+    }
+
+    public function addFavouritesUser(User $favouritesUser): self
+    {
+        if (!$this->favouritesUsers->contains($favouritesUser)) {
+            $this->favouritesUsers->add($favouritesUser);
+            $favouritesUser->addFavourite($this);
         }
 
         return $this;
     }
 
-    public function removeUser(user $user): self
+    public function removeFavouritesUser(User $favouritesUser): self
     {
-        $this->users->removeElement($user);
+        if ($this->favouritesUsers->removeElement($favouritesUser)) {
+            $favouritesUser->removeFavourite($this);
+        }
 
         return $this;
     }
@@ -282,6 +314,18 @@ class Store
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
 }

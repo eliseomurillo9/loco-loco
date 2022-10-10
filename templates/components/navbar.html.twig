@@ -1,5 +1,6 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/user-profil.css') }}">
 {% endblock %}
 
 {% block javascript %}{% endblock %}
@@ -9,14 +10,23 @@
 	<label for="check" class="checkbtn">
 		<i class="fas fa-bars"></i>
 	</label>
+
 		<a class="logo bold subtitle" href="{{ path('main_index')}}">Loco Loco</a>
 	<ul
 		class="flex">
+		{% if app.user  %}
+			<h1 class="title-custom ">{{ app.user.username }}</h1>
+		{% endif %}
 
+		{# Si, je suis connecté en tant qu'admin #}
+		{% if is_granted('ROLE_ADMIN') %}
+		<li>
+			<a class="btn btn-main-outline" href="{{ path('admin')}}">BackOffice</a>
+		</li>
 		{# Si, je suis connecté en tant que commerçant #}
-		{% if is_granted('ROLE_PRO') %}
+		{% elseif is_granted('ROLE_PRODUCER') %}
 			<li>
-				<a class="btn btn-main-outline" href="{{ path('user_add-place')}}">Ajoutez votre établissement</a>
+				<a class="btn btn-main-outline" href="{{ path('store_create')}}">Ajoutez votre établissement</a>
 			</li>
 			<li>
 				<a href="{{ path('user_profil-pro')}}"><img class="avatar" src="{{ asset('images/poivron.png')}}" alt="avatar pro"></a>
@@ -25,6 +35,11 @@
 
 			{# Sinon si, je suis connecté en tant que client #}
 		{% elseif is_granted('ROLE_USER') %}
+		<li>
+			<a class="nav-icon" href="{{ path('store_index')}}">
+		<i class="fa-solid fa-store"></i>
+			</a>
+		</li>
 			<li>
 				<a class="nav-icon" href="{{ path('user_favorite')}}">
 					<i class="fas fa-fw fa-heart"></i>
@@ -40,10 +55,11 @@
 			</li>
 
 
+
 			{# Sinon, j'affiche la navbar en mode non connecté #}
 		{% else %}
 			<li>
-				<a id="signup_button" class="btn btn-main-outline">{% set submit_url = path('app_register') %}S'inscrire</a>
+				<a id="signup_button" class="btn btn-main-outline" href="{{ path('app_register')}}">S'inscrire</a>
 			</li>
 			<li>
 				<a class="btn btn-main" href="{{ path('user_login')}}">Se connecter</a>

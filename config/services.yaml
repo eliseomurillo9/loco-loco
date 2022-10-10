@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     images_directory: '%kernel.project_dir%/public/images/uploads/stores'
+    product_images_directory: '%kernel.project_dir%/public/images/uploads/products'
+    product_new_images_directory: '%kernel.project_dir%/public/images/uploads/editproducts'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -21,4 +23,4 @@ services:
             - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    # please note that last definitions always *replace* previous one

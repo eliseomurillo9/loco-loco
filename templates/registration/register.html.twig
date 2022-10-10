@@ -1,41 +1,44 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Register
+{% block title %}
+    Register
+    
 {% endblock %}
-
 {% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">
+            {{ flash_error }}
+        </div>
+    {% endfor %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/signup.css') }}">
+        {% endblock %}
+        {% block javascript %}{% endblock %}
+        <div class="popup_container box-shadow">
+            <div class="register_img"></div>
+            <div class="form_container">
+                {{ form_start(registrationForm, {'action':'register'}) }}
+                <h1 class="title">
+                    Créer un compte
+                </h1>
+                <div class="user_selector">
+                    <span class="bold">
+                        Je suis:
+                    </span>
+                    <div class="options">
+                        {{ form_row(registrationForm.roles) }}
+                    </div>
+                </div>
+                {{ form_row(registrationForm.email) }}
 
-	{% for flash_error in app.flashes('verify_email_error') %}
-		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-	{% endfor %}
-
-	{% block stylesheets %}
-		<link rel="stylesheet" href="{{ asset('css/signup.css') }}">
-	{% endblock %}
-
-	{% block javascript %}{% endblock %}
-
-		<div class="popup_container box-shadow">
-			<div class="register_img"></div>
-			<div class="form_container">
-				{{ form_start(registrationForm, {'action':'register'}) }}
-				<h1 class="title">Créer un compte</h1>
-				<div class="user_selector">
-					<span>Je suis:</span>
-					<user class="options">
-						<button name="role" type="button" value="client">Un client</button>
-						<button name="role" type="button" value="seller">Un commerçant</button>
-					</user>
-				</div>
-				{{ form_row(registrationForm.email) }}
-				<div class="user-password">
-					{{ form_row(registrationForm.username) }}
-					{{ form_row(registrationForm.plainPassword) }}
-				</div>
-
-
-				<button type="submit" class="btn btn-second">Register</button>
-				{{ form_end(registrationForm) }}
-			</div>
-		</div>
-{% endblock %}
+                <div class="user-password">
+                    {{ form_row(registrationForm.username) }}
+                    {{ form_row(registrationForm.plainPassword) }}
+                </div>
+                <button type="submit" class="btn btn-second">
+                    Register
+                </button>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    {% endblock %}
+    

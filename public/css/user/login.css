@@ -1,0 +1,126 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.login{
+    /* max-width: 1000px; */
+    margin: 3rem auto;
+    margin: auto;
+}
+
+.popup_container-login {
+    color: var(--light);
+    background-color: var(--main);
+
+    display: flex;
+    /* height: 75vh; */
+    width: 1000px;
+    text-align: left;
+    border-radius: .5rem;
+    margin: auto;
+    overflow: hidden;
+}
+
+.form-img {
+    width: 50%;
+    /* background-image: url(../../images/farm_portrait.jpg); */
+    background-image: url("https://img.freepik.com/vecteurs-libre/vecteur-paysage-fond-colline_529539-315.jpg?w=996&t=st=1665063024~exp=1665063624~hmac=383ff0f1f33884fd4de9294bb77776faa6cde801319e6d0be371d28fba447c2b");
+    background-size: cover;
+    background-position: right;
+    background-color: aqua;
+}
+
+.form-content__container{
+    padding: 3rem;
+}
+
+.form-content{
+    width: 400px;
+    margin: 0 auto;
+}
+
+.title-content .sub{
+    margin-left: 3rem;
+    font-style: italic;
+}
+
+.btn-custom{
+    /* width: 100%; */
+    padding: .5rem 2rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: bold;
+}
+
+/* --- IF USER ALREADY CONNECTED --- */
+/* ------------------------------------------------------------------- */
+.user-already-connected{
+    text-align: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 400px;
+}
+
+/* --- IF USER IS NOT CONNECTED YET --- */
+/* ------------------------------------------------------------------- */
+.inputWithLabel{
+    flex-direction: column;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.item label{
+    margin-bottom: .5rem;
+}
+
+.item a{
+    text-align: right;
+    text-decoration: underline;
+    
+}
+
+.submit{
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-style{
+    width: 100%;
+}
+
+.tiret{
+    margin: 0 .5rem;
+}
+
+
+/* --- MEDIA QUERIES --- */
+/* ------------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+    .popup_container-login{
+        flex-direction: column;
+        width: auto;
+    }
+
+    .form-img{
+        display: none;
+    }
+
+    .form-content__container{
+        width: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-content{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+    }
+}
