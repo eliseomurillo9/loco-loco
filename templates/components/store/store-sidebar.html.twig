@@ -37,10 +37,10 @@
 
         <div class="item flex">
             <i class="fas fa-store"></i>
-            {% for storeAddress in storeInfo %}
+            {% for address in storeAddress %}
             <div class="text-content">
-                <p>{{ storeAddress.street }}</p>
-                <p>{{ storeAddress.city }}, <span>{{ storeAddress.zipcode }}</span></p>
+                <p>{{ address.street }}</p>
+                <p>{{ address.city }}, <span>{{ address.zipcode }}</span></p>
             </div>
             {% endfor %}
         </div>
