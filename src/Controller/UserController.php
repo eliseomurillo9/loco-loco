@@ -63,7 +63,7 @@ class UserController extends AbstractController
 
         $GroceriesList = $this->getUser()->getProducts()->getValues();
 
-        $this->addFlash('success', 'Produit ajouté à la liste de course avec succès');
+
         return $this->render('user/grocery-list.html.twig', [
             'groceryList' => $GroceriesList
         ]);
@@ -114,14 +114,21 @@ class UserController extends AbstractController
             $em->persist($userInfo);
             $em->flush();
 
-            return $this->redirectToRoute('user_profil-client');
+            if ($this->isGranted('ROLE_PRODUCER')) {
+            return $this->redirectToRoute('user_profil-pro');
+            }
+            else {
+
+                return $this->redirectToRoute('user_profil-client');
+            }
         }
 
-        return $this->render('user/profil-client-edit.html.twig', [
-            'user' => $userInfo,
-            'formEdit' => $form->createView(),
-        ]);
-    }
+    return $this->render('user/profil-client-edit.html.twig', [
+        'user' => $userInfo,
+        'formEdit' => $form->createView(),
+    ]);
+}
+
 
     #[Route('/remove/favorite/{id}', name: 'remove_favorite')]
     #[IsGranted('ROLE_USER')]
@@ -163,6 +170,7 @@ class UserController extends AbstractController
                 $storeRepository->find($storeId)
             );
             $em->flush();
+
         $this->addFlash('success', 'Le magasin a été ajouté à vos favoris');
         return $this->redirect($request->headers->get('referer'));
     }
